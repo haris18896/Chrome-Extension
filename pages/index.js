@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +8,7 @@ import classNames from 'classnames'
 import friendsVpnLogo from '../public/assets/logos/MainLogo.svg'
 
 import { useFormik } from 'formik'
-import { FormFeedback, FormGroup, Input, InputGroup, Label } from 'reactstrap'
+import { Button, FormFeedback, FormGroup, Input, InputGroup, Label } from 'reactstrap'
 
 export default function Home() {
   const LoginSchema = Yup.object().shape({
@@ -77,12 +78,17 @@ export default function Home() {
               <Label for='password'>password</Label>
               {formik.touched.password && formik.errors.password ? <FormFeedback>{formik.errors.password}</FormFeedback> : null}
             </FormGroup>
+
+            <Button className='btn'>Sign In</Button>
           </form>
+          <div className='Login-forgotPassword'>
+            <Link href='/forgot-password'>Forgot Password?</Link>
+          </div>
         </div>
 
         <div className='Login__text'>
           <p>
-            Do not have an account?{' '}
+            Don't have an account?{' '}
             <Link href='https://www.friendsvpnpro.com/pricing'>
               <a target='_blank'>Register</a>
             </Link>

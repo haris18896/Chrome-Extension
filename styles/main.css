@@ -88,95 +88,23 @@ html, body {
 }
 
 .btn {
-  background: white;
-  padding: 1.3rem 3.8rem;
+  background: #24275D;
+  margin: 10px 20px 20px;
+  padding: 16px 140px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .btn:hover {
   cursor: pointer;
+  background-color: #161940;
 }
 
-.btn__text {
+.btn__link {
   font-weight: 500;
-}
-
-.btn__button {
-  border: none;
-  background: #A40700;
-  color: white;
-  font-family: 'Alegreya', serif;
-}
-
-.Button-Submit {
-  border: none;
-  background: #A40700;
-  color: white;
-  font-family: 'Alegreya', serif;
-  font-size: 1.6rem;
-  font-weight: 500;
-  padding: 1rem 2rem;
-}
-
-.Button-Submit:hover {
-  cursor: pointer;
-}
-
-.Button-Submit__disabled {
-  border: none;
-  background: #FF7F78;
-  color: white;
-  font-family: 'Alegreya', serif;
-  font-size: 1.6rem;
-  font-weight: 500;
-  padding: 1rem 2rem;
-}
-
-.Button-Submit__disabled:hover {
-  cursor: pointer;
-}
-
-.visitors-btn {
-  display: inline-block;
-  background: #FFFFFF;
-  color: #A40700;
-  padding: 1rem 2rem !important;
-  opacity: 1 !important;
-}
-
-.visitors-btn--secondary {
-  background: #A40700 !important;
-  color: white !important;
-}
-
-.visitors-btn__text {
-  font-weight: 800;
-  font-size: 1.3rem;
-}
-
-@media (min-width: 64em) {
-  .visitors-btn__text {
-    font-size: 1.6rem;
-  }
-}
-
-.visitors-btn__text--secondary {
-  color: #FFFFFF;
-}
-
-.visitors-btn--downloadLink {
-  text-decoration: none;
-  border: none;
-  color: #A40700 !important;
-  background: none;
-}
-
-.visitors-btn--link a {
-  text-decoration: none;
-  color: #A40700;
-}
-
-.visitors-btn:hover {
-  cursor: pointer;
 }
 
 .Footer {
@@ -219,9 +147,9 @@ html, body {
 }
 
 .Login__Img_container {
-  margin: 80px 100px 40px 100px !important;
-  height: 130px;
-  width: 163px;
+  margin: 60px 100px 40px 100px !important;
+  height: 100px;
+  width: 133px;
   text-align: center;
 }
 
@@ -238,17 +166,28 @@ html, body {
 }
 
 .Login__text {
-  font-size: 1.2rem;
+  font-size: 12px;
 }
 
 .Login__text p {
   color: #9AA1AE;
-  margin: 70px 0px 40px 0px !important;
+  margin: 50px 0px 30px 0px !important;
 }
 
 .Login__text a {
   text-decoration: none;
   color: #24275D;
   font-weight: bold;
+}
+
+.Login-forgotPassword {
+  text-align: center;
+}
+
+.Login-forgotPassword a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #24275D;
+  font-size: 14px;
 }
 /*# sourceMappingURL=main.css.map */
