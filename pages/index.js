@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,6 +12,9 @@ import { useFormik } from 'formik'
 import { Button, FormFeedback, FormGroup, Input, InputGroup, Label } from 'reactstrap'
 
 export default function Home() {
+  const [values, setValues] = useState({
+    showPassword: false
+  })
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Please enter a valid email address').required('Email is a required field!'),
     password: Yup.string().required('Password is a required field!')
@@ -69,11 +73,12 @@ export default function Home() {
                 id='password'
                 name='password'
                 placeholder='Password'
-                type='password'
+                type={values.showPassword ? 'text' : 'password'}
                 {...formik.getFieldProps('password')}
                 className={classNames({
                   'is-invalid': formik.touched.password && formik.errors.password
                 })}
+                endAdornment={<p>hello</p>}
               />
               <Label for='password'>password</Label>
               {formik.touched.password && formik.errors.password ? <FormFeedback>{formik.errors.password}</FormFeedback> : null}
