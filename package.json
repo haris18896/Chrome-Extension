@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm-watch",
-    "lint:build": "mv out/_next out/assets && sed -i 's/\\\\/_next/\\\\/assets/g' out/**.html",
-    "build": "next build && next export && npm run lint:build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
