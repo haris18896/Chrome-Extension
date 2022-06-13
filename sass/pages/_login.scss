@@ -1,0 +1,36 @@
+.Login {
+    @include flex-container-column;
+
+    &__Img_container {
+        margin: 80px 100px 40px 100px !important;
+        height: 130px;
+        width: 163px;
+        text-align: center;
+    }
+
+    &__placeholder{
+        height: 160px;
+        width: 160px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    &__formContainer{
+        width: 100% !important;
+    }
+
+    &__text{
+        font-size: 1.2rem; 
+
+        p{  
+            color: #9AA1AE;
+            margin: 70px 0px 40px 0px !important;
+        }
+        a{
+            text-decoration: none;
+            color: #24275D;
+            font-weight: bold;
+        }
+    }
+}

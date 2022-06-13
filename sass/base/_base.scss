@@ -1,0 +1,32 @@
+
+*,
+*::after,
+*::before {
+    // margin: 0 !important;
+    // padding: 0 !important;
+    box-sizing: border-box;
+}
+
+html {
+    // This defines what 1rem is
+    // font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+
+}
+
+html, body {
+    height: 600px;
+    width: 375px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    border: 1px solid #ccc; 
+}
+
+.App{	
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* TODO: will remove border latter */
+}

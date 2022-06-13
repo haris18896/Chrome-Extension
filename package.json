@@ -1,0 +1,55 @@
+{
+  "name": "friends-vpn-extension",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm-watch",
+    "lint:build": "mv out/_next out/assets && sed -i 's/\\\\/_next/\\\\/assets/g' out/**.html",
+    "build": "next build && next export && npm run lint:build"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
+    "autoprefixer": "^10.4.7",
+    "bootstrap": "^5.1.3",
+    "classnames": "^2.3.1",
+    "formik": "^2.2.9",
+    "next": "12.1.6",
+    "node-sass": "^7.0.1",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-feather": "^2.0.10",
+    "react-redux": "^8.0.2",
+    "reactstrap": "^9.1.1",
+    "redux": "^4.2.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "eslint": "8.17.0",
+    "eslint-config-next": "12.1.6",
+    "npm-watch": "^0.11.0"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "styles/**",
+        "pages/**",
+        "public/**",
+        "helpers/**",
+        "components/**",
+        "Screens/**",
+        "utility/**",
+        "next.config.js"
+      ],
+      "ignore": [
+        "out",
+        "node_modules",
+        ".next",
+        ".vscode"
+      ],
+      "extensions": [
+        "js",
+        "json"
+      ]
+    }
+  }
+}

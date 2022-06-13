@@ -1,0 +1,242 @@
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  height: 600px;
+  width: 375px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border: 1px solid #ccc;
+}
+
+.App {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* TODO: will remove border latter */
+}
+
+.u-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.u-justify-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.u-align-center {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.u-align-start {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.u-align-text {
+  text-align: center;
+}
+
+.u-container-1400 {
+  max-width: 1400px;
+}
+
+.u-container-1180 {
+  max-width: 1180px;
+}
+
+.u-mx-auto {
+  margin: 0 auto;
+}
+
+.u-justify-between {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.u-flex-1 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.btn {
+  background: white;
+  padding: 1.3rem 3.8rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn__text {
+  font-weight: 500;
+}
+
+.btn__button {
+  border: none;
+  background: #A40700;
+  color: white;
+  font-family: 'Alegreya', serif;
+}
+
+.Button-Submit {
+  border: none;
+  background: #A40700;
+  color: white;
+  font-family: 'Alegreya', serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+}
+
+.Button-Submit:hover {
+  cursor: pointer;
+}
+
+.Button-Submit__disabled {
+  border: none;
+  background: #FF7F78;
+  color: white;
+  font-family: 'Alegreya', serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+}
+
+.Button-Submit__disabled:hover {
+  cursor: pointer;
+}
+
+.visitors-btn {
+  display: inline-block;
+  background: #FFFFFF;
+  color: #A40700;
+  padding: 1rem 2rem !important;
+  opacity: 1 !important;
+}
+
+.visitors-btn--secondary {
+  background: #A40700 !important;
+  color: white !important;
+}
+
+.visitors-btn__text {
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+@media (min-width: 64em) {
+  .visitors-btn__text {
+    font-size: 1.6rem;
+  }
+}
+
+.visitors-btn__text--secondary {
+  color: #FFFFFF;
+}
+
+.visitors-btn--downloadLink {
+  text-decoration: none;
+  border: none;
+  color: #A40700 !important;
+  background: none;
+}
+
+.visitors-btn--link a {
+  text-decoration: none;
+  color: #A40700;
+}
+
+.visitors-btn:hover {
+  cursor: pointer;
+}
+
+.Footer {
+  background-color: #f5f5f5;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.form-group {
+  margin: 20px !important;
+}
+
+.Header {
+  background-color: aqua;
+}
+
+.Login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Login__Img_container {
+  margin: 80px 100px 40px 100px !important;
+  height: 130px;
+  width: 163px;
+  text-align: center;
+}
+
+.Login__placeholder {
+  height: 160px;
+  width: 160px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Login__formContainer {
+  width: 100% !important;
+}
+
+.Login__text {
+  font-size: 1.2rem;
+}
+
+.Login__text p {
+  color: #9AA1AE;
+  margin: 70px 0px 40px 0px !important;
+}
+
+.Login__text a {
+  text-decoration: none;
+  color: #24275D;
+  font-weight: bold;
+}
+/*# sourceMappingURL=main.css.map */
