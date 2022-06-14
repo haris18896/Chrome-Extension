@@ -125,6 +125,13 @@ body {
   font-weight: 500;
 }
 
+.btn:active, .btn:focus {
+  outline: none;
+  background-color: #24275D;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .Footer {
   background-color: #24275D;
   position: absolute;

@@ -18,5 +18,11 @@
         font-weight: 500;
     }
 
+    &:active, &:focus{
+        outline: none;
+        background-color: $color-secondary;
+        box-shadow: none;
+    }
+
 }
 

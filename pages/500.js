@@ -5,7 +5,7 @@ function Custom500() {
   return (
     <div className='customError'>
       <p>
-        <strong>500</strong> | Server Error
+        <strong>500</strong> | Server-side error occurred
       </p>
     </div>
   )
