@@ -1,5 +1,45 @@
 .Footer{
-    background-color: #f5f5f5;
-    padding: 20px 0;
-    text-align: center;
+    background-color: $color-secondary;
+    position: absolute;
+    bottom: 24px;
+    width: 100%;
+    max-height: 88px;
+    @include flex-container-row;
+    color: $white;
+    height: 100%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+    &__renewal{
+        position: relative;
+        flex: 0.9;
+        margin-left: 24px;
+        display: flex;
+        flex-direction: column;
+
+        p{
+            font-size: 12px;
+            color: $white;
+            margin-bottom: 0;
+        }
+
+        &--premium{
+            position: absolute;
+            top: 0;
+            left: 0px;
+        }
+
+        &--autoRenewal{
+            margin-top: 30px;
+
+            &__text{
+                @include flex-container-row;
+                p{
+                    margin: 0px 10px;
+                }
+            }
+        }
+    }
+
+
 }

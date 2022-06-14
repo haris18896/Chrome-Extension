@@ -126,9 +126,73 @@ body {
 }
 
 .Footer {
-  background-color: #f5f5f5;
-  padding: 20px 0;
-  text-align: center;
+  background-color: #24275D;
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  max-height: 88px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.Footer__renewal {
+  position: relative;
+  -webkit-box-flex: 0.9;
+      -ms-flex: 0.9;
+          flex: 0.9;
+  margin-left: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Footer__renewal p {
+  font-size: 12px;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.Footer__renewal--premium {
+  position: absolute;
+  top: 0;
+  left: 0px;
+}
+
+.Footer__renewal--autoRenewal {
+  margin-top: 30px;
+}
+
+.Footer__renewal--autoRenewal__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Footer__renewal--autoRenewal__text p {
+  margin: 0px 10px;
 }
 
 .form-group {
@@ -149,6 +213,7 @@ body {
 }
 
 .Header {
+  margin: 0px 24px 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -184,7 +249,8 @@ body {
 
 .Layout {
   height: 600px;
-  margin: 30px 24px;
+  position: relative;
+  margin-top: 24px;
 }
 
 .customError {
@@ -208,6 +274,102 @@ body {
   font-size: 24px;
   text-align: center;
   color: #9AA1AE;
+}
+
+.Connect {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px 24px 0px;
+  text-align: center;
+}
+
+.Connect__connection {
+  margin: 15px 0px;
+}
+
+.Connect__connection p {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.Connect__connection--connected {
+  color: #74BF54;
+}
+
+.Connect__connection--disconnect {
+  color: #24275D;
+}
+
+.Connect__connection img {
+  cursor: pointer;
+}
+
+.Connect__Button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Connect__Button--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #9AA1AE;
+  padding: 8px 12px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 35px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -ms-border-radius: 35px;
+  -o-border-radius: 35px;
+}
+
+.Connect__Button--container__flag {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.Connect__Button--container p {
+  margin: 0 30px 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.Connect__Button--ipAddress {
+  width: 100%;
+  margin: 10px 0px 0px;
+  color: #24275D;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .Login {
