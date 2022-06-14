@@ -9,12 +9,11 @@ import classNames from 'classnames'
 import friendsVpnLogo from '../public/assets/logos/MainLogo.svg'
 
 import { useFormik } from 'formik'
-import { Button, FormFeedback, FormGroup, Input, InputGroup, Label } from 'reactstrap'
+import { Eye, EyeOff } from 'react-feather'
+import { Button, FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label } from 'reactstrap'
 
 export default function Home() {
-  const [values, setValues] = useState({
-    showPassword: false
-  })
+  const [visible, setVisible] = useState(false)
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Please enter a valid email address').required('Email is a required field!'),
     password: Yup.string().required('Password is a required field!')
@@ -39,6 +38,14 @@ export default function Home() {
     }
   })
 
+  const renderIcon = () => {
+    if (visible === false) {
+      return <EyeOff size={24} />
+    } else {
+      return <Eye size={24} />
+    }
+  }
+
   return (
     <div className='App'>
       <Head>
@@ -53,22 +60,45 @@ export default function Home() {
         </div>
         <div className='Login__formContainer'>
           <form onSubmit={formik.handleSubmit}>
-            <FormGroup floating className='form-group'>
-              <Input
-                autoFocus
-                id='Email'
-                name='email'
-                placeholder='Email'
-                type='email'
-                {...formik.getFieldProps('email')}
-                className={classNames({
-                  'is-invalid': formik.touched.email && formik.errors.email
-                })}
-              />
-              <Label for='Email'>Email</Label>
-              {formik.touched.email && formik.errors.email ? <FormFeedback>{formik.errors.email}</FormFeedback> : null}
-            </FormGroup>
-            <FormGroup floating className='form-group'>
+            <InputGroup>
+              <FormGroup floating className='form-group'>
+                <Input
+                  autoFocus
+                  id='Email'
+                  name='email'
+                  placeholder='Email'
+                  type='email'
+                  {...formik.getFieldProps('email')}
+                  className={classNames({
+                    'is-invalid': formik.touched.email && formik.errors.email
+                  })}
+                />
+                <Label for='Email'>Email</Label>
+                {formik.touched.email && formik.errors.email ? <FormFeedback>{formik.errors.email}</FormFeedback> : null}
+              </FormGroup>
+            </InputGroup>
+
+            <InputGroup className='inputGroup-Password'>
+              <FormGroup floating className='form-group'>
+                <Input
+                  id='Password'
+                  name='password'
+                  placeholder='Password'
+                  type={visible ? 'text' : 'password'}
+                  {...formik.getFieldProps('password')}
+                  className={classNames({
+                    'is-invalid': formik.touched.password && formik.errors.password
+                  })}
+                />
+                <Label for='Password'>Password</Label>
+                {formik.touched.password && formik.errors.password ? <FormFeedback>{formik.errors.password}</FormFeedback> : null}
+              </FormGroup>
+              <InputGroupText className='eyeIcon' onClick={() => setVisible(!visible)}>
+                {renderIcon()}
+              </InputGroupText>
+            </InputGroup>
+
+            {/* <FormGroup floating className='form-group'>
               <Input
                 id='password'
                 name='password'
@@ -82,12 +112,14 @@ export default function Home() {
               />
               <Label for='password'>password</Label>
               {formik.touched.password && formik.errors.password ? <FormFeedback>{formik.errors.password}</FormFeedback> : null}
-            </FormGroup>
+            </FormGroup> */}
 
             <Button className='btn'>Sign In</Button>
           </form>
           <div className='Login-forgotPassword'>
-            <Link href='/forgot-password'>Forgot Password?</Link>
+            <Link href='https://www.friendsvpnpro.com/forgot-password'>
+              <a target='_blank'>Forgot Password?</a>
+            </Link>
           </div>
         </div>
 

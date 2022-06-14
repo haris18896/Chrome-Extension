@@ -1,3 +1,4 @@
+
 .Login {
     @include flex-container-column;
 
@@ -24,12 +25,12 @@
         font-size: 12px; 
 
         p{  
-            color: #9AA1AE;
-            margin: 50px 0px 30px 0px !important;
+            color: $color-grey;
+            margin: 37px 0px 30px 0px !important;
         }
         a{
             text-decoration: none;
-            color: #24275D;
+            color: $color-secondary;
             font-weight: bold;
         }
     }
@@ -39,11 +40,8 @@
         a{
             text-decoration: none;
             font-weight: bold;
-            color: #24275D;
+            color: $color-secondary;
             font-size: 14px;
-
         }
-        
-
     }
 }

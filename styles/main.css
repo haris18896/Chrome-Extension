@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 *,
 *::after,
 *::before {
@@ -10,9 +11,7 @@ html, body {
   width: 375px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Poppins', sans-serif !important;
   border: 1px solid #ccc;
 }
 
@@ -29,6 +28,22 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   /* TODO: will remove border latter */
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.heading-tertiary {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: 12px;
 }
 
 .u-flex {
@@ -89,13 +104,14 @@ html, body {
 
 .btn {
   background: #24275D;
-  margin: 10px 20px 20px;
+  margin: 10px 18px 10px;
   padding: 16px 140px;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+  white-space: wrap;
 }
 
 .btn:hover {
@@ -114,7 +130,8 @@ html, body {
 }
 
 .form-group {
-  margin: 20px !important;
+  margin: 10px 20px !important;
+  width: 100%;
 }
 
 .form-control:focus {
@@ -131,6 +148,18 @@ html, body {
 
 .Header {
   background-color: aqua;
+}
+
+.inputGroup-Password {
+  position: relative;
+}
+
+.eyeIcon {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 25px;
+  right: 30px;
 }
 
 .Login {
@@ -171,7 +200,7 @@ html, body {
 
 .Login__text p {
   color: #9AA1AE;
-  margin: 50px 0px 30px 0px !important;
+  margin: 37px 0px 30px 0px !important;
 }
 
 .Login__text a {
