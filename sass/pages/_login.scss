@@ -1,7 +1,6 @@
 
 .Login {
     @include flex-container-column;
-
     &__Img_container {
         margin: 60px 100px 40px 100px !important;
         height: 100px;
@@ -26,13 +25,22 @@
 
         p{  
             color: $color-grey;
-            margin: 37px 0px 30px 0px !important;
         }
+
         a{
             text-decoration: none;
             color: $color-secondary;
             font-weight: bold;
         }
+
+        &--p{
+            margin: 75px 0px 40px 0px !important;
+        }
+        &--p_error{
+            margin: 40px 0px 30px 0px !important;
+        }
+
+        
     }
 
     &-forgotPassword{

@@ -98,22 +98,6 @@ export default function Home() {
               </InputGroupText>
             </InputGroup>
 
-            {/* <FormGroup floating className='form-group'>
-              <Input
-                id='password'
-                name='password'
-                placeholder='Password'
-                type={values.showPassword ? 'text' : 'password'}
-                {...formik.getFieldProps('password')}
-                className={classNames({
-                  'is-invalid': formik.touched.password && formik.errors.password
-                })}
-                endAdornment={<p>hello</p>}
-              />
-              <Label for='password'>password</Label>
-              {formik.touched.password && formik.errors.password ? <FormFeedback>{formik.errors.password}</FormFeedback> : null}
-            </FormGroup> */}
-
             <Button className='btn'>Sign In</Button>
           </form>
           <div className='Login-forgotPassword'>
@@ -124,7 +108,12 @@ export default function Home() {
         </div>
 
         <div className='Login__text'>
-          <p>
+          <p
+            className={classNames({
+              'Login__text--p': !formik.errors.email || !formik.errors.password,
+              'Login__text--p_error': formik.errors.email || formik.errors.password
+            })}
+          >
             Don't have an account?{' '}
             <Link href='https://www.friendsvpnpro.com/pricing'>
               <a target='_blank'>Register</a>
