@@ -6,13 +6,16 @@
           box-sizing: border-box;
 }
 
+html {
+  border: 1px solid #ccc;
+}
+
 html, body {
   height: 600px;
   width: 375px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Poppins', sans-serif !important;
-  border: 1px solid #ccc;
 }
 
 .App {
@@ -27,7 +30,6 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  /* TODO: will remove border latter */
 }
 
 body {
@@ -161,7 +163,7 @@ body {
 }
 
 .Header--bars {
-  margin-right: auto;
+  cursor: pointer;
 }
 
 .Header--logo {
