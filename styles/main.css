@@ -147,7 +147,25 @@ body {
 }
 
 .Header {
-  background-color: aqua;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.Header--bars {
+  margin-right: auto;
+}
+
+.Header--logo {
+  margin: 0px auto;
 }
 
 .inputGroup-Password {
@@ -160,6 +178,34 @@ body {
   position: absolute;
   top: 25px;
   right: 30px;
+}
+
+.Layout {
+  height: 600px;
+  margin: 30px 24px;
+}
+
+.customError {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 600px;
+}
+
+.customError strong {
+  color: #000;
+}
+
+.customError p {
+  font-size: 24px;
+  text-align: center;
+  color: #9AA1AE;
 }
 
 .Login {

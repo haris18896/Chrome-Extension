@@ -1,3 +1,14 @@
 .Header {
-    background-color: aqua;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 10px;
+
+    &--bars{
+        margin-right: auto;
+    }
+    
+    &--logo{
+        margin: 0px auto;
+    }
 }

@@ -46,6 +46,10 @@ export default function Home() {
     }
   }
 
+  // useEffect(() => {
+  //   // if user is authenticated then redirect to Connect page
+  // }, [])
+
   return (
     <div className='App'>
       <Head>
@@ -98,7 +102,9 @@ export default function Home() {
               </InputGroupText>
             </InputGroup>
 
-            <Button className='btn'>Sign In</Button>
+            <Button className='btn' type='submits'>
+              Sign In
+            </Button>
           </form>
           <div className='Login-forgotPassword'>
             <Link href='https://www.friendsvpnpro.com/forgot-password'>

@@ -17,6 +17,9 @@
 @import "components/header";
 @import "components/passwordField";
 
+@import 'layout/homeLayout';
+
+@import "pages/404";
 @import "pages/connect";
 @import "pages/login";
 @import "pages/servers";
