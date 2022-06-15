@@ -42,7 +42,7 @@ function Connect() {
         </div>
 
         <div className='Connect__Button'>
-          <div className='Connect__Button--container' onClick={() => router.push('/servers/servers-list')}>
+          <div className='Connect__Button--container' onClick={() => router.push('/servers/servers')}>
             <Image className='Connect__Button--container__flag' src={flag} alt='flag' width={30} height={30} />
             <p>United States of America</p>
             <Image src={rightArrow} alt='rightArrow' width={15} height={20} />
