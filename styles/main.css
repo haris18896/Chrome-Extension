@@ -629,16 +629,21 @@ body {
 
 .Servers--header__search {
   position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .Servers--header__search input {
   padding: 8px 30px 8px 35px;
+  border: none;
   background-color: #EEEEEE;
 }
 
 .Servers--header__search input:focus {
   background-color: #EEEEEE;
   outline: none;
+  border: none !important;
 }
 
 .Servers--header__search--searchIcon {
@@ -674,6 +679,7 @@ body {
       -ms-flex: 1;
           flex: 1;
   cursor: pointer;
+  margin-bottom: 15px;
 }
 
 .Servers--tabs__tab p {
@@ -715,7 +721,6 @@ body {
 }
 
 .Servers--list {
-  margin-top: 15px;
   padding: 0px 24px;
   width: 100%;
 }

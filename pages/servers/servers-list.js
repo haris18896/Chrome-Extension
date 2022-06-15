@@ -74,7 +74,13 @@ function Servers() {
           </div>
         ))}
       </div>
-      <div className='Servers--list'>c</div>
+      <div className='Servers--list'>
+        {selectedTab.id === 'all_servers' ? (
+          <div className='Servers--list__servers'>all servers</div>
+        ) : selectedTab.id === 'favorites' ? (
+          <div className='Servers--list__servers'>favorites</div>
+        ) : null}
+      </div>
     </div>
   )
 }
