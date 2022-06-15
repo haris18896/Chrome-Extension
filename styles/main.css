@@ -6,6 +6,10 @@
           box-sizing: border-box;
 }
 
+html {
+  border: 1px solid #ccc;
+}
+
 html, body {
   height: 600px;
   width: 375px;
@@ -587,5 +591,32 @@ body {
   font-weight: bold;
   color: #24275D;
   font-size: 14px;
+}
+
+.Servers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.Servers--header {
+  width: 100%;
+  padding: 20px 24px;
+}
+
+.Servers--tabs {
+  width: 100%;
+}
+
+.Servers--list {
+  padding: 0px 24px;
+  width: 100%;
 }
 /*# sourceMappingURL=main.css.map */
