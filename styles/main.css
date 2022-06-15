@@ -607,8 +607,51 @@ body {
 }
 
 .Servers--header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
   padding: 20px 24px;
+}
+
+.Servers--header__goBack {
+  fill: #24275D;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.Servers--header__search {
+  position: relative;
+}
+
+.Servers--header__search input {
+  padding: 8px 30px 8px 35px;
+  background-color: #EEEEEE;
+}
+
+.Servers--header__search input:focus {
+  background-color: #EEEEEE;
+  outline: none;
+}
+
+.Servers--header__search--searchIcon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.Servers--header__search--cancelIcon {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  cursor: pointer;
 }
 
 .Servers--tabs {

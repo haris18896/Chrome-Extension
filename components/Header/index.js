@@ -9,62 +9,15 @@ import bars from '../../public/assets/logos/bars.svg'
 import person from '../../public/assets/logos/person.svg'
 import friendsVPN from '../../public/assets/logos/friendsVPN.svg'
 
-import { FaStar } from 'react-icons/fa'
-import { FaTwitter } from 'react-icons/fa'
-import { FaUserAlt } from 'react-icons/fa'
-import { FaInstagram } from 'react-icons/fa'
-import { FaInfoCircle } from 'react-icons/fa'
-import { FaFacebookSquare } from 'react-icons/fa'
-import { BsGearFill } from 'react-icons/bs'
 import { TbLogout } from 'react-icons/tb'
 import { MdCancel } from 'react-icons/md'
+import { Footer, ListItems } from './sidebarData'
 
 function Header() {
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-
-  const listItems = [
-    {
-      name: 'My Account',
-      href: '/my-account',
-      icon: <FaUserAlt size={16} />
-    },
-    {
-      name: 'Settings',
-      href: '/settings',
-      icon: <BsGearFill size={16} />
-    },
-    {
-      name: 'Rate Us',
-      href: '/rating',
-      icon: <FaStar size={16} />
-    },
-    {
-      name: 'About Us',
-      href: '/about-us',
-      icon: <FaInfoCircle size={16} />
-    }
-  ]
-
-  const footer = [
-    {
-      name: 'facebook',
-      href: 'https://www.facebook.com/',
-      icon: <FaFacebookSquare size={28} color='white' />
-    },
-    {
-      name: 'twitter',
-      href: 'https://twitter.com/',
-      icon: <FaTwitter size={28} color='white' />
-    },
-    {
-      name: 'instagram',
-      href: 'https://www.instagram.com/',
-      icon: <FaInstagram size={28} color='white' />
-    }
-  ]
 
   return (
     <div
@@ -96,7 +49,7 @@ function Header() {
 
           <div className='Header__Body--List'>
             <ul>
-              {listItems.map((item, index) => (
+              {ListItems.map((item, index) => (
                 <li key={index}>
                   <Link href={item.href}>
                     <a>
@@ -119,7 +72,7 @@ function Header() {
 
           <div className='Header__Body--footer'>
             <ul>
-              {footer.map((item, index) => (
+              {Footer.map((item, index) => (
                 <li key={index}>
                   <Link href={item.href}>
                     <a target='__blank'>{item.icon}</a>

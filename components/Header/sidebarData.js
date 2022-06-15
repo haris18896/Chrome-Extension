@@ -1,34 +1,48 @@
-import React from 'react'
-import Image from 'next/image'
+import { FaStar } from 'react-icons/fa'
+import { FaTwitter } from 'react-icons/fa'
+import { FaUserAlt } from 'react-icons/fa'
+import { FaInstagram } from 'react-icons/fa'
+import { FaInfoCircle } from 'react-icons/fa'
+import { FaFacebookSquare } from 'react-icons/fa'
+import { BsGearFill } from 'react-icons/bs'
 
-import user from '../../public/assets/logos/user.svg'
-import setting from '../../public/assets/logos/setting.svg'
-import star from '../../public/assets/logos/star.svg'
-import info from '../../public/assets/logos/info.svg'
+export const ListItems = [
+  {
+    name: 'My Account',
+    href: '/my-account',
+    icon: <FaUserAlt size={16} />
+  },
+  {
+    name: 'Settings',
+    href: '/settings',
+    icon: <BsGearFill size={16} />
+  },
+  {
+    name: 'Rate Us',
+    href: '/rating',
+    icon: <FaStar size={16} />
+  },
+  {
+    name: 'About Us',
+    href: '/about-us',
+    icon: <FaInfoCircle size={16} />
+  }
+]
 
-export const SidebarData = [
+export const Footer = [
   {
-    title: 'My account',
-    path: '/',
-    icon: <Image src={user} alt='user' width={16} height={16} />,
-    cName: 'nav-text'
+    name: 'facebook',
+    href: 'https://www.facebook.com/',
+    icon: <FaFacebookSquare size={28} color='white' />
   },
   {
-    title: 'Settings',
-    path: '/',
-    icon: <Image src={setting} alt='setting' width={16} height={16} />,
-    cName: 'nav-text'
+    name: 'twitter',
+    href: 'https://twitter.com/',
+    icon: <FaTwitter size={28} color='white' />
   },
   {
-    title: 'Rate Us',
-    path: '/',
-    icon: <Image src={star} alt='star' width={16} height={16} />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'About Us',
-    path: '/',
-    icon: <Image src={info} alt='info' width={16} height={16} />,
-    cName: 'nav-text'
+    name: 'instagram',
+    href: 'https://www.instagram.com/',
+    icon: <FaInstagram size={28} color='white' />
   }
 ]
