@@ -656,9 +656,66 @@ body {
 
 .Servers--tabs {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Servers--tabs__tab {
+  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  cursor: pointer;
+}
+
+.Servers--tabs__tab p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.Servers--tabs__tab--selected {
+  color: #24275D;
+  position: relative;
+}
+
+.Servers--tabs__tab--selected:after {
+  position: absolute;
+  content: '';
+  border-bottom: 2px solid #24275D;
+  width: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: -10px;
+  left: 50%;
+}
+
+.Servers--tabs__tab--unselected {
+  color: #9AA1AE;
+  position: relative;
+}
+
+.Servers--tabs__tab--unselected:after {
+  position: absolute;
+  content: '';
+  border-bottom: 1px solid #9AA1AE;
+  width: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: -10px;
+  left: 50%;
 }
 
 .Servers--list {
+  margin-top: 15px;
   padding: 0px 24px;
   width: 100%;
 }

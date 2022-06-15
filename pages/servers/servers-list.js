@@ -10,12 +10,34 @@ function Servers() {
   const router = useRouter()
   const [searchKeyword, setSearchKeyword] = useState('')
 
+  let tabs = [
+    {
+      id: 'all_servers',
+      name: 'All Servers',
+      default: true
+    },
+    {
+      id: 'favorites',
+      name: 'Favorites',
+      default: false
+    }
+  ]
+  const [tabsState] = useState(tabs)
+
+  const [selectedTab, setSelectedTab] = useState({
+    id: 'all_servers',
+    name: 'All Servers',
+    default: true
+  })
+
   const onChangeHandler = e => {
     const { name, value } = e.target
     if (name === 'searchKeyword') setSearchKeyword(value)
   }
 
-  console.log('search..', searchKeyword)
+  const handleChangeTab = tab => {
+    setSelectedTab(tab)
+  }
 
   const reset = () => {
     setSearchKeyword('')
@@ -40,7 +62,18 @@ function Servers() {
           />
         </div>
       </div>
-      <div className='Servers--tabs'></div>
+      <div className='Servers--tabs'>
+        {tabsState.map((doc, index) => (
+          <div key={index} className='Servers--tabs__tab'>
+            <p
+              onClick={() => handleChangeTab(doc)}
+              className={doc.id === selectedTab.id ? 'Servers--tabs__tab--selected' : 'Servers--tabs__tab--unselected'}
+            >
+              {doc.name}
+            </p>
+          </div>
+        ))}
+      </div>
       <div className='Servers--list'>c</div>
     </div>
   )

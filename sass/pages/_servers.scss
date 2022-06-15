@@ -7,7 +7,7 @@
         align-items: center;
         width: 100%;
         padding: 20px 24px;
-        
+
         &__goBack{
             fill: $color-secondary;
             margin-right: 20px;
@@ -43,10 +43,52 @@
 
     &--tabs{
         width: 100%;
+        @include flex-container-row;
 
+        &__tab{
+            text-align: center;
+            flex: 1;
+            cursor: pointer;
+            p{
+                margin: 0;
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            &--selected{
+                color: $color-secondary;
+                position: relative;
+                
+                &:after{
+                    position: absolute;
+                    content: '';
+                    border-bottom: 2px solid $color-secondary;
+                    width: 100%;
+                    transform: translateX(-50%);
+                    bottom: -10px;
+                    left: 50%;
+                }
+            }
+
+            &--unselected{
+                color: $color-grey;
+                position: relative;
+
+                &:after{
+                    position: absolute;
+                    content: '';
+                    border-bottom: 1px solid $color-grey;
+                    width: 100%;
+                    transform: translateX(-50%);
+                    bottom: -10px;
+                    left: 50%;
+                }
+            }
+        }
     }
 
     &--list{
+        margin-top: 15px;
         padding: 0px 24px;
         width: 100%;
     }
