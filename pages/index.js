@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
+import Router from 'next/router'
 
 import * as Yup from 'yup'
 import classNames from 'classnames'
@@ -102,7 +103,7 @@ export default function Home() {
               </InputGroupText>
             </InputGroup>
 
-            <Button className='btn' type='submits'>
+            <Button className='btn' type='submits' onClick={() => Router.push('/connect/connect')}>
               Sign In
             </Button>
           </form>

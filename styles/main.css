@@ -242,6 +242,117 @@ body {
   margin: 0px auto;
 }
 
+.Header__offCanvas {
+  width: 300px !important;
+  height: 600px !important;
+}
+
+.Header__Body {
+  position: relative;
+  padding: 0;
+}
+
+.Header__Body--Top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin: 50px 10px  50px 30px;
+}
+
+.Header__Body--Top img {
+  margin-bottom: 15px;
+}
+
+.Header__Body--Top p {
+  margin: 0;
+}
+
+.Header__Body--List {
+  margin: 30px 30px;
+}
+
+.Header__Body--List svg {
+  color: gray;
+}
+
+.Header__Body--List ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Header__Body--List ul li {
+  margin-bottom: 14px;
+}
+
+.Header__Body--List ul li:last-child {
+  margin-bottom: 0px;
+}
+
+.Header__Body--List a {
+  text-decoration: none;
+  color: #151515;
+  cursor: pointer;
+}
+
+.Header__Body--List a:hover {
+  color: #FFC10B !important;
+}
+
+.Header__Body--List span {
+  margin-left: 13px;
+  font-size: 14px;
+}
+
+.Header__Body--List__logout {
+  position: absolute;
+  bottom: 120px;
+  left: 45px;
+}
+
+.Header__Body--footer {
+  background-color: #24275D;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+.Header__Body--footer ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: 25px;
+  padding: 0;
+}
+
+.Header__Body--footer ul li {
+  list-style: none;
+}
+
+.offcanvas-backdrop {
+  width: 375px !important;
+  height: 600px !important;
+}
+
 .inputGroup-Password {
   position: relative;
 }

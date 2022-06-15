@@ -71,7 +71,12 @@ $breakpoints-down: ("xXxSmall":"23.3125em","MedSmall":"25.8125","XxSmall":"29.56
   display: flex;
   flex-direction: row;
   align-items: center;
-  
+}
+
+@mixin flex-column-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 @mixin reset-list{
