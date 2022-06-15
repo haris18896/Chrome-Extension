@@ -143,6 +143,10 @@
             &--ping{
                 margin-left: auto;
 
+                &--star{
+                    color: $color-primary;
+                }
+
                 svg{
                     margin-right: 20px;
                     cursor: pointer;

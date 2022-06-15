@@ -134,7 +134,12 @@ function Servers() {
   const handleFavorite = server => {
     server.preventDefault()
     const newFavorite = [...favorite]
-    console.log(newFavorite)
+    const index = newFavorite.findIndex(item => item.id === server.id)
+    if (index === -1) {
+      newFavorite.push(server)
+    } else {
+      newFavorite.splice(index, 1)
+    }
   }
 
   const reset = () => {
@@ -182,7 +187,13 @@ function Servers() {
                   <span>{item.name}</span>
                 </div>
                 <div className='Servers--list__servers--ping'>
-                  <FaRegStar size={16} className={classNames({})} onClick={handleFavorite} />
+                  <FaRegStar
+                    size={16}
+                    className={classNames({
+                      'Servers--list__servers--ping--star': favorite.find(doc => doc.id === item.id)
+                    })}
+                    onClick={handleFavorite}
+                  />
                   <span>{item.ping}</span>
                 </div>
               </div>
