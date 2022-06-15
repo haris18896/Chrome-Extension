@@ -84,9 +84,9 @@ function Header() {
         </Link>
       </div>{' '}
       <Offcanvas className='Header__offCanvas' show={show} onHide={handleClose}>
-        <div className='Header__offCanvas--close'>
-          <MdCancel size={32} color='primary' />
-        </div>
+        <span className='Header__offCanvas--close'>
+          <MdCancel size={32} onClick={handleClose} />
+        </span>
         <Offcanvas.Body className='Header__Body'>
           <div className='Header__Body--Top'>
             <Image src={person} alt='person' height={66} width={66} />

@@ -243,6 +243,26 @@ body {
   height: 600px !important;
 }
 
+.Header__offCanvas--close {
+  position: absolute;
+  top: 65px;
+  right: -15px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #8A8A8A;
+  padding: 1px;
+}
+
+.Header__offCanvas--close svg {
+  fill: #fff;
+  background-color: #8A8A8A;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
 .Header__Body {
   position: relative;
   padding: 0;
@@ -353,9 +373,14 @@ body {
   list-style: none;
 }
 
+.Header__Body--footer ul li svg:hover {
+  fill: #FFC10B;
+}
+
 .offcanvas-backdrop {
   width: 375px !important;
   height: 600px !important;
+  background-color: #151515;
 }
 
 .offcanvas-start {
