@@ -6,10 +6,6 @@
           box-sizing: border-box;
 }
 
-html {
-  border: 1px solid #ccc;
-}
-
 html, body {
   height: 600px;
   width: 375px;
@@ -268,12 +264,21 @@ body {
   margin: 50px 10px  50px 30px;
 }
 
-.Header__Body--Top img {
-  margin-bottom: 15px;
-}
-
 .Header__Body--Top p {
   margin: 0;
+}
+
+.Header__Body--Top__name {
+  color: #24275D;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.7;
+  margin-top: 12px !important;
+}
+
+.Header__Body--Top__email {
+  color: #151515;
+  font-size: 14px;
 }
 
 .Header__Body--List {
@@ -351,6 +356,10 @@ body {
 .offcanvas-backdrop {
   width: 375px !important;
   height: 600px !important;
+}
+
+.offcanvas-start {
+  border: none !important;
 }
 
 .inputGroup-Password {

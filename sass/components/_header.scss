@@ -29,12 +29,23 @@
             margin-top: 50px;
             margin-bottom: 50px;
             margin: 50px 10px  50px 30px;
-            img{
-                margin-bottom: 15px;
-            }
 
             p{
                 margin: 0;
+            }
+
+            &__name{
+                color: $color-secondary;
+                font-size: 15px;
+                font-weight: bold;
+                line-height: 1.7;
+                margin-top: 12px !important;
+            }
+
+            &__email{
+                color: $color-brownish-black;
+                font-size: 14px;
+                // font-weight: 500;
             }
         }
 
@@ -112,4 +123,8 @@
 .offcanvas-backdrop {
     width: 375px !important;
     height: 600px !important;
+}
+
+.offcanvas-start {
+    border: none !important;
 }

@@ -6,12 +6,7 @@ import classNames from 'classnames'
 import { Offcanvas } from 'react-bootstrap'
 
 import bars from '../../public/assets/logos/bars.svg'
-import user from '../../public/assets/logos/user.svg'
-import star from '../../public/assets/logos/star.svg'
-import info from '../../public/assets/logos/info.svg'
-import logout from '../../public/assets/logos/logout.svg'
 import person from '../../public/assets/logos/person.svg'
-import setting from '../../public/assets/logos/setting.svg'
 import friendsVPN from '../../public/assets/logos/friendsVPN.svg'
 
 import { FaStar } from 'react-icons/fa'
@@ -22,6 +17,7 @@ import { FaInfoCircle } from 'react-icons/fa'
 import { FaFacebookSquare } from 'react-icons/fa'
 import { BsGearFill } from 'react-icons/bs'
 import { TbLogout } from 'react-icons/tb'
+import { MdCancel } from 'react-icons/md'
 
 function Header() {
   const [show, setShow] = useState(false)
@@ -88,10 +84,12 @@ function Header() {
         </Link>
       </div>{' '}
       <Offcanvas className='Header__offCanvas' show={show} onHide={handleClose}>
-        {/* <Offcanvas.Header className='Header__Top' closeButton></Offcanvas.Header> */}
+        <div className='Header__offCanvas--close'>
+          <MdCancel size={32} color='primary' />
+        </div>
         <Offcanvas.Body className='Header__Body'>
           <div className='Header__Body--Top'>
-            <Image src={person} alt='person' height={56} width={56} />
+            <Image src={person} alt='person' height={66} width={66} />
             <p className='Header__Body--Top__name'>Haris Ahmad Khan</p>
             <p className='Header__Body--Top__email'>haris18896@gmail.com</p>
           </div>
