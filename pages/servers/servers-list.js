@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
+import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
 import { Input } from 'reactstrap'
@@ -20,7 +21,7 @@ import lb from '../../public/assets/flags/lb.svg'
 
 import { FaRegStar } from 'react-icons/fa'
 import { FaStar } from 'react-icons/fa'
-import classNames from 'classnames'
+import ServersList from '../../components/servers/ServersList'
 
 function Servers() {
   const router = useRouter()
@@ -132,14 +133,22 @@ function Servers() {
   }
 
   const handleFavorite = server => {
-    server.preventDefault()
     const newFavorite = [...favorite]
     const index = newFavorite.findIndex(item => item.id === server.id)
-    if (index === -1) {
-      newFavorite.push(server)
-    } else {
-      newFavorite.splice(index, 1)
+
+    if (selectedTab.id === 'all_servers') {
+      if (index === -1) {
+        newFavorite.push(server)
+      } else {
+        newFavorite.splice(index, 1)
+      }
+    } else if (selectedTab.id === 'favorites') {
+      if (index !== -1) {
+        newFavorite.splice(index, 1)
+      }
     }
+
+    setFavorite(newFavorite)
   }
 
   const reset = () => {
@@ -181,38 +190,26 @@ function Servers() {
         {selectedTab.id === 'all_servers' ? (
           <div>
             {allServers.map((item, index) => (
-              <div key={index} className='Servers--list__servers'>
-                <div className='Servers--list__servers--country'>
-                  <Image src={item.flag} alt={item.name} width={30} height={30} />
-                  <span>{item.name}</span>
-                </div>
-                <div className='Servers--list__servers--ping'>
-                  <FaRegStar
-                    size={16}
-                    className={classNames({
-                      'Servers--list__servers--ping--star': favorite.find(doc => doc.id === item.id)
-                    })}
-                    onClick={handleFavorite}
-                  />
-                  <span>{item.ping}</span>
-                </div>
-              </div>
+              <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping}>
+                <FaRegStar
+                  size={16}
+                  className={classNames({
+                    'Servers--list__servers--ping--star': favorite.find(doc => doc.id === item.id)
+                  })}
+                  onClick={() => {
+                    handleFavorite(item)
+                  }}
+                />
+              </ServersList>
             ))}
           </div>
         ) : selectedTab.id === 'favorites' ? (
           <div>
             {(favorite.length &&
               favorite.map((item, index) => (
-                <div key={index} className='Servers--list__servers'>
-                  <div className='Servers--list__servers--country'>
-                    <Image src={item.flag} alt={item.name} width={30} height={30} />
-                    <span>{item.name}</span>
-                  </div>
-                  <div className='Servers--list__servers--ping'>
-                    <FaStar size={16} color='ffc10b' />
-                    <span>{item.ping}</span>
-                  </div>
-                </div>
+                <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping}>
+                  <FaStar size={16} color='ffc10b' onClick={() => handleFavorite(item)} />
+                </ServersList>
               ))) || <p>No favorites yet</p>}
           </div>
         ) : null}
