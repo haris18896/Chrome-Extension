@@ -223,7 +223,7 @@ body {
 
 .form-group {
   margin: 10px 20px !important;
-  width: 100%;
+  width: 100% !important;
 }
 
 .form-control:focus {
