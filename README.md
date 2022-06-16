@@ -10,18 +10,18 @@ npm run dev
 yarn dev
 ```
 ```
-rm -rf .next/ out/;
-rm extension.zip;
+rm -rf .next/ out/
+rm extension.zip
 
-yarn next build;
-yarn next export;
+yarn next build
+yarn next export
 
-cp manifest.json ./out;
+cp manifest.json ./out
 
 mv ./out/_next ./out/next
-cd ./out && grep -rli '_next' * | xargs -I@ sed -i '' 's/_next/next/g' @;
+cd ./out && grep -rli '_next' * | xargs -I@ sed -i '' 's/_next/next/g' @
 
-zip -r -FS ../my-extension.zip *;
+zip -r -FS ../my-extension.zip *
 ```
 
 to make a build and export with optimized Images  `next/image`, add these configs to `next.config.js`
