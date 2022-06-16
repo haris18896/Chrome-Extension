@@ -6,7 +6,8 @@
     "dev": "next dev",
     "dev-watch": "npm-watch",
     "lint:build": "mv out/_next out/assets && sed -i 's/\\\\/_next/\\\\/assets/g' out/**.html",
-    "build": "next build && next export && npm run lint:build"
+    "build": "next build && next export && npm run lint:build",
+    "start": "next start"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
