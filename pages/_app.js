@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/main.css'
 import Router from 'next/router'
 import NProgress from 'nprogress'
+import { wrapper } from '../redux/store'
 import { Suspense, useEffect } from 'react'
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 import Spinner from '../components/common/Spinner'
@@ -27,4 +28,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)
