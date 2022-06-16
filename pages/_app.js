@@ -10,10 +10,10 @@ import { useDispatch } from 'react-redux'
 import { Suspense, useEffect } from 'react'
 
 import useJwt from '../jwt/jwtService'
-import Spinner from '../components/common/spinner'
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 
 import { SET_IS_ACCOUNT_TRUE, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/customer'
+import Spinner from '../components/common/spinner'
 
 NProgress.configure({ showSpinner: false })
 
