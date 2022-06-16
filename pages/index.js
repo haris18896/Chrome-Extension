@@ -110,7 +110,7 @@ export default function Home() {
               </InputGroupText>
             </InputGroup>
 
-            <Button className='button' type='submits' onClick={() => Router.push('/connect/connect')}>
+            <Button className='button' type='submits' onClick={() => Router.push('/connect/connect?amp=1')}>
               Sign In
             </Button>
           </form>

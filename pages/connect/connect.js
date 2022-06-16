@@ -48,7 +48,7 @@ function Connect() {
         </div>
 
         <div className='Connect__Button'>
-          <div className='Connect__Button--container' onClick={() => router.push('/servers/servers')}>
+          <div className='Connect__Button--container' onClick={() => router.push('/servers/servers?amp=1')}>
             {isAmp ? (
               <amp-img width='30' height='30' src='/assets/flag.svg' alt='flag' layout='responsive' />
             ) : (

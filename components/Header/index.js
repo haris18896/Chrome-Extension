@@ -33,7 +33,7 @@ function Header() {
         )}
       </div>
       <div className='Header--logo'>
-        <Link href='/'>
+        <Link href='/?amp=1'>
           <a className='Header--logo'>
             {isAmp ? (
               <amp-img width='120' height='24' src='/assets/logos/friendsVPN.svg' alt='friendsVPN' layout='responsive' />
