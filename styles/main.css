@@ -153,7 +153,7 @@ body {
 .Footer {
   background-color: #24275D;
   position: absolute;
-  bottom: 24px;
+  bottom: 0px;
   width: 100%;
   max-height: 88px;
   display: -webkit-box;
@@ -412,9 +412,9 @@ body {
 }
 
 .Layout {
-  height: 600px;
   position: relative;
   margin-top: 24px;
+  height: 576px;
 }
 
 .customError {

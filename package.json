@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev-watch": "npm-watch",
-    "build": "next build",
-    "export": "next export",
+    "build": "next build && next export",
     "lint": "next lint",
     "start": "next start"
   },
