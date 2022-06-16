@@ -8,17 +8,6 @@ import { FaSearch } from 'react-icons/fa'
 import { MdCancel } from 'react-icons/md'
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi'
 
-import pk from '../../public/assets/flags/pk.svg'
-import us from '../../public/assets/flags/us.svg'
-import ar from '../../public/assets/flags/ar.svg'
-import bq from '../../public/assets/flags/bq.svg'
-import bw from '../../public/assets/flags/bw.svg'
-import cu from '../../public/assets/flags/cu.svg'
-import fj from '../../public/assets/flags/fj.svg'
-import eu from '../../public/assets/flags/eu.svg'
-import gd from '../../public/assets/flags/gd.svg'
-import lb from '../../public/assets/flags/lb.svg'
-
 import { FaRegStar } from 'react-icons/fa'
 import { FaStar } from 'react-icons/fa'
 import ServersList from '../../components/servers/ServersList'
@@ -30,7 +19,7 @@ function Servers() {
     {
       id: 1,
       name: 'PK',
-      flag: pk,
+      flag: '/assets/flags/pk.svg',
       ping: '70ms'
     }
   ])
@@ -39,65 +28,65 @@ function Servers() {
     {
       id: 1,
       name: 'PK',
-      flag: pk,
+      flag: '/assets/flags/pk.svg',
       ping: '80ms'
     },
     {
       id: 2,
       name: 'us',
-      flag: us,
+      flag: '/assets/flags/us.svg',
       free: 'free',
       ping: '120ms'
     },
     {
       id: 3,
       name: 'ar',
-      flag: ar,
+      flag: '/assets/flags/ar.svg',
       ping: '140ms'
     },
     {
       id: 4,
       name: 'bq',
-      flag: bq,
+      flag: '/assets/flags/bq.svg',
       ping: '60ms'
     },
     {
       id: 5,
       name: 'bw',
       free: 'free',
-      flag: bw,
+      flag: '/assets/flags/bw.svg',
       ping: '90ms'
     },
     {
       id: 6,
       name: 'cu',
-      flag: cu,
+      flag: '/assets/flags/cu.svg',
       ping: '98ms'
     },
     {
       id: 7,
       name: 'fj',
-      flag: fj,
+      flag: '/assets/flags/fj.svg',
       ping: '123ms'
     },
     {
       id: 8,
       name: 'eu',
       free: 'free',
-      flag: eu,
+      flag: '/assets/flags/eu.svg',
       ping: '321ms'
     },
     {
       id: 9,
       name: 'gd',
-      flag: gd,
+      flag: '/assets/flags/gd.svg',
       ping: '123ms'
     },
     {
       id: 10,
       name: 'lb',
       free: 'free',
-      flag: lb,
+      flag: '/assets/flags/lb.svg',
       ping: '100ms'
     }
   ]

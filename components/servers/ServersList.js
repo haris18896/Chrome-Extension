@@ -1,12 +1,19 @@
 import React from 'react'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
+import { useAmp } from 'next/amp'
 
 function ServersList({ children, flag, name, ping }) {
+  const isAmp = useAmp()
+
   return (
     <div className='Servers--list__servers'>
       <div className='Servers--list__servers--country'>
-        <Image src={flag} alt={name} width={30} height={30} />
+        {isAmp ? (
+          <amp-img width='30' height='30' src={`${flag}`} alt={name} layout='responsive' />
+        ) : (
+          <img width='30' height='30' src={`${flag}`} alt={name} />
+        )}
         <span>{name}</span>{' '}
       </div>
       <div className='Servers--list__servers--ping'>
@@ -19,7 +26,7 @@ function ServersList({ children, flag, name, ping }) {
 
 ServersList.propTypes = {
   children: PropTypes.node,
-  flag: PropTypes.object,
+  flag: PropTypes.string,
   name: PropTypes.string,
   ping: PropTypes.string
 }

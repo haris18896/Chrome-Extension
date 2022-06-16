@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from 'next/image'
 import Router from 'next/router'
+import { useAmp } from 'next/amp'
 
 import * as Yup from 'yup'
 import classNames from 'classnames'
@@ -14,6 +15,8 @@ import { Eye, EyeOff } from 'react-feather'
 import { Button, FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label } from 'reactstrap'
 
 export default function Home() {
+  const isAmp = useAmp()
+
   const [visible, setVisible] = useState(false)
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Please enter a valid email address').required('Email is a required field!'),
@@ -61,7 +64,11 @@ export default function Home() {
 
       <div className='Login'>
         <div className='Login__Img_container'>
-          <Image src={friendsVpnLogo} alt='Friends VPN' width={163} height={130} />
+          {isAmp ? (
+            <amp-img width='163' height='130' src='/assets/logos/MainLogo.svg' alt='Friends VPN' layout='responsive' />
+          ) : (
+            <img width='163' height='130' src='/assets/logos/MainLogo.svg' alt='Friends VPN' />
+          )}
         </div>
         <div className='Login__formContainer'>
           <form onSubmit={formik.handleSubmit}>
