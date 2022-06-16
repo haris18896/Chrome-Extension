@@ -34,36 +34,39 @@ function Servers() {
       id: 2,
       name: 'us',
       flag: '/assets/flags/us.svg',
-      free: 'free',
       ping: '120ms'
     },
     {
       id: 3,
       name: 'ar',
+      sub: 'Premium',
       flag: '/assets/flags/ar.svg',
       ping: '140ms'
     },
     {
       id: 4,
       name: 'bq',
+      sub: 'Premium',
       flag: '/assets/flags/bq.svg',
       ping: '60ms'
     },
     {
       id: 5,
+      sub: 'Premium',
       name: 'bw',
-      free: 'free',
       flag: '/assets/flags/bw.svg',
       ping: '90ms'
     },
     {
       id: 6,
+      sub: 'Premium',
       name: 'cu',
       flag: '/assets/flags/cu.svg',
       ping: '98ms'
     },
     {
       id: 7,
+      sub: 'Premium',
       name: 'fj',
       flag: '/assets/flags/fj.svg',
       ping: '123ms'
@@ -71,20 +74,20 @@ function Servers() {
     {
       id: 8,
       name: 'eu',
-      free: 'free',
       flag: '/assets/flags/eu.svg',
       ping: '321ms'
     },
     {
       id: 9,
+      sub: 'Premium',
       name: 'gd',
       flag: '/assets/flags/gd.svg',
       ping: '123ms'
     },
     {
       id: 10,
+      sub: 'Premium',
       name: 'lb',
-      free: 'free',
       flag: '/assets/flags/lb.svg',
       ping: '100ms'
     }
@@ -178,7 +181,7 @@ function Servers() {
         {selectedTab.id === 'all_servers' ? (
           <div>
             {allServers.map((item, index) => (
-              <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping}>
+              <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping} sub={item.sub}>
                 <FaRegStar
                   size={16}
                   className={classNames({
@@ -195,7 +198,7 @@ function Servers() {
           <div>
             {(favorite.length &&
               favorite.map((item, index) => (
-                <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping}>
+                <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping} sub={item.sub}>
                   <FaStar size={16} color='ffc10b' onClick={() => handleFavorite(item)} />
                 </ServersList>
               ))) || <p>No favorites yet</p>}

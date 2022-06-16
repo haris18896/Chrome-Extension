@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useAmp } from 'next/amp'
 
-function ServersList({ children, flag, name, ping }) {
+function ServersList({ children, flag, name, ping, sub }) {
   const isAmp = useAmp()
 
   return (
@@ -14,7 +14,7 @@ function ServersList({ children, flag, name, ping }) {
         ) : (
           <img width='30' height='30' src={`${flag}`} alt={name} />
         )}
-        <span>{name}</span>{' '}
+        <span>{name}</span> {sub && <span className='Servers--list__servers--country--sub'>{sub}</span>}
       </div>
       <div className='Servers--list__servers--ping'>
         {children}
