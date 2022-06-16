@@ -7,28 +7,12 @@
   "Scope": "/",   
   "author": "Fit-OutFit Software Tech. Pvt. Ltd.",
   "description": "FriendsVPN is a free VPN service offered by us. FriendsVPN offers you secure and private internet access. We prioritize your online privacy, security, and freedom above all else. You can use FriendsVPN if you want absolute online privacy and security. FriendsVPN also bypass geo-blocks and other content restrictions ",
-  "icons": [
-    {
-      "src": "/assets/icons/icon-16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/assets/icons/icon-32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/assets/icons/icon-48.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "/assets/icons/icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    }
-  ],
+  "icons": {
+    "16": "/assets/icons/icon-16.png",
+    "32": "/assets/icons/icon-32.png",
+    "48": "/assets/icons/icon-48.png",
+    "128": "/assets/icons/icon-128.png"
+  },
   "permissions": ["activeTab"],
   "content_scripts": [
     {
