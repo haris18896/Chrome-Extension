@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import Image from 'next/image'
 import PropTypes from 'prop-types'
 import { useAmp } from 'next/amp'
 

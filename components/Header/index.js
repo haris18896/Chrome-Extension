@@ -1,19 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import { useAmp } from 'next/amp'
 import classNames from 'classnames'
 
 import { Offcanvas } from 'react-bootstrap'
-
-import bars from '../../public/assets/logos/bars.svg'
-import person from '../../public/assets/logos/person.svg'
-import friendsVPN from '../../public/assets/logos/friendsVPN.svg'
 
 import { TbLogout } from 'react-icons/tb'
 import { MdCancel } from 'react-icons/md'
 import { Footer, ListItems } from './sidebarData'
 
 function Header() {
+  const isAmp = useAmp()
+
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
@@ -27,12 +26,20 @@ function Header() {
     >
       <div onClick={handleShow} className='Header--bars'>
         {' '}
-        <Image src={bars} alt='bars' height={20} width={21} />
+        {isAmp ? (
+          <amp-img width='21' height='20' src='/assets/logos/bars.svg' alt='bars' layout='responsive' />
+        ) : (
+          <img width='21' height='20' src='/assets/logos/bars.svg' alt='bars' />
+        )}
       </div>
       <div className='Header--logo'>
         <Link href='/'>
           <a className='Header--logo'>
-            <Image src={friendsVPN} alt='friendsVPN' height={24} width={120} />
+            {isAmp ? (
+              <amp-img width='120' height='24' src='/assets/logos/friendsVPN.svg' alt='friendsVPN' layout='responsive' />
+            ) : (
+              <img width='120' height='24' src='/assets/logos/friendsVPN.svg' alt='friendsVPN' />
+            )}
           </a>
         </Link>
       </div>{' '}
@@ -42,7 +49,11 @@ function Header() {
         </span>
         <Offcanvas.Body className='Header__Body'>
           <div className='Header__Body--Top'>
-            <Image src={person} alt='person' height={66} width={66} />
+            {isAmp ? (
+              <amp-img width='66' height='66' src='/assets/logos/person.svg' alt='person' layout='responsive' />
+            ) : (
+              <img width='66' height='66' src='/assets/logos/person.svg' alt='person' />
+            )}
             <p className='Header__Body--Top__name'>Haris Ahmad Khan</p>
             <p className='Header__Body--Top__email'>haris18896@gmail.com</p>
           </div>
