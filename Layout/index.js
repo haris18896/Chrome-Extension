@@ -7,7 +7,7 @@ function Layout({ children }) {
   const router = useRouter()
   return (
     <div className='Layout'>
-      {['/connect/connect'].includes(router.pathname) ? <Header /> : ''}
+      {['/'].includes(router.pathname) ? <Header /> : ''}
       {children}
       <Footer />
     </div>

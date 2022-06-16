@@ -72,7 +72,7 @@ function Header() {
               ))}
             </ul>
             <div className='Header__Body--List__logout'>
-              <Link href='/logout'>
+              <Link href='/login?amp=1'>
                 <a>
                   <TbLogout size={24} />
                   <span>Logout</span>
