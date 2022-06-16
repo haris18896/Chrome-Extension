@@ -21,6 +21,7 @@
         height: 600px !important;
         &--close{
             position: absolute;
+            z-index: 2000;
             top: 65px;
             right: -15px;
             cursor: pointer;
