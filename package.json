@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "export" : "next export",
-    "start": "next start",
-    "lint": "next lint"
+    "dev-watch": "npm-watch",
+    "lint:build": "mv out/_next out/assets && sed -i 's/\\\\/_next/\\\\/assets/g' out/**.html",
+    "build": "next build && next export && npm run lint:build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
