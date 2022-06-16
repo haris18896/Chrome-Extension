@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/main.css'
 import Router from 'next/router'
