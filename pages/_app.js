@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ErrorBoundary fallback={'ErrorFallback'}>
       <Suspense fallback={<Spinner />}>
-        <div className='u-container-1400 u-mx-auto'>
+        <div>
           <Component {...pageProps} />
         </div>
       </Suspense>
