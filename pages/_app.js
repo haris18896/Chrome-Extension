@@ -13,7 +13,6 @@ import useJwt from '../jwt/jwtService'
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
 
 import { SET_IS_ACCOUNT_TRUE, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/customer'
-import Spinner from '../components/common/spinner'
 
 NProgress.configure({ showSpinner: false })
 
@@ -40,7 +39,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ErrorBoundary fallback={'ErrorFallback'}>
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<h1>Loading...</h1>}>
         <Component {...pageProps} />
       </Suspense>
     </ErrorBoundary>
