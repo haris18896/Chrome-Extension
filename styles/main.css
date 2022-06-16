@@ -228,8 +228,8 @@ body {
 
 .form-control:focus {
   outline: none !important;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
   border: 1px solid #24275D !important;
   border-radius: 7px;
   -webkit-border-radius: 7px;
