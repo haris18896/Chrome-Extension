@@ -121,12 +121,7 @@ export default function Login() {
         </div>
 
         <div className='Login__text'>
-          <p
-            className={classNames({
-              'Login__text--p': !formik.errors.email || !formik.errors.password,
-              'Login__text--p_error': formik.errors.email || formik.errors.password
-            })}
-          >
+          <p>
             Don't have an account?{' '}
             <Link href='https://www.friendsvpnpro.com/pricing'>
               <a target='_blank'>Register</a>

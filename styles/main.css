@@ -570,24 +570,19 @@ body {
 
 .Login__text {
   font-size: 12px;
+  position: absolute;
+  bottom: 30px;
 }
 
 .Login__text p {
   color: #9AA1AE;
+  margin: 0 !important;
 }
 
 .Login__text a {
   text-decoration: none;
   color: #24275D;
   font-weight: bold;
-}
-
-.Login__text--p {
-  margin: 75px 0px 40px 0px !important;
-}
-
-.Login__text--p_error {
-  margin: 40px 0px 30px 0px !important;
 }
 
 .Login-forgotPassword {
@@ -747,7 +742,7 @@ body {
 .Servers--list {
   padding: 0px 0px 0px 24px;
   width: 100%;
-  height: 455px;
+  height: 480px;
   overflow-y: scroll;
 }
 
