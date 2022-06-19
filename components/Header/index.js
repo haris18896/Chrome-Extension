@@ -15,7 +15,10 @@ function Header() {
 
   const [show, setShow] = useState(false)
 
-  const handleClose = () => setShow(false)
+  const handleClose = () => {
+    setShow(false)
+    console.log('close')
+  }
   const handleShow = () => setShow(true)
 
   return (
@@ -61,7 +64,7 @@ function Header() {
           <div className='Header__Body--List'>
             <ul>
               {ListItems.map((item, index) => (
-                <li key={index}>
+                <li key={index} onClick={handleClose}>
                   <Link href={item.href}>
                     <a>
                       <span className='Header__Body--List__icons'>{item.icon}</span>
@@ -71,7 +74,7 @@ function Header() {
                 </li>
               ))}
             </ul>
-            <div className='Header__Body--List__logout'>
+            <div className='Header__Body--List__logout' onClick={handleClose}>
               <Link href='/login?amp=1'>
                 <a>
                   <TbLogout size={24} />

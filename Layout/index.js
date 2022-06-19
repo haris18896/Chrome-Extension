@@ -28,7 +28,7 @@ function Layout({ children, title, navbar }) {
       </Head>
       {navbar && <Header />}
       {children}
-      <Footer />
+      {navbar && <Footer />}
     </div>
   )
 }
