@@ -23,7 +23,7 @@ function Connect() {
   }, [])
 
   return (
-    <Layout>
+    <Layout navbar title='FriendsVPN Extension'>
       <div className='Connect'>
         <div className='Connect__connection' onClick={() => setConnection(!connection)}>
           {connection ? (

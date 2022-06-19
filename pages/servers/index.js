@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import classNames from 'classnames'
 import { useRouter } from 'next/router'
 
+import Layout from '../../Layout'
 import { Input } from 'reactstrap'
 import { FaSearch } from 'react-icons/fa'
 import { MdCancel } from 'react-icons/md'
@@ -147,65 +148,72 @@ function Servers() {
   }
 
   return (
-    <div className='Servers'>
-      <div className='Servers--header'>
-        <HiOutlineArrowNarrowLeft className='Servers--header__goBack' color='secondary' size={24} onClick={() => router.back()} />
-        <div className='Servers--header__search'>
-          <FaSearch className='Servers--header__search--searchIcon' size={15} color='gray' />
-          <MdCancel className='Servers--header__search--cancelIcon' size={15} color='gray' onClick={() => reset()} />
-          <Input
-            className='dataTable-filter'
-            type='text'
-            bsSize='sm'
-            placeholder='Search...'
-            id='searchKeyword'
-            name='searchKeyword'
-            value={searchKeyword}
-            onChange={onChangeHandler}
+    <Layout title='Servers'>
+      <div className='Servers'>
+        <div className='Servers--header'>
+          <HiOutlineArrowNarrowLeft
+            className='Servers--header__goBack'
+            color='secondary'
+            size={24}
+            onClick={() => router.back()}
           />
+          <div className='Servers--header__search'>
+            <FaSearch className='Servers--header__search--searchIcon' size={15} color='gray' />
+            <MdCancel className='Servers--header__search--cancelIcon' size={15} color='gray' onClick={() => reset()} />
+            <Input
+              className='dataTable-filter'
+              type='text'
+              bsSize='sm'
+              placeholder='Search...'
+              id='searchKeyword'
+              name='searchKeyword'
+              value={searchKeyword}
+              onChange={onChangeHandler}
+            />
+          </div>
+        </div>
+        <div className='Servers--tabs'>
+          {tabsState.map((doc, index) => (
+            <div key={index} className='Servers--tabs__tab'>
+              <p
+                onClick={() => handleChangeTab(doc)}
+                className={doc.id === selectedTab.id ? 'Servers--tabs__tab--selected' : 'Servers--tabs__tab--unselected'}
+              >
+                {doc.name}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className='Servers--list'>
+          {selectedTab.id === 'all_servers' ? (
+            <div>
+              {allServers.map((item, index) => (
+                <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping} sub={item.sub}>
+                  <FaRegStar
+                    size={16}
+                    className={classNames({
+                      'Servers--list__servers--ping--star': favorite.find(doc => doc.id === item.id)
+                    })}
+                    onClick={() => {
+                      handleFavorite(item)
+                    }}
+                  />
+                </ServersList>
+              ))}
+            </div>
+          ) : selectedTab.id === 'favorites' ? (
+            <div>
+              {(favorite.length &&
+                favorite.map((item, index) => (
+                  <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping} sub={item.sub}>
+                    <FaStar size={16} color='ffc10b' onClick={() => handleFavorite(item)} />
+                  </ServersList>
+                ))) || <p>No favorites yet</p>}
+            </div>
+          ) : null}
         </div>
       </div>
-      <div className='Servers--tabs'>
-        {tabsState.map((doc, index) => (
-          <div key={index} className='Servers--tabs__tab'>
-            <p
-              onClick={() => handleChangeTab(doc)}
-              className={doc.id === selectedTab.id ? 'Servers--tabs__tab--selected' : 'Servers--tabs__tab--unselected'}
-            >
-              {doc.name}
-            </p>
-          </div>
-        ))}
-      </div>
-      <div className='Servers--list'>
-        {selectedTab.id === 'all_servers' ? (
-          <div>
-            {allServers.map((item, index) => (
-              <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping} sub={item.sub}>
-                <FaRegStar
-                  size={16}
-                  className={classNames({
-                    'Servers--list__servers--ping--star': favorite.find(doc => doc.id === item.id)
-                  })}
-                  onClick={() => {
-                    handleFavorite(item)
-                  }}
-                />
-              </ServersList>
-            ))}
-          </div>
-        ) : selectedTab.id === 'favorites' ? (
-          <div>
-            {(favorite.length &&
-              favorite.map((item, index) => (
-                <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping} sub={item.sub}>
-                  <FaStar size={16} color='ffc10b' onClick={() => handleFavorite(item)} />
-                </ServersList>
-              ))) || <p>No favorites yet</p>}
-          </div>
-        ) : null}
-      </div>
-    </div>
+    </Layout>
   )
 }
 

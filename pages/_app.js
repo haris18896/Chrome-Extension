@@ -32,9 +32,11 @@ function MyApp({ Component, pageProps }) {
 
   Router.events.on('routeChangeStart', url => {
     NProgress.start(url)
+    console.log('routing...start: ', url)
   })
   Router.events.on('routeChangeComplete', url => {
     NProgress.done(url)
+    console.log('routing...end: ', url)
   })
 
   return (
