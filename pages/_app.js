@@ -11,8 +11,7 @@ import { Suspense, useEffect } from 'react'
 
 import useJwt from '../jwt/jwtService'
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary'
-
-import { SET_IS_ACCOUNT_TRUE, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/customer'
+import { SET_IS_ACCOUNT_TRUE, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/Auth'
 
 NProgress.configure({ showSpinner: false })
 

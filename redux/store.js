@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { testReducer } from './reducer/test'
+import { loginReducer } from './reducer/Auth/authReducer'
 
 const combinedReducer = combineReducers({
-  test: testReducer
+  auth: loginReducer
 })
 
 const masterReducer = (state, action) => {
