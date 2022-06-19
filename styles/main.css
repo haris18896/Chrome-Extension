@@ -568,6 +568,10 @@ body {
   width: 100% !important;
 }
 
+.Login__formContainer--error {
+  text-align: center !important;
+}
+
 .Login__text {
   font-size: 12px;
   position: absolute;

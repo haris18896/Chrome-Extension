@@ -1,21 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from 'react'
-import Head from 'next/head'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
 import { useAmp } from 'next/amp'
+import Layout from '../../Layout'
 
 import * as Yup from 'yup'
+import NProgress from 'nprogress'
 import classNames from 'classnames'
 
-import Layout from '../../Layout'
 import { useFormik } from 'formik'
 import { Eye, EyeOff } from 'react-feather'
+import { isObjEmpty } from '../../utility/utils'
+import { handleLogin } from '../../redux/action/Auth/authAction'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button, FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label } from 'reactstrap'
+
+NProgress.configure({ showSpinner: false })
 
 export default function Login() {
   const isAmp = useAmp()
+
+  const dispatch = useDispatch()
+  const { inProcess, success, error } = useSelector(state => state.auth)
 
   const [visible, setVisible] = useState(false)
   const LoginSchema = Yup.object().shape({
@@ -37,7 +45,7 @@ export default function Login() {
           email: email.trim(),
           password: password.trim()
         }
-        console.log('login data', data)
+        dispatch(handleLogin(data))
       }
     }
   })
@@ -50,9 +58,19 @@ export default function Login() {
     }
   }
 
-  // useEffect(() => {
-  //   // if user is authenticated then redirect to Connect page
-  // }, [])
+  useEffect(() => {
+    if (success) {
+      Router.push('/?amp=1')
+    }
+  }, [success])
+
+  useEffect(() => {
+    if (inProcess) {
+      NProgress.start()
+    } else {
+      NProgress.done()
+    }
+  }, [inProcess])
 
   return (
     <Layout title='Login'>
@@ -106,8 +124,9 @@ export default function Login() {
                   {renderIcon()}
                 </InputGroupText>
               </InputGroup>
+              {error ? <p className='text-danger Login__formContainer--error'>{error.msg}</p> : ''}
 
-              <Button className='button' type='submits' onClick={() => Router.push('/?amp=1')}>
+              <Button className='button' type='submits'>
                 Sign In
               </Button>
             </form>

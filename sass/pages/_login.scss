@@ -18,6 +18,10 @@
 
     &__formContainer{
         width: 100% !important;
+
+        &--error{
+            text-align: center !important;
+        }
     }
 
     &__text{

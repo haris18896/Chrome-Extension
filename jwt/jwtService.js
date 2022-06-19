@@ -43,6 +43,11 @@ class JwtService {
   getToken() {
     return localStorage.getItem('accessToken')
   }
+
+  login(data) {
+    console.log('login data iin JWT...', data)
+    return axios.post(this.jwtConfig.loginEndpoint, data)
+  }
 }
 
 const useJwt = new JwtService({})

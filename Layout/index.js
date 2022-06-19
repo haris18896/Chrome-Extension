@@ -12,7 +12,6 @@ function Layout({ children, title, navbar }) {
       <Head>
         <title>{title}</title>
         <link rel='icon' href='/favicon.ico' />
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css' />
         <meta
           name='description'
           content='FriendsVPN is a free VPN service offered by us. FriendsVPN offers you secure and private internet access. We prioritize your online privacy, security, and freedom above all else. You can use FriendsVPN if you want absolute online privacy and security. FriendsVPN also bypass geo-blocks and other content restrictions.'

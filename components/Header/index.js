@@ -9,14 +9,22 @@ import { Offcanvas } from 'react-bootstrap'
 import { TbLogout } from 'react-icons/tb'
 import { MdCancel } from 'react-icons/md'
 import { Footer, ListItems } from './sidebarData'
+import { useDispatch, useSelector } from 'react-redux'
+import { handleLogout } from '../../redux/action/Auth/authAction'
 
 function Header() {
   const isAmp = useAmp()
+  const dispatch = useDispatch()
+  const { success } = useSelector(state => state.auth)
 
   const [show, setShow] = useState(false)
-
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+
+  const logout = () => {
+    handleClose()
+    dispatch(handleLogout())
+  }
 
   return (
     <div
@@ -71,14 +79,21 @@ function Header() {
                 </li>
               ))}
             </ul>
-            <div className='Header__Body--List__logout' onClick={handleClose}>
-              <Link href='/login?amp=1'>
-                <a>
-                  <TbLogout size={24} />
-                  <span>Logout</span>
-                </a>
-              </Link>
-            </div>
+            {success && (
+              <div
+                className='Header__Body--List__logout'
+                onClick={() => {
+                  logout()
+                }}
+              >
+                <Link href='/login?amp=1'>
+                  <a>
+                    <TbLogout size={24} />
+                    <span>Logout</span>
+                  </a>
+                </Link>
+              </div>
+            )}
           </div>
 
           <div className='Header__Body--footer'>

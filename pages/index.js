@@ -9,7 +9,6 @@ import Layout from '../Layout'
 
 function Connect() {
   const isAmp = useAmp()
-
   const router = useRouter()
   const [connection, setConnection] = useState(false)
   const [ip, setIP] = useState('')

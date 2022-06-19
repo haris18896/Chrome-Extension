@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
+import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { loginReducer } from './reducer/Auth/authReducer'
 
@@ -19,7 +20,7 @@ const masterReducer = (state, action) => {
 }
 
 const initStore = () => {
-  return createStore(masterReducer, composeWithDevTools(applyMiddleware()))
+  return createStore(masterReducer, composeWithDevTools(applyMiddleware(thunk)))
 }
 
 export const wrapper = createWrapper(initStore)
