@@ -1,11 +1,11 @@
-import thunk from 'redux-thunk';
+import { combineReducers } from 'redux';
 import logger from 'redux-logger';
-import debounce from 'lodash.debounce';
+import thunk from 'redux-thunk';
 import { batchedSubscribe } from 'redux-batched-subscribe';
-import { HYDRATE, createWrapper } from 'next-redux-wrapper';
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-
+import { configureStore } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 import { getCustomerProfileReducer, loginReducer } from './reducer/Auth/authReducer';
+import debounce from 'lodash.debounce';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -24,26 +24,16 @@ const preloadedState = {
   }
 };
 
-const masterReducer = (state, action) => {
-  if (action.type === HYDRATE) {
-    const nextState = {
-      ...state
-    };
-    return nextState;
-  } else {
-    return rootReducer(state, action);
-  }
-};
+const debounceNotify = debounce(notify => notify());
 
-const batchDebounce = debounce(notify => notify());
+export const store = configureStore({
+  preloadedState,
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([logger, thunk]),
+  enhancers: [batchedSubscribe(debounceNotify)],
+  devTools: process.env.NODE_ENV !== 'production'
+});
 
-const store = () =>
-  configureStore({
-    reducer: masterReducer,
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([thunk, logger]),
-    devTools: process.env.NODE_ENV !== 'production',
-    enhancers: [batchedSubscribe(batchDebounce)],
-    preloadedState
-  });
+const makeStore = () => store;
 
-export const wrapper = createWrapper(store);
+export const wrapper = createWrapper(makeStore);

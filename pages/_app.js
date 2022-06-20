@@ -5,11 +5,12 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import jwt_decode from 'jwt-decode';
 
-import { wrapper } from '../redux/store';
+import { Provider } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Suspense, useEffect } from 'react';
 
 import useJwt from '../jwt/jwtService';
+import { wrapper, store } from '../redux/store';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import { SET_IS_ACCOUNT_TRUE, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/Auth';
 
@@ -39,7 +40,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <ErrorBoundary fallback={'ErrorFallback'}>
       <Suspense fallback={<h1>Loading...</h1>}>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </Suspense>
     </ErrorBoundary>
   );
