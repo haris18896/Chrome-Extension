@@ -411,6 +411,25 @@ body {
   border: none !important;
 }
 
+.Spinner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  color: #FFC10B;
+}
+
+.Error {
+  width: 100% !important;
+  text-align: center !important;
+}
+
 .Layout {
   position: relative;
   margin-top: 24px;
@@ -566,10 +585,6 @@ body {
 
 .Login__formContainer {
   width: 100% !important;
-}
-
-.Login__formContainer--error {
-  text-align: center !important;
 }
 
 .Login__text {
@@ -820,7 +835,7 @@ body {
 }
 
 .Servers--list__servers--ping--star {
-  color: #FFC10B;
+  color: #FFC10B !important;
 }
 
 .Servers--list__servers--ping svg {

@@ -2,19 +2,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useAmp } from 'next/amp';
+import ReactCountryFlag from 'react-country-flag';
 
-function ServersList({ children, flag, name, ping, sub }) {
+function ServersList({ children, flag, name, ping, access }) {
   const isAmp = useAmp();
 
   return (
     <div className='Servers--list__servers'>
       <div className='Servers--list__servers--country'>
-        {isAmp ? (
-          <amp-img width='30' height='30' src={`${flag}`} alt={name} layout='responsive' />
-        ) : (
-          <img width='30' height='30' src={`${flag}`} alt={name} />
-        )}
-        <span>{name}</span> {sub && <span className='Servers--list__servers--country--sub'>{sub}</span>}
+        <ReactCountryFlag
+          countryCode={flag}
+          style={{
+            width: '2em',
+            height: '2em'
+          }}
+          svg
+          cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+          cdnSuffix='svg'
+          title={name}
+        />
+        <span>{name}</span> {access && <span className='Servers--list__servers--country--sub'>{access}</span>}
       </div>
       <div className='Servers--list__servers--ping'>
         {children}

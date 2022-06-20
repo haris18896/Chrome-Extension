@@ -1,28 +1,46 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
 
 import Layout from '../../Layout';
-import { Input } from 'reactstrap';
+import ServersList from '../../components/servers/ServersList';
+import { handleCountriesList } from '../../redux/action/servers';
+
+import { FaStar } from 'react-icons/fa';
+import { useRouter } from 'next/router';
 import { FaSearch } from 'react-icons/fa';
 import { MdCancel } from 'react-icons/md';
-import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
-
 import { FaRegStar } from 'react-icons/fa';
-import { FaStar } from 'react-icons/fa';
-import ServersList from '../../components/servers/ServersList';
+import { Input, Spinner } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 
 function Servers() {
   const router = useRouter();
+
+  const dispatch = useDispatch();
+  const { loading, countries, error } = useSelector(state => state.servers);
+
+  useEffect(() => {
+    dispatch(handleCountriesList());
+  }, []);
+
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [favorite, setFavorite] = useState([
+
+  let tabs = [
     {
-      id: 1,
-      name: 'PK',
-      flag: '/assets/flags/pk.svg',
-      ping: '70ms'
+      id: 'all_servers',
+      name: 'All Servers',
+      default: true
+    },
+    {
+      id: 'favorites',
+      name: 'Favorites',
+      default: false
     }
-  ]);
+  ];
+
+  const [favorite, setFavorite] = useState([]);
 
   const allServers = [
     {
@@ -94,19 +112,6 @@ function Servers() {
     }
   ];
 
-  let tabs = [
-    {
-      id: 'all_servers',
-      name: 'All Servers',
-      default: true
-    },
-    {
-      id: 'favorites',
-      name: 'Favorites',
-      default: false
-    }
-  ];
-
   const [tabsState] = useState(tabs);
 
   const [selectedTab, setSelectedTab] = useState({
@@ -126,7 +131,7 @@ function Servers() {
 
   const handleFavorite = server => {
     const newFavorite = [...favorite];
-    const index = newFavorite.findIndex(item => item.id === server.id);
+    const index = newFavorite.findIndex(item => item._id === server._id);
 
     if (selectedTab.id === 'all_servers') {
       if (index === -1) {
@@ -184,34 +189,46 @@ function Servers() {
             </div>
           ))}
         </div>
-        <div className='Servers--list'>
-          {selectedTab.id === 'all_servers' ? (
-            <div>
-              {allServers.map((item, index) => (
-                <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping} sub={item.sub}>
-                  <FaRegStar
-                    size={16}
-                    className={classNames({
-                      'Servers--list__servers--ping--star': favorite.find(doc => doc.id === item.id)
-                    })}
-                    onClick={() => {
-                      handleFavorite(item);
-                    }}
-                  />
-                </ServersList>
-              ))}
-            </div>
-          ) : selectedTab.id === 'favorites' ? (
-            <div>
-              {(favorite.length &&
-                favorite.map((item, index) => (
-                  <ServersList key={index} flag={item.flag} name={item.name} ping={item.ping} sub={item.sub}>
-                    <FaStar size={16} color='ffc10b' onClick={() => handleFavorite(item)} />
+
+        {loading ? (
+          <div className='Spinner'>
+            <Spinner style={{ margin: '225px 0px' }} />
+          </div>
+        ) : (
+          <div className='Servers--list'>
+            {selectedTab.id === 'all_servers' ? (
+              <div>
+                {countries.map((item, index) => (
+                  <ServersList key={index} flag={item?._id} name={item?._id} ping={item?.emoji} access={item?.accessType}>
+                    <FaRegStar
+                      size={16}
+                      className={classNames({
+                        'Servers--list__servers--ping--star': favorite.find(doc => doc._id === item?._id)
+                      })}
+                      onClick={() => {
+                        handleFavorite(item);
+                      }}
+                    />
                   </ServersList>
-                ))) || <p>No favorites yet</p>}
-            </div>
-          ) : null}
-        </div>
+                ))}
+              </div>
+            ) : selectedTab.id === 'favorites' ? (
+              <div>
+                {(favorite.length &&
+                  favorite.map((item, index) => (
+                    <ServersList key={index} flag={item?._id} name={item?._id} ping={item?.emoji} access={item?.accessType}>
+                      <FaStar size={16} color='ffc10b' onClick={() => handleFavorite(item)} />
+                    </ServersList>
+                  ))) || <p>No favorites yet</p>}
+              </div>
+            ) : null}
+          </div>
+        )}
+        {error && (
+          <div className='Error'>
+            <p className='text-danger'>{error.msg}</p>
+          </div>
+        )}
       </div>
     </Layout>
   );

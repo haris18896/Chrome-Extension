@@ -51,6 +51,11 @@ class JwtService {
   getProfile() {
     return axios.get(this.jwtConfig.getCustomerProfile);
   }
+
+  getVPNServerCountries() {
+    let endpoint = `${this.jwtConfig.getVPNServerCountriesEndPoint}?protocol=auto`;
+    return axios.get(endpoint);
+  }
 }
 
 const useJwt = new JwtService({});

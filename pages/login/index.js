@@ -124,7 +124,12 @@ export default function Login() {
                   {renderIcon()}
                 </InputGroupText>
               </InputGroup>
-              {error ? <p className='text-danger Login__formContainer--error'>{error.msg}</p> : ''}
+
+              {error && (
+                <div className='Error'>
+                  <p className='text-danger'>{error.msg}</p>
+                </div>
+              )}
 
               <Button className='button' type='submits'>
                 Sign In

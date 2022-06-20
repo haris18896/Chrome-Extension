@@ -1,14 +1,16 @@
 // import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import debounce from 'lodash.debounce';
+import { createWrapper } from 'next-redux-wrapper';
 import { batchedSubscribe } from 'redux-batched-subscribe';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
+import { vpnServerCountriesReducer } from './reducer/servers';
 import { getCustomerProfileReducer, loginReducer } from './reducer/Auth/authReducer';
-import debounce from 'lodash.debounce';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
-  profile: getCustomerProfileReducer
+  profile: getCustomerProfileReducer,
+  servers: vpnServerCountriesReducer
 });
 
 const preloadedState = {
