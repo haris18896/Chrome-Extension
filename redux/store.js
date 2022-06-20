@@ -1,14 +1,27 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import { loginReducer } from './reducer/Auth/authReducer'
-import { getCustomerProfileReducer } from './reducer/Auth/profileReducer'
+import logger from 'redux-logger'
+import { batchedSubscribe } from 'redux-batched-subscribe'
+import { HYDRATE, createWrapper } from 'next-redux-wrapper'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-const combinedReducer = combineReducers({
+import { getCustomerProfileReducer, loginReducer } from './reducer/Auth/authReducer'
+
+const rootReducer = combineReducers({
   auth: loginReducer,
   profile: getCustomerProfileReducer
 })
+
+const preloadedState = {
+  auth: {
+    inProcess: false,
+    success: false,
+    error: null
+  },
+  profile: {
+    name: 'User Name',
+    email: 'User Email'
+  }
+}
 
 const masterReducer = (state, action) => {
   if (action.type === HYDRATE) {
@@ -17,12 +30,15 @@ const masterReducer = (state, action) => {
     }
     return nextState
   } else {
-    return combinedReducer(state, action)
+    return rootReducer(state, action)
   }
 }
 
-const initStore = () => {
-  return createStore(masterReducer, composeWithDevTools(applyMiddleware(thunk)))
-}
+const store = () =>
+  configureStore({
+    reducer: masterReducer,
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([thunk, logger]),
+    preloadedState
+  })
 
-export const wrapper = createWrapper(initStore)
+export const wrapper = createWrapper(store)
