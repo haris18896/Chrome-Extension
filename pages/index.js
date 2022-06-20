@@ -1,26 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import { useAmp } from 'next/amp'
-import { useRouter } from 'next/router'
+import { useAmp } from 'next/amp';
+import { useRouter } from 'next/router';
 
-import Layout from '../Layout'
+import Layout from '../Layout';
 
 function Connect() {
-  const isAmp = useAmp()
-  const router = useRouter()
+  const isAmp = useAmp();
+  const router = useRouter();
 
-  const [connection, setConnection] = useState(false)
-  const [ip, setIP] = useState('')
+  const [connection, setConnection] = useState(false);
+  const [ip, setIP] = useState('');
   const getData = async () => {
-    const res = await axios.get('https://geolocation-db.com/json/')
-    setIP(res.data.IPv4)
-  }
+    const res = await axios.get('https://geolocation-db.com/json/');
+    setIP(res.data.IPv4);
+  };
 
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
   return (
     <Layout navbar title='FriendsVPN Extension'>
@@ -71,7 +71,7 @@ function Connect() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
-export default Connect
+export default Connect;

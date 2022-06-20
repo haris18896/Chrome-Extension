@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import { useAmp } from 'next/amp'
+import React from 'react';
+import { useAmp } from 'next/amp';
 
 function Footer() {
-  const isAmp = useAmp()
+  const isAmp = useAmp();
 
   return (
     <div className='Footer'>
@@ -44,7 +44,7 @@ function Footer() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

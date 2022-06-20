@@ -1,59 +1,59 @@
-import axios from 'axios'
-import jwtDefaultConfig from './jwtDefaultConfig'
+import axios from 'axios';
+import jwtDefaultConfig from './jwtDefaultConfig';
 
 class JwtService {
-  jwtConfig = { ...jwtDefaultConfig }
+  jwtConfig = { ...jwtDefaultConfig };
 
-  isAlreadyFetchingAccessToken = false
+  isAlreadyFetchingAccessToken = false;
 
-  subscribers = []
+  subscribers = [];
 
   constructor(jwtOverrideConfig) {
-    this.jwtConfig = { ...this.jwtConfig, ...jwtOverrideConfig }
+    this.jwtConfig = { ...this.jwtConfig, ...jwtOverrideConfig };
 
     axios.interceptors.request.use(
       config => {
-        const accessToken = this.getToken()
+        const accessToken = this.getToken();
         if (accessToken) {
-          config.headers.Authorization = `JWT ${localStorage.getItem('accessToken')}`
+          config.headers.Authorization = `JWT ${localStorage.getItem('accessToken')}`;
         }
-        return config
+        return config;
       },
       error => Promise.reject(error)
-    )
+    );
 
     axios.interceptors.response.use(
       response => response,
       error => {
-        const { response } = error
+        const { response } = error;
 
         if (response && response.status === 406) {
-          localStorage.removeItem('accessToken')
-          window.location.href = '/login'
+          localStorage.removeItem('accessToken');
+          window.location.href = '/login';
         }
-        return Promise.reject(error)
+        return Promise.reject(error);
       }
-    )
+    );
   }
 
   setToken(token) {
-    localStorage.setItem('accessToken', token)
+    localStorage.setItem('accessToken', token);
   }
 
   getToken() {
-    return localStorage.getItem('accessToken')
+    return localStorage.getItem('accessToken');
   }
 
   login(data) {
-    console.log('login data iin JWT...', data)
-    return axios.post(this.jwtConfig.loginEndpoint, data)
+    console.log('login data iin JWT...', data);
+    return axios.post(this.jwtConfig.loginEndpoint, data);
   }
 
   getProfile() {
-    return axios.get(this.jwtConfig.getCustomerProfile)
+    return axios.get(this.jwtConfig.getCustomerProfile);
   }
 }
 
-const useJwt = new JwtService({})
+const useJwt = new JwtService({});
 
-export default useJwt
+export default useJwt;
