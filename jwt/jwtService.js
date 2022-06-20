@@ -45,7 +45,6 @@ class JwtService {
   }
 
   login(data) {
-    console.log('login data iin JWT...', data);
     return axios.post(this.jwtConfig.loginEndpoint, data);
   }
 

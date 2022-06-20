@@ -1,4 +1,4 @@
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { batchedSubscribe } from 'redux-batched-subscribe';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
@@ -28,7 +28,7 @@ const debounceNotify = debounce(notify => notify());
 export const store = configureStore({
   preloadedState,
   reducer: rootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([logger, thunk]),
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat([thunk]),
   enhancers: [batchedSubscribe(debounceNotify)],
   devTools: process.env.NODE_ENV !== 'production'
 });

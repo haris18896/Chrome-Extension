@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -11,6 +12,7 @@ import { Offcanvas } from 'react-bootstrap';
 import { Footer, ListItems } from './sidebarData';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleLogout } from '../../redux/action/Auth/authAction';
+import { handleGetProfile } from '../../redux/action/Auth/profileAction';
 
 NProgress.configure({ showSpinner: false });
 
@@ -36,6 +38,12 @@ function Header() {
       NProgress.done();
     }
   }, [inProcess]);
+
+  useEffect(() => {
+    if (success) {
+      dispatch(handleGetProfile());
+    }
+  }, []);
 
   return (
     <div

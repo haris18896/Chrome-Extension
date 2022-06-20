@@ -38,13 +38,13 @@ function MyApp({ Component, pageProps }) {
   });
 
   return (
-    <ErrorBoundary fallback={'ErrorFallback'}>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
-      </Suspense>
-    </ErrorBoundary>
+    // <ErrorBoundary fallback={'ErrorFallback'}>
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </Suspense>
+    // </ErrorBoundary>
   );
 }
 
