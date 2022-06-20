@@ -48,6 +48,10 @@ class JwtService {
     console.log('login data iin JWT...', data)
     return axios.post(this.jwtConfig.loginEndpoint, data)
   }
+
+  getProfile() {
+    return axios.get(this.jwtConfig.getCustomerProfile)
+  }
 }
 
 const useJwt = new JwtService({})

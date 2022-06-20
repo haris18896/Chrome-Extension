@@ -1,21 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useAmp } from 'next/amp'
+import NProgress from 'nprogress'
 import classNames from 'classnames'
 
-import { Offcanvas } from 'react-bootstrap'
-
+import { useAmp } from 'next/amp'
 import { TbLogout } from 'react-icons/tb'
 import { MdCancel } from 'react-icons/md'
+import { Offcanvas } from 'react-bootstrap'
 import { Footer, ListItems } from './sidebarData'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleLogout } from '../../redux/action/Auth/authAction'
+
+NProgress.configure({ showSpinner: false })
 
 function Header() {
   const isAmp = useAmp()
   const dispatch = useDispatch()
   const { success } = useSelector(state => state.auth)
+  const { inProcess, profile } = useSelector(state => state.profile)
 
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
@@ -25,6 +28,14 @@ function Header() {
     handleClose()
     dispatch(handleLogout())
   }
+
+  useEffect(() => {
+    if (inProcess) {
+      NProgress.start()
+    } else {
+      NProgress.done()
+    }
+  }, [inProcess])
 
   return (
     <div
@@ -62,8 +73,8 @@ function Header() {
             ) : (
               <img width='66' height='66' src='/assets/logos/person.svg' alt='person' />
             )}
-            <p className='Header__Body--Top__name'>Haris Ahmad Khan</p>
-            <p className='Header__Body--Top__email'>haris18896@gmail.com</p>
+            <p className='Header__Body--Top__name'>{profile?.name || 'User Name'}</p>
+            <p className='Header__Body--Top__email'>{profile?.email || 'User Email'}</p>
           </div>
 
           <div className='Header__Body--List'>

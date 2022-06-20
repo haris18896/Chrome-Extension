@@ -2,10 +2,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { loginReducer } from './reducer/Auth/authReducer'
+import { getCustomerProfileReducer, loginReducer } from './reducer/Auth/authReducer'
 
 const combinedReducer = combineReducers({
-  auth: loginReducer
+  auth: loginReducer,
+  profile: getCustomerProfileReducer
 })
 
 const masterReducer = (state, action) => {

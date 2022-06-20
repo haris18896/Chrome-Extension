@@ -4,7 +4,8 @@ const apiEndPoints = {
   typeJWT: 'JWT',
   typeBearer: 'Bearer',
   storageTokenKeyName: 'accessToken',
-  loginEndpoint: `${MAIN_SERVICE_URL}/vpn/customer/loginCustomer`
+  loginEndpoint: `${MAIN_SERVICE_URL}/vpn/customer/loginCustomer`,
+  getCustomerProfile: `${MAIN_SERVICE_URL}/vpn/customer/getCustomerProfile`
 }
 
 export default apiEndPoints
