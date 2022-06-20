@@ -1,15 +1,15 @@
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { batchedSubscribe } from 'redux-batched-subscribe';
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 import { getCustomerProfileReducer, loginReducer } from './reducer/Auth/authReducer';
 import debounce from 'lodash.debounce';
 
-const rootReducer = {
+const rootReducer = combineReducers({
   auth: loginReducer,
   profile: getCustomerProfileReducer
-};
+});
 
 const preloadedState = {
   auth: {
