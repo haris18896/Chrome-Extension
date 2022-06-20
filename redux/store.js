@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { batchedSubscribe } from 'redux-batched-subscribe';
@@ -7,10 +6,10 @@ import { createWrapper } from 'next-redux-wrapper';
 import { getCustomerProfileReducer, loginReducer } from './reducer/Auth/authReducer';
 import debounce from 'lodash.debounce';
 
-const rootReducer = combineReducers({
+const rootReducer = {
   auth: loginReducer,
   profile: getCustomerProfileReducer
-});
+};
 
 const preloadedState = {
   auth: {
