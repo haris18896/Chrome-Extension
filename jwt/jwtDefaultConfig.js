@@ -1,4 +1,4 @@
-import { MAIN_SERVICE_URL } from './consts/index'
+import { MAIN_SERVICE_URL } from './consts/index';
 
 const apiEndPoints = {
   typeJWT: 'JWT',
@@ -6,6 +6,6 @@ const apiEndPoints = {
   storageTokenKeyName: 'accessToken',
   loginEndpoint: `${MAIN_SERVICE_URL}/vpn/customer/loginCustomer`,
   getCustomerProfile: `${MAIN_SERVICE_URL}/vpn/customer/getCustomerProfile`
-}
+};
 
-export default apiEndPoints
+export default apiEndPoints;

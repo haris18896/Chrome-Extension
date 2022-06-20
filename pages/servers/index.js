@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
-import classNames from 'classnames'
-import { useRouter } from 'next/router'
+import React, { useState } from 'react';
+import classNames from 'classnames';
+import { useRouter } from 'next/router';
 
-import Layout from '../../Layout'
-import { Input } from 'reactstrap'
-import { FaSearch } from 'react-icons/fa'
-import { MdCancel } from 'react-icons/md'
-import { HiOutlineArrowNarrowLeft } from 'react-icons/hi'
+import Layout from '../../Layout';
+import { Input } from 'reactstrap';
+import { FaSearch } from 'react-icons/fa';
+import { MdCancel } from 'react-icons/md';
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 
-import { FaRegStar } from 'react-icons/fa'
-import { FaStar } from 'react-icons/fa'
-import ServersList from '../../components/servers/ServersList'
+import { FaRegStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
+import ServersList from '../../components/servers/ServersList';
 
 function Servers() {
-  const router = useRouter()
-  const [searchKeyword, setSearchKeyword] = useState('')
+  const router = useRouter();
+  const [searchKeyword, setSearchKeyword] = useState('');
   const [favorite, setFavorite] = useState([
     {
       id: 1,
@@ -22,7 +22,7 @@ function Servers() {
       flag: '/assets/flags/pk.svg',
       ping: '70ms'
     }
-  ])
+  ]);
 
   const allServers = [
     {
@@ -92,7 +92,7 @@ function Servers() {
       flag: '/assets/flags/lb.svg',
       ping: '100ms'
     }
-  ]
+  ];
 
   let tabs = [
     {
@@ -105,47 +105,47 @@ function Servers() {
       name: 'Favorites',
       default: false
     }
-  ]
+  ];
 
-  const [tabsState] = useState(tabs)
+  const [tabsState] = useState(tabs);
 
   const [selectedTab, setSelectedTab] = useState({
     id: 'all_servers',
     name: 'All Servers',
     default: true
-  })
+  });
 
   const onChangeHandler = e => {
-    const { name, value } = e.target
-    if (name === 'searchKeyword') setSearchKeyword(value)
-  }
+    const { name, value } = e.target;
+    if (name === 'searchKeyword') setSearchKeyword(value);
+  };
 
   const handleChangeTab = tab => {
-    setSelectedTab(tab)
-  }
+    setSelectedTab(tab);
+  };
 
   const handleFavorite = server => {
-    const newFavorite = [...favorite]
-    const index = newFavorite.findIndex(item => item.id === server.id)
+    const newFavorite = [...favorite];
+    const index = newFavorite.findIndex(item => item.id === server.id);
 
     if (selectedTab.id === 'all_servers') {
       if (index === -1) {
-        newFavorite.push(server)
+        newFavorite.push(server);
       } else {
-        newFavorite.splice(index, 1)
+        newFavorite.splice(index, 1);
       }
     } else if (selectedTab.id === 'favorites') {
       if (index !== -1) {
-        newFavorite.splice(index, 1)
+        newFavorite.splice(index, 1);
       }
     }
 
-    setFavorite(newFavorite)
-  }
+    setFavorite(newFavorite);
+  };
 
   const reset = () => {
-    setSearchKeyword('')
-  }
+    setSearchKeyword('');
+  };
 
   return (
     <Layout title='Servers'>
@@ -195,7 +195,7 @@ function Servers() {
                       'Servers--list__servers--ping--star': favorite.find(doc => doc.id === item.id)
                     })}
                     onClick={() => {
-                      handleFavorite(item)
+                      handleFavorite(item);
                     }}
                   />
                 </ServersList>
@@ -214,7 +214,7 @@ function Servers() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
-export default Servers
+export default Servers;

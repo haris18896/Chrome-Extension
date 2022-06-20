@@ -1,35 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Router from 'next/router'
-import { useAmp } from 'next/amp'
-import Layout from '../../Layout'
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Router from 'next/router';
+import { useAmp } from 'next/amp';
+import Layout from '../../Layout';
 
-import * as Yup from 'yup'
-import NProgress from 'nprogress'
-import classNames from 'classnames'
+import * as Yup from 'yup';
+import NProgress from 'nprogress';
+import classNames from 'classnames';
 
-import { useFormik } from 'formik'
-import { Eye, EyeOff } from 'react-feather'
-import { isObjEmpty } from '../../utility/utils'
-import { handleLogin } from '../../redux/action/Auth/authAction'
-import { useDispatch, useSelector } from 'react-redux'
-import { Button, FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label } from 'reactstrap'
+import { useFormik } from 'formik';
+import { Eye, EyeOff } from 'react-feather';
+import { isObjEmpty } from '../../utility/utils';
+import { handleLogin } from '../../redux/action/Auth/authAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label } from 'reactstrap';
 
-NProgress.configure({ showSpinner: false })
+NProgress.configure({ showSpinner: false });
 
 export default function Login() {
-  const isAmp = useAmp()
+  const isAmp = useAmp();
 
-  const dispatch = useDispatch()
-  const { inProcess, success, error } = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+  const { inProcess, success, error } = useSelector(state => state.auth);
 
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Please enter a valid email address').required('Email is a required field!'),
     password: Yup.string().required('Password is a required field!')
-  })
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -40,37 +40,37 @@ export default function Login() {
     validationSchema: LoginSchema,
     onSubmit: values => {
       if (isObjEmpty(formik.errors)) {
-        const { email, password } = values
+        const { email, password } = values;
         const data = {
           email: email.trim(),
           password: password.trim()
-        }
-        dispatch(handleLogin(data))
+        };
+        dispatch(handleLogin(data));
       }
     }
-  })
+  });
 
   const renderIcon = () => {
     if (visible === false) {
-      return <EyeOff size={24} />
+      return <EyeOff size={24} />;
     } else {
-      return <Eye size={24} />
+      return <Eye size={24} />;
     }
-  }
+  };
 
   useEffect(() => {
     if (success) {
-      Router.push('/?amp=1')
+      Router.push('/?amp=1');
     }
-  }, [success])
+  }, [success]);
 
   useEffect(() => {
     if (inProcess) {
-      NProgress.start()
+      NProgress.start();
     } else {
-      NProgress.done()
+      NProgress.done();
     }
-  }, [inProcess])
+  }, [inProcess]);
 
   return (
     <Layout title='Login'>
@@ -148,5 +148,5 @@ export default function Login() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }

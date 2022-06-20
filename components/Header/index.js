@@ -1,41 +1,41 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import NProgress from 'nprogress'
-import classNames from 'classnames'
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import NProgress from 'nprogress';
+import classNames from 'classnames';
 
-import { useAmp } from 'next/amp'
-import { TbLogout } from 'react-icons/tb'
-import { MdCancel } from 'react-icons/md'
-import { Offcanvas } from 'react-bootstrap'
-import { Footer, ListItems } from './sidebarData'
-import { useDispatch, useSelector } from 'react-redux'
-import { handleLogout } from '../../redux/action/Auth/authAction'
+import { useAmp } from 'next/amp';
+import { TbLogout } from 'react-icons/tb';
+import { MdCancel } from 'react-icons/md';
+import { Offcanvas } from 'react-bootstrap';
+import { Footer, ListItems } from './sidebarData';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleLogout } from '../../redux/action/Auth/authAction';
 
-NProgress.configure({ showSpinner: false })
+NProgress.configure({ showSpinner: false });
 
 function Header() {
-  const isAmp = useAmp()
-  const dispatch = useDispatch()
-  const { success } = useSelector(state => state.auth)
-  const { inProcess, profile } = useSelector(state => state.profile)
+  const isAmp = useAmp();
+  const dispatch = useDispatch();
+  const { success } = useSelector(state => state.auth);
+  const { inProcess, profile } = useSelector(state => state.profile);
 
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const logout = () => {
-    handleClose()
-    dispatch(handleLogout())
-  }
+    handleClose();
+    dispatch(handleLogout());
+  };
 
   useEffect(() => {
     if (inProcess) {
-      NProgress.start()
+      NProgress.start();
     } else {
-      NProgress.done()
+      NProgress.done();
     }
-  }, [inProcess])
+  }, [inProcess]);
 
   return (
     <div
@@ -94,7 +94,7 @@ function Header() {
               <div
                 className='Header__Body--List__logout'
                 onClick={() => {
-                  logout()
+                  logout();
                 }}
               >
                 <Link href='/login?amp=1'>
@@ -121,7 +121,7 @@ function Header() {
         </Offcanvas.Body>
       </Offcanvas>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

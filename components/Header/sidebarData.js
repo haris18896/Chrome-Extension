@@ -1,10 +1,10 @@
-import { FaStar } from 'react-icons/fa'
-import { FaTwitter } from 'react-icons/fa'
-import { FaUserAlt } from 'react-icons/fa'
-import { FaInstagram } from 'react-icons/fa'
-import { FaInfoCircle } from 'react-icons/fa'
-import { FaFacebookSquare } from 'react-icons/fa'
-import { BsGearFill } from 'react-icons/bs'
+import { FaStar } from 'react-icons/fa';
+import { FaTwitter } from 'react-icons/fa';
+import { FaUserAlt } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
+import { FaInfoCircle } from 'react-icons/fa';
+import { FaFacebookSquare } from 'react-icons/fa';
+import { BsGearFill } from 'react-icons/bs';
 
 export const ListItems = [
   {
@@ -27,7 +27,7 @@ export const ListItems = [
     href: '/about-us',
     icon: <FaInfoCircle size={16} />
   }
-]
+];
 
 export const Footer = [
   {
@@ -45,4 +45,4 @@ export const Footer = [
     href: 'https://www.instagram.com/',
     icon: <FaInstagram size={28} color='white' />
   }
-]
+];
