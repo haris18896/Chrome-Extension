@@ -13,12 +13,7 @@ import { useDispatch } from 'react-redux';
 import { Suspense, useEffect } from 'react';
 
 import { wrapper, store } from '../redux/store';
-import {
-  SET_ANONYMOUS_LOGGED_IN_USER,
-  SET_IS_ACCOUNT_TRUE,
-  SET_LOGGED_IN_USER,
-  USER_LOGGED_IN_SUCCESS
-} from '../redux/action/actionTypes/Auth';
+import { SET_ANONYMOUS_LOGGED_IN_USER, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/Auth';
 
 NProgress.configure({ showSpinner: false });
 
