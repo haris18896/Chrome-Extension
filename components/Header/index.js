@@ -81,8 +81,8 @@ function Header() {
             ) : (
               <img width='66' height='66' src='/assets/logos/person.svg' alt='person' />
             )}
-            <p className='Header__Body--Top__name'>{profile?.name || 'User Name'}</p>
-            <p className='Header__Body--Top__email'>{profile?.email || 'User Email'}</p>
+            <p className='Header__Body--Top__name'>{profile?.name || 'Anonymous'}</p>
+            <p className='Header__Body--Top__email'>{profile?.email || 'anonymous@example.com'}</p>
           </div>
 
           <div className='Header__Body--List'>

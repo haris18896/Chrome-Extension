@@ -6,7 +6,10 @@ import {
   GET_CUSTOMER_PROFILE_FAILURE,
   GET_CUSTOMER_PROFILE_INIT,
   GET_CUSTOMER_PROFILE_SUCCESS,
-  USER_LOGGED_IN_SUCCESS
+  USER_LOGGED_IN_SUCCESS,
+  ANONYMOUS_LOGIN_INITIATED,
+  ANONYMOUS_LOGIN_SUCCESS,
+  ANONYMOUS_LOGIN_FAILURE
 } from '../../action/actionTypes/Auth';
 
 const initialState = { name: '', email: '' };
@@ -23,6 +26,19 @@ export const loginReducer = (state = {}, action) => {
       return {};
     case LOGOUT_SUCCESS:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const anonymousLoginReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ANONYMOUS_LOGIN_INITIATED:
+      return { AnonymousInProcess: true };
+    case ANONYMOUS_LOGIN_SUCCESS:
+      return { ...state, AnonymousInProcess: false, Anonymous: action.payload };
+    case ANONYMOUS_LOGIN_FAILURE:
+      return { ...state, AnonymousInProcess: false, error: action.payload };
     default:
       return state;
   }

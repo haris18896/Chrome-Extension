@@ -192,7 +192,7 @@ function Servers() {
 
         {loading ? (
           <div className='Spinner'>
-            <Spinner style={{ margin: '225px 0px' }} />
+            <Spinner style={{ margin: '210px 0px' }} />
           </div>
         ) : (
           <div className='Servers--list'>
@@ -222,11 +222,12 @@ function Servers() {
                   ))) || <p>No favorites yet</p>}
               </div>
             ) : null}
-          </div>
-        )}
-        {error && (
-          <div className='Error'>
-            <p className='text-danger'>{error.msg}</p>
+
+            {error && (
+              <div className='Error'>
+                <p className='text-danger'>{error.msg}</p>
+              </div>
+            )}
           </div>
         )}
       </div>

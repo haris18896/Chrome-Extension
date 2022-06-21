@@ -5,10 +5,11 @@ import { createWrapper } from 'next-redux-wrapper';
 import { batchedSubscribe } from 'redux-batched-subscribe';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { vpnServerCountriesReducer } from './reducer/servers';
-import { getCustomerProfileReducer, loginReducer } from './reducer/Auth/authReducer';
+import { anonymousLoginReducer, getCustomerProfileReducer, loginReducer } from './reducer/Auth/authReducer';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
+  anonymous: anonymousLoginReducer,
   profile: getCustomerProfileReducer,
   servers: vpnServerCountriesReducer
 });
@@ -18,6 +19,9 @@ const preloadedState = {
     inProcess: false,
     success: false,
     error: null
+  },
+  anonymous: {
+    deviceId: ''
   },
   profile: {
     name: 'User Name',

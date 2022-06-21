@@ -48,6 +48,10 @@ class JwtService {
     return axios.post(this.jwtConfig.loginEndpoint, data);
   }
 
+  loginAnonymous(data) {
+    return axios.post(this.jwtConfig.loginAnonymousCustomerEndPoint, data);
+  }
+
   getProfile() {
     return axios.get(this.jwtConfig.getCustomerProfile);
   }
