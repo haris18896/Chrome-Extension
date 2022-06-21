@@ -42,76 +42,6 @@ function Servers() {
 
   const [favorite, setFavorite] = useState([]);
 
-  const allServers = [
-    {
-      id: 1,
-      name: 'PK',
-      flag: '/assets/flags/pk.svg',
-      ping: '80ms'
-    },
-    {
-      id: 2,
-      name: 'us',
-      flag: '/assets/flags/us.svg',
-      ping: '120ms'
-    },
-    {
-      id: 3,
-      name: 'ar',
-      sub: 'Premium',
-      flag: '/assets/flags/ar.svg',
-      ping: '140ms'
-    },
-    {
-      id: 4,
-      name: 'bq',
-      sub: 'Premium',
-      flag: '/assets/flags/bq.svg',
-      ping: '60ms'
-    },
-    {
-      id: 5,
-      sub: 'Premium',
-      name: 'bw',
-      flag: '/assets/flags/bw.svg',
-      ping: '90ms'
-    },
-    {
-      id: 6,
-      sub: 'Premium',
-      name: 'cu',
-      flag: '/assets/flags/cu.svg',
-      ping: '98ms'
-    },
-    {
-      id: 7,
-      sub: 'Premium',
-      name: 'fj',
-      flag: '/assets/flags/fj.svg',
-      ping: '123ms'
-    },
-    {
-      id: 8,
-      name: 'eu',
-      flag: '/assets/flags/eu.svg',
-      ping: '321ms'
-    },
-    {
-      id: 9,
-      sub: 'Premium',
-      name: 'gd',
-      flag: '/assets/flags/gd.svg',
-      ping: '123ms'
-    },
-    {
-      id: 10,
-      sub: 'Premium',
-      name: 'lb',
-      flag: '/assets/flags/lb.svg',
-      ping: '100ms'
-    }
-  ];
-
   const [tabsState] = useState(tabs);
 
   const [selectedTab, setSelectedTab] = useState({
@@ -126,7 +56,6 @@ function Servers() {
   };
 
   const handleChangeTab = tab => {
-    // localStorage.setItem('favorite');
     setSelectedTab(tab);
   };
 

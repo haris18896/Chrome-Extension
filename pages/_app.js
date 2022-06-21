@@ -45,7 +45,6 @@ function MyApp({ Component, pageProps }) {
     } else if (useJwt.getAnonymousToken()) {
       const token = useJwt.getAnonymousToken();
       const decode = jwt_decode(token);
-      console.log(decode);
       dispatch({ type: SET_ANONYMOUS_LOGGED_IN_USER, payload: decode });
       dispatch({ type: USER_LOGGED_IN_SUCCESS, payload: decode });
     }

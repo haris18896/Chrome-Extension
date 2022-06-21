@@ -38,6 +38,5 @@ export const handleLogout = () => {
   return dispatch => {
     localStorage.removeItem('accessToken');
     dispatch(logoutSuccess());
-    console.log('logout success.....');
   };
 };

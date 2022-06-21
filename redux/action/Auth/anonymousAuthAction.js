@@ -21,7 +21,6 @@ export const handleAnonymousLogin = data => {
     } catch (err) {
       if (err.response) {
         dispatch(anonymousLoginFailure(err.response.data));
-        console.log('error in anonymous login', err.response.data);
       }
     }
   };
