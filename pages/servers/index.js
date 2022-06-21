@@ -126,6 +126,7 @@ function Servers() {
   };
 
   const handleChangeTab = tab => {
+    // localStorage.setItem('favorite');
     setSelectedTab(tab);
   };
 

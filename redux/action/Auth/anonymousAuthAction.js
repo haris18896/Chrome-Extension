@@ -17,10 +17,12 @@ export const handleAnonymousLogin = data => {
         const decoded = jwt_decode(token);
 
         dispatch(anonymousLoginSuccess(decoded));
-        
       }
-    } catch (error) {
-      dispatch(anonymousLoginFailure(error));
+    } catch (err) {
+      if (err.response) {
+        dispatch(anonymousLoginFailure(err.response.data));
+        console.log('error in anonymous login', err.response.data);
+      }
     }
   };
 };

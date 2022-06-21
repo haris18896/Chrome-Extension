@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
       .then(fp => fp.get())
       .then(result => {
         const visitor = result.visitorId;
-        localStorage.setItem('visitor', JSON.stringify(visitor));
+        localStorage.setItem('visitor', visitor);
       });
   }, []);
 

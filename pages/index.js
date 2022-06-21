@@ -29,7 +29,7 @@ function Connect() {
   useEffect(() => {
     getData();
     const visitor = localStorage.getItem('visitor');
-    dispatch(handleAnonymousLogin({ deviceId: visitor }));
+    dispatch(handleAnonymousLogin({ deviceId: `${visitor}` }));
   }, []);
 
   useEffect(() => {
