@@ -1,15 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
+
 import axios from 'axios';
+import Layout from '../Layout';
+import NProgress from 'nprogress';
 
 import { useAmp } from 'next/amp';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleAnonymousLogin } from '../redux/action/Auth/anonymousAuthAction';
+import useJwt from '../jwt/jwtService';
 
-import Layout from '../Layout';
+NProgress.configure({ showSpinner: false });
 
 function Connect() {
   const isAmp = useAmp();
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { inProcess } = useSelector(state => state.anonymous);
 
   const [connection, setConnection] = useState(false);
   const [ip, setIP] = useState('');
@@ -19,8 +27,18 @@ function Connect() {
   };
 
   useEffect(() => {
+    const visitor = localStorage.getItem('visitor');
+    dispatch(handleAnonymousLogin({ deviceId: visitor }));
     getData();
   }, []);
+
+  useEffect(() => {
+    if (inProcess) {
+      NProgress.start();
+    } else {
+      NProgress.done();
+    }
+  }, [inProcess]);
 
   return (
     <Layout navbar title='FriendsVPN Extension'>

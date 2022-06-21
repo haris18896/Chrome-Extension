@@ -4,14 +4,15 @@ import '../styles/main.css';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import jwt_decode from 'jwt-decode';
+import useJwt from '../jwt/jwtService';
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 import { Provider } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Suspense, useEffect } from 'react';
 
-import useJwt from '../jwt/jwtService';
 import { wrapper, store } from '../redux/store';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import { SET_IS_ACCOUNT_TRUE, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/Auth';
 
 NProgress.configure({ showSpinner: false });
@@ -30,6 +31,17 @@ function MyApp({ Component, pageProps }) {
     if (localStorage.getItem('isRegistered')) dispatch({ type: SET_IS_ACCOUNT_TRUE });
   }, []);
 
+  useEffect(() => {
+    const fpPromise = FingerprintJS.load();
+
+    fpPromise
+      .then(fp => fp.get())
+      .then(result => {
+        const visitor = result.visitorId;
+        localStorage.setItem('visitor', JSON.stringify(visitor));
+      });
+  }, []);
+
   Router.events.on('routeChangeStart', url => {
     NProgress.start(url);
   });
@@ -38,13 +50,13 @@ function MyApp({ Component, pageProps }) {
   });
 
   return (
-    // <ErrorBoundary fallback={'ErrorFallback'}>
-    <Suspense fallback={<h1>Loading...</h1>}>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
-    </Suspense>
-    // </ErrorBoundary>
+    <ErrorBoundary fallback={'ErrorFallback'}>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

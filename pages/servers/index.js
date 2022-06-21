@@ -219,7 +219,7 @@ function Servers() {
                     <ServersList key={index} flag={item?._id} name={item?._id} ping={item?.emoji} access={item?.accessType}>
                       <FaStar size={16} color='ffc10b' onClick={() => handleFavorite(item)} />
                     </ServersList>
-                  ))) || <p>No favorites yet</p>}
+                  ))) || <p style={{ marginTop: '20px' }}>No favorites yet</p>}
               </div>
             ) : null}
 

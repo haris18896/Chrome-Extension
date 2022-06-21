@@ -20,6 +20,7 @@ function Header() {
   const isAmp = useAmp();
   const dispatch = useDispatch();
   const { success } = useSelector(state => state.auth);
+  const { Anonymous } = useSelector(state => state.anonymous);
   const { inProcess, profile } = useSelector(state => state.profile);
 
   const [show, setShow] = useState(false);

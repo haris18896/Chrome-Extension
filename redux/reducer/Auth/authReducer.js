@@ -34,11 +34,11 @@ export const loginReducer = (state = {}, action) => {
 export const anonymousLoginReducer = (state = {}, action) => {
   switch (action.type) {
     case ANONYMOUS_LOGIN_INITIATED:
-      return { AnonymousInProcess: true };
+      return { inProcess: true };
     case ANONYMOUS_LOGIN_SUCCESS:
-      return { ...state, AnonymousInProcess: false, Anonymous: action.payload };
+      return { ...state, inProcess: false, Anonymous: true };
     case ANONYMOUS_LOGIN_FAILURE:
-      return { ...state, AnonymousInProcess: false, error: action.payload };
+      return { ...state, inProcess: false, error: action.payload };
     default:
       return state;
   }
