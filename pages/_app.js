@@ -13,23 +13,17 @@ import { useDispatch } from 'react-redux';
 import { Suspense, useEffect } from 'react';
 
 import { wrapper, store } from '../redux/store';
-import { SET_IS_ACCOUNT_TRUE, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/Auth';
+import {
+  SET_ANONYMOUS_LOGGED_IN_USER,
+  SET_IS_ACCOUNT_TRUE,
+  SET_LOGGED_IN_USER,
+  USER_LOGGED_IN_SUCCESS
+} from '../redux/action/actionTypes/Auth';
 
 NProgress.configure({ showSpinner: false });
 
 function MyApp({ Component, pageProps }) {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (useJwt.getToken()) {
-      const token = useJwt.getToken();
-      const decode = jwt_decode(token);
-      dispatch({ type: SET_LOGGED_IN_USER, payload: decode });
-      dispatch({ type: USER_LOGGED_IN_SUCCESS, payload: decode });
-    }
-
-    if (localStorage.getItem('isRegistered')) dispatch({ type: SET_IS_ACCOUNT_TRUE });
-  }, []);
 
   useEffect(() => {
     const fpPromise = FingerprintJS.load();
@@ -40,6 +34,21 @@ function MyApp({ Component, pageProps }) {
         const visitor = result.visitorId;
         localStorage.setItem('visitor', JSON.stringify(visitor));
       });
+  }, []);
+
+  useEffect(() => {
+    if (useJwt.getToken()) {
+      const token = useJwt.getToken();
+      const decode = jwt_decode(token);
+      dispatch({ type: SET_LOGGED_IN_USER, payload: decode });
+      dispatch({ type: USER_LOGGED_IN_SUCCESS, payload: decode });
+    } else if (useJwt.getAnonymousToken()) {
+      const token = useJwt.getAnonymousToken();
+      const decode = jwt_decode(token);
+      console.log(decode);
+      dispatch({ type: SET_ANONYMOUS_LOGGED_IN_USER, payload: decode });
+      dispatch({ type: USER_LOGGED_IN_SUCCESS, payload: decode });
+    }
   }, []);
 
   Router.events.on('routeChangeStart', url => {

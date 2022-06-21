@@ -13,11 +13,11 @@ export const handleAnonymousLogin = data => {
       const response = await useJwt.anonymousLogin(data);
       if (response?.data) {
         const { token } = response.data;
-        useJwt.setToken(token);
+        localStorage.setItem('AnonymousToken', token);
         const decoded = jwt_decode(token);
 
         dispatch(anonymousLoginSuccess(decoded));
-        dispatch({ type: SET_LOGGED_IN_USER, payload: decoded });
+        
       }
     } catch (error) {
       dispatch(anonymousLoginFailure(error));

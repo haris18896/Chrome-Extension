@@ -14,8 +14,11 @@ class JwtService {
     axios.interceptors.request.use(
       config => {
         const accessToken = this.getToken();
+        const anonymousToken = this.getAnonymousToken();
         if (accessToken) {
           config.headers.Authorization = `JWT ${localStorage.getItem('accessToken')}`;
+        } else if (anonymousToken) {
+          config.headers.Authorization = `JWT ${localStorage.getItem('AnonymousToken')}`;
         }
         return config;
       },
@@ -42,6 +45,10 @@ class JwtService {
 
   getToken() {
     return localStorage.getItem('accessToken');
+  }
+
+  getAnonymousToken() {
+    return localStorage.getItem('AnonymousToken');
   }
 
   login(data) {

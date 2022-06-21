@@ -13,6 +13,7 @@ import { Footer, ListItems } from './sidebarData';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleLogout } from '../../redux/action/Auth/authAction';
 import { handleGetProfile } from '../../redux/action/Auth/profileAction';
+import useJwt from '../../jwt/jwtService';
 
 NProgress.configure({ showSpinner: false });
 
@@ -41,7 +42,7 @@ function Header() {
   }, [inProcess]);
 
   useEffect(() => {
-    if (success) {
+    if (useJwt.getToken()) {
       dispatch(handleGetProfile());
     }
   }, []);
