@@ -14,12 +14,15 @@ import { FaRegStar } from 'react-icons/fa';
 import { Input, Spinner } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 function Servers() {
   const router = useRouter();
 
   const dispatch = useDispatch();
   const { loading, countries, error } = useSelector(state => state.servers);
+
+  const [favorites, setFavorites] = useLocalStorage('favoriteServers', []);
 
   useEffect(() => {
     dispatch(handleCountriesList());
@@ -40,8 +43,6 @@ function Servers() {
     }
   ];
 
-  const [favorite, setFavorite] = useState([]);
-
   const [tabsState] = useState(tabs);
 
   const [selectedTab, setSelectedTab] = useState({
@@ -60,7 +61,7 @@ function Servers() {
   };
 
   const handleFavorite = server => {
-    const newFavorite = [...favorite];
+    const newFavorite = [...favorites];
     const index = newFavorite.findIndex(item => item._id === server._id);
 
     if (selectedTab.id === 'all_servers') {
@@ -75,7 +76,7 @@ function Servers() {
       }
     }
 
-    setFavorite(newFavorite);
+    setFavorites(newFavorite);
   };
 
   const reset = () => {
@@ -133,7 +134,7 @@ function Servers() {
                     <FaRegStar
                       size={16}
                       className={classNames({
-                        'Servers--list__servers--ping--star': favorite.find(doc => doc._id === item?._id)
+                        'Servers--list__servers--ping--star': favorites.find(doc => doc._id === item?._id)
                       })}
                       onClick={() => {
                         handleFavorite(item);
@@ -144,8 +145,8 @@ function Servers() {
               </div>
             ) : selectedTab.id === 'favorites' ? (
               <div>
-                {(favorite.length &&
-                  favorite.map((item, index) => (
+                {(favorites.length &&
+                  favorites.map((item, index) => (
                     <ServersList key={index} flag={item?._id} name={item?._id} ping={item?.emoji} access={item?.accessType}>
                       <FaStar size={16} color='ffc10b' onClick={() => handleFavorite(item)} />
                     </ServersList>
