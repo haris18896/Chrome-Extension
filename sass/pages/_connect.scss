@@ -26,7 +26,14 @@
 
     &__Button{
         @include flex-container-column;
-        
+        width: 300px;
+
+        img{
+            &:last-child{
+                margin-left: auto;
+            }
+        }
+
         &--container{
             @include flex-container-row;
             border: 1px solid $color-grey;

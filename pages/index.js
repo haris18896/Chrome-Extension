@@ -21,6 +21,7 @@ function Connect() {
   const { inProcess } = useSelector(state => state.anonymous)
 
   const [selectedServer, setSelectedServer] = useLocalStorage('selectedServer', {})
+  
 
   const [connection, setConnection] = useState(false)
   const [ip, setIP] = useState('')
