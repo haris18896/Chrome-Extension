@@ -130,7 +130,9 @@ export default function Login() {
 
               {error && (
                 <div className='Error'>
-                  <p className='text-danger'>{error.msg}</p>
+                  <p className='text-danger' style={{ margin: 0 }}>
+                    {error.msg}
+                  </p>
                 </div>
               )}
 

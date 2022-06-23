@@ -12,7 +12,7 @@ import { Offcanvas } from 'react-bootstrap'
 import { Footer, ListItems } from './sidebarData'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleLogout } from '../../redux/action/Auth/authAction'
-import { handleGetProfile } from '../../redux/action/Auth/profileAction'
+import { clearProfile, handleGetProfile } from '../../redux/action/Auth/profileAction'
 import useJwt from '../../jwt/jwtService'
 
 NProgress.configure({ showSpinner: false })
@@ -30,6 +30,7 @@ function Header() {
 
   const logout = () => {
     handleClose()
+    dispatch(clearProfile())
     dispatch(handleLogout())
   }
 
@@ -92,7 +93,7 @@ function Header() {
               {ListItems.map((item, index) => (
                 <li key={index} onClick={handleClose}>
                   <Link href={success ? `${item?.hrefSuccess}` : `${item?.href}`}>
-                    <a>
+                    <a target={success && '__blank'}>
                       <span className='Header__Body--List__icons'>{item?.icon}</span>
                       <span>{item?.name}</span>
                     </a>
@@ -107,7 +108,7 @@ function Header() {
                   logout()
                 }}
               >
-                <Link href='/login?amp=1'>
+                <Link href='/?amp=1'>
                   <a>
                     <TbLogout size={24} />
                     <span>Logout</span>

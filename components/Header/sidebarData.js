@@ -9,23 +9,24 @@ import { BsGearFill } from 'react-icons/bs'
 export const ListItems = [
   {
     name: 'My Account',
-    hrefSuccess: '/my-account',
+    hrefSuccess: 'https://www.friendsvpnpro.com/dashboard-portal',
     href: '/login?amp=1',
     icon: <FaUserAlt size={16} />,
   },
   {
     name: 'Settings',
-    href: '/settings',
+    hrefSuccess: 'https://www.friendsvpnpro.com/dashboard-portal',
+    href: '/login?amp=1',
     icon: <BsGearFill size={16} />,
   },
   {
     name: 'Rate Us',
-    href: '/rating',
+    href: '/app-rating',
     icon: <FaStar size={16} />,
   },
   {
     name: 'About Us',
-    href: '/about-us',
+    href: 'https://www.friendsvpnpro.com/about',
     icon: <FaInfoCircle size={16} />,
   },
 ]
