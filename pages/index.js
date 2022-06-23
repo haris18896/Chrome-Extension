@@ -77,7 +77,7 @@ function Connect() {
         <div className='Connect__Button'>
           <div className='Connect__Button--container' onClick={() => router.push('/servers?amp=1')}>
             {selectedServer && (
-              <div>
+              <>
                 <ReactCountryFlag
                   as='div'
                   countryCode={selectedServer?._id}
@@ -92,7 +92,7 @@ function Connect() {
                   title='United States'
                 />
                 <p>{selectedServer?.name || 'Choose Country Server'}</p>
-              </div>
+              </>
             )}
 
             {isAmp ? (

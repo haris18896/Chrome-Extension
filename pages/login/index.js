@@ -1,81 +1,90 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
-import { useAmp } from 'next/amp';
-import Layout from '../../Layout';
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import Router, { useRouter } from 'next/router'
+import { useAmp } from 'next/amp'
+import Layout from '../../Layout'
 
-import * as Yup from 'yup';
-import NProgress from 'nprogress';
-import classNames from 'classnames';
+import * as Yup from 'yup'
+import NProgress from 'nprogress'
+import classNames from 'classnames'
 
-import { useFormik } from 'formik';
-import { Eye, EyeOff } from 'react-feather';
-import { isObjEmpty } from '../../utility/utils';
-import { handleLogin } from '../../redux/action/Auth/authAction';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label } from 'reactstrap';
+import { useFormik } from 'formik'
+import { Eye, EyeOff } from 'react-feather'
+import { isObjEmpty } from '../../utility/utils'
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi'
+import { handleLogin } from '../../redux/action/Auth/authAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button, FormFeedback, FormGroup, Input, InputGroup, InputGroupText, Label } from 'reactstrap'
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({ showSpinner: false })
 
 export default function Login() {
-  const isAmp = useAmp();
+  const isAmp = useAmp()
+  const router = useRouter()
 
-  const dispatch = useDispatch();
-  const { inProcess, success, error } = useSelector(state => state.auth);
+  const dispatch = useDispatch()
+  const { inProcess, success, error } = useSelector(state => state.auth)
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Please enter a valid email address').required('Email is a required field!'),
-    password: Yup.string().required('Password is a required field!')
-  });
+    password: Yup.string().required('Password is a required field!'),
+  })
 
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: ''
+      password: '',
     },
     enableReinitialize: true,
     validationSchema: LoginSchema,
     onSubmit: values => {
       if (isObjEmpty(formik.errors)) {
-        const { email, password } = values;
+        const { email, password } = values
         const data = {
           email: email.trim(),
-          password: password.trim()
-        };
-        dispatch(handleLogin(data));
+          password: password.trim(),
+        }
+        dispatch(handleLogin(data))
       }
-    }
-  });
+    },
+  })
 
   const renderIcon = () => {
     if (visible === false) {
-      return <EyeOff size={24} />;
+      return <EyeOff size={24} />
     } else {
-      return <Eye size={24} />;
+      return <Eye size={24} />
     }
-  };
+  }
 
   useEffect(() => {
     if (success) {
-      Router.push('/?amp=1');
+      Router.push('/?amp=1')
     }
-  }, [success]);
+  }, [success])
 
   useEffect(() => {
     if (inProcess) {
-      NProgress.start();
+      NProgress.start()
     } else {
-      NProgress.done();
+      NProgress.done()
     }
-  }, [inProcess]);
+  }, [inProcess])
 
   return (
     <Layout title='Login'>
       <div className='App'>
         <div className='Login'>
+          <HiOutlineArrowNarrowLeft
+            className='Login__backArrow'
+            color='secondary'
+            size={24}
+            style={{ margin: '0px auto 0px 24px' }}
+            onClick={() => router.back()}
+          />
           <div className='Login__Img_container'>
             {isAmp ? (
               <amp-img width='163' height='130' src='/assets/logos/MainLogo.svg' alt='Friends VPN' layout='responsive' />
@@ -95,7 +104,7 @@ export default function Login() {
                     type='email'
                     {...formik.getFieldProps('email')}
                     className={classNames({
-                      'is-invalid': formik.touched.email && formik.errors.email
+                      'is-invalid': formik.touched.email && formik.errors.email,
                     })}
                   />
                   <Label for='Email'>Email</Label>
@@ -112,7 +121,7 @@ export default function Login() {
                     type={visible ? 'text' : 'password'}
                     {...formik.getFieldProps('password')}
                     className={classNames({
-                      'is-invalid': formik.touched.password && formik.errors.password
+                      'is-invalid': formik.touched.password && formik.errors.password,
                     })}
                   />
                   <Label for='Password'>Password</Label>
@@ -153,5 +162,5 @@ export default function Login() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
