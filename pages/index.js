@@ -9,8 +9,9 @@ import { useAmp } from 'next/amp'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleAnonymousLogin } from '../redux/action/Auth/anonymousAuthAction'
-import ReactCountryFlag from 'react-country-flag'
+// import ReactCountryFlag from 'react-country-flag'
 import { useLocalStorage } from '../hooks/useLocalStorage'
+import dynamic from 'next/dynamic'
 
 NProgress.configure({ showSpinner: false })
 
@@ -20,8 +21,9 @@ function Connect() {
   const dispatch = useDispatch()
   const { inProcess } = useSelector(state => state.anonymous)
 
-  const [selectedServer, setSelectedServer] = useLocalStorage('selectedServer', {})
-  
+  const CountryServer = dynamic(() => import('../components/countryServer/index'), {
+    ssr: false,
+  })
 
   const [connection, setConnection] = useState(false)
   const [ip, setIP] = useState('')
@@ -43,12 +45,6 @@ function Connect() {
       NProgress.done()
     }
   }, [inProcess])
-
-  useEffect(() => {
-    if (localStorage.getItem('selectedServer')) {
-      setSelectedServer(JSON.parse(localStorage.getItem('selectedServer')))
-    }
-  }, [])
 
   return (
     <Layout navbar title='FriendsVPN Extension'>
@@ -76,7 +72,8 @@ function Connect() {
         </div>
 
         <div className='Connect__Button'>
-          <div className='Connect__Button--container' onClick={() => router.push('/servers?amp=1')}>
+          <CountryServer />
+          {/* <div className='Connect__Button--container' onClick={() => router.push('/servers?amp=1')}>
             {selectedServer && (
               <>
                 <ReactCountryFlag
@@ -101,7 +98,7 @@ function Connect() {
             ) : (
               <img width='15' height='20' src='/assets/logos/rightArrow.svg' alt='rightArrow' />
             )}
-          </div>
+          </div> */}
           {connection ? (
             <div className='Connect__Button--ipAddress'>
               <p>IP Address: {ip || '00.00.00.00'}</p>
