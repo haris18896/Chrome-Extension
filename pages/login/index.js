@@ -78,13 +78,7 @@ export default function Login() {
     <Layout title='Login'>
       <div className='App'>
         <div className='Login'>
-          <HiOutlineArrowNarrowLeft
-            className='Login__backArrow'
-            color='secondary'
-            size={24}
-            style={{ margin: '0px auto 0px 24px' }}
-            onClick={() => router.back()}
-          />
+          <HiOutlineArrowNarrowLeft className='Login__backArrow' color='secondary' size={24} onClick={() => router.back()} />
           <div className='Login__Img_container'>
             {isAmp ? (
               <amp-img width='163' height='130' src='/assets/logos/MainLogo.svg' alt='Friends VPN' layout='responsive' />
