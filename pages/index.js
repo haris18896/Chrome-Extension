@@ -1,44 +1,48 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 
-import axios from 'axios';
-import Layout from '../Layout';
-import NProgress from 'nprogress';
+import axios from 'axios'
+import Layout from '../Layout'
+import NProgress from 'nprogress'
 
-import { useAmp } from 'next/amp';
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import { handleAnonymousLogin } from '../redux/action/Auth/anonymousAuthAction';
-import useJwt from '../jwt/jwtService';
+import { useAmp } from 'next/amp'
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { handleAnonymousLogin } from '../redux/action/Auth/anonymousAuthAction'
+import ReactCountryFlag from 'react-country-flag'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({ showSpinner: false })
 
 function Connect() {
-  const isAmp = useAmp();
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const { inProcess } = useSelector(state => state.anonymous);
+  const isAmp = useAmp()
+  const router = useRouter()
+  const dispatch = useDispatch()
+  const { inProcess } = useSelector(state => state.anonymous)
 
-  const [connection, setConnection] = useState(false);
-  const [ip, setIP] = useState('');
+  const [selectedServer] = useLocalStorage('selectedServer', {})
+
+  const [connection, setConnection] = useState(false)
+  const [ip, setIP] = useState('')
   const getData = async () => {
-    const res = await axios.get('https://geolocation-db.com/json/');
-    setIP(res.data.IPv4);
-  };
+    const res = await axios.get('https://geolocation-db.com/json/')
+    setIP(res.data.IPv4)
+  }
 
   useEffect(() => {
-    getData();
-    const visitor = localStorage.getItem('visitor');
-    dispatch(handleAnonymousLogin({ deviceId: `${visitor}` }));
-  }, []);
+    getData()
+    const visitor = localStorage.getItem('visitor')
+    dispatch(handleAnonymousLogin({ deviceId: `${visitor}` }))
+  }, [])
 
   useEffect(() => {
     if (inProcess) {
-      NProgress.start();
+      NProgress.start()
     } else {
-      NProgress.done();
+      NProgress.done()
     }
-  }, [inProcess]);
+  }, [inProcess])
 
   return (
     <Layout navbar title='FriendsVPN Extension'>
@@ -67,12 +71,29 @@ function Connect() {
 
         <div className='Connect__Button'>
           <div className='Connect__Button--container' onClick={() => router.push('/servers?amp=1')}>
-            {isAmp ? (
+            {/* {isAmp ? (
               <amp-img width='30' height='30' src='/assets/flag.svg' alt='flag' layout='responsive' />
             ) : (
               <img width='30' height='30' src='/assets/flag.svg' alt='flag' />
+            )} */}
+            {selectedServer && (
+              <>
+                <ReactCountryFlag
+                  countryCode={selectedServer?._id}
+                  style={{
+                    width: '2em',
+                    height: '2em',
+                    borderRadius: '50%',
+                  }}
+                  svg
+                  cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
+                  cdnSuffix='svg'
+                  title='United States'
+                />
+                <p>{selectedServer?.name || 'Choose Country Server'}</p>
+              </>
             )}
-            <p>United States of America</p>
+
             {isAmp ? (
               <amp-img width='15' height='20' src='/assets/logos/rightArrow.svg' alt='rightArrow' layout='responsive' />
             ) : (
@@ -89,7 +110,7 @@ function Connect() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
 
-export default Connect;
+export default Connect

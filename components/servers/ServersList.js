@@ -1,20 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useAmp } from 'next/amp';
-import ReactCountryFlag from 'react-country-flag';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
+import ReactCountryFlag from 'react-country-flag'
 
-function ServersList({ children, flag, name, ping, access }) {
-  const isAmp = useAmp();
+function ServersList({ children, flag, name, ping, access, data }) {
+  const router = useRouter()
 
   return (
     <div className='Servers--list__servers'>
-      <div className='Servers--list__servers--country'>
+      <div
+        className='Servers--list__servers--country'
+        onClick={() => {
+          JSON.stringify(localStorage.setItem('selectedServer', data))
+          router.back()
+        }}
+      >
         <ReactCountryFlag
           countryCode={flag}
           style={{
             width: '2em',
-            height: '2em'
+            height: '2em',
           }}
           svg
           cdnUrl='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/1x1/'
@@ -28,14 +34,14 @@ function ServersList({ children, flag, name, ping, access }) {
         <span>{ping}</span>
       </div>
     </div>
-  );
+  )
 }
 
 ServersList.propTypes = {
   children: PropTypes.node,
   flag: PropTypes.string,
   name: PropTypes.string,
-  ping: PropTypes.string
-};
+  ping: PropTypes.string,
+}
 
-export default ServersList;
+export default ServersList
