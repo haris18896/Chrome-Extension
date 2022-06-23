@@ -1,56 +1,56 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import NProgress from 'nprogress';
-import classNames from 'classnames';
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import NProgress from 'nprogress'
+import classNames from 'classnames'
 
-import { useAmp } from 'next/amp';
-import { TbLogout } from 'react-icons/tb';
-import { MdCancel } from 'react-icons/md';
-import { Offcanvas } from 'react-bootstrap';
-import { Footer, ListItems } from './sidebarData';
-import { useDispatch, useSelector } from 'react-redux';
-import { handleLogout } from '../../redux/action/Auth/authAction';
-import { handleGetProfile } from '../../redux/action/Auth/profileAction';
-import useJwt from '../../jwt/jwtService';
+import { useAmp } from 'next/amp'
+import { TbLogout, TbLogin } from 'react-icons/tb'
+import { MdCancel } from 'react-icons/md'
+import { Offcanvas } from 'react-bootstrap'
+import { Footer, ListItems } from './sidebarData'
+import { useDispatch, useSelector } from 'react-redux'
+import { handleLogout } from '../../redux/action/Auth/authAction'
+import { handleGetProfile } from '../../redux/action/Auth/profileAction'
+import useJwt from '../../jwt/jwtService'
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({ showSpinner: false })
 
 function Header() {
-  const isAmp = useAmp();
-  const dispatch = useDispatch();
-  const { success } = useSelector(state => state.auth);
-  const { Anonymous } = useSelector(state => state.anonymous);
-  const { inProcess, profile } = useSelector(state => state.profile);
+  const isAmp = useAmp()
+  const dispatch = useDispatch()
+  const { success } = useSelector(state => state.auth)
+  const { Anonymous } = useSelector(state => state.anonymous)
+  const { inProcess, profile } = useSelector(state => state.profile)
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const logout = () => {
-    handleClose();
-    dispatch(handleLogout());
-  };
+    handleClose()
+    dispatch(handleLogout())
+  }
 
   useEffect(() => {
     if (inProcess) {
-      NProgress.start();
+      NProgress.start()
     } else {
-      NProgress.done();
+      NProgress.done()
     }
-  }, [inProcess]);
+  }, [inProcess])
 
   useEffect(() => {
     if (useJwt.getToken()) {
-      dispatch(handleGetProfile());
+      dispatch(handleGetProfile())
     }
-  }, []);
+  }, [])
 
   return (
     <div
       className={classNames({
-        Header: true
+        Header: true,
       })}
     >
       <div onClick={handleShow} className='Header--bars'>
@@ -91,26 +91,35 @@ function Header() {
             <ul>
               {ListItems.map((item, index) => (
                 <li key={index} onClick={handleClose}>
-                  <Link href={item.href}>
+                  <Link href={success ? `${item?.hrefSuccess}` : `${item?.href}`}>
                     <a>
-                      <span className='Header__Body--List__icons'>{item.icon}</span>
-                      <span>{item.name}</span>
+                      <span className='Header__Body--List__icons'>{item?.icon}</span>
+                      <span>{item?.name}</span>
                     </a>
                   </Link>
                 </li>
               ))}
             </ul>
-            {success && (
+            {success ? (
               <div
                 className='Header__Body--List__logout'
                 onClick={() => {
-                  logout();
+                  logout()
                 }}
               >
                 <Link href='/login?amp=1'>
                   <a>
                     <TbLogout size={24} />
                     <span>Logout</span>
+                  </a>
+                </Link>
+              </div>
+            ) : (
+              <div className='Header__Body--List__logout'>
+                <Link href='/login?amp=1'>
+                  <a>
+                    <TbLogin size={24} />
+                    <span>Login</span>
                   </a>
                 </Link>
               </div>
@@ -131,7 +140,7 @@ function Header() {
         </Offcanvas.Body>
       </Offcanvas>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

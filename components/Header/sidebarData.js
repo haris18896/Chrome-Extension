@@ -1,48 +1,49 @@
-import { FaStar } from 'react-icons/fa';
-import { FaTwitter } from 'react-icons/fa';
-import { FaUserAlt } from 'react-icons/fa';
-import { FaInstagram } from 'react-icons/fa';
-import { FaInfoCircle } from 'react-icons/fa';
-import { FaFacebookSquare } from 'react-icons/fa';
-import { BsGearFill } from 'react-icons/bs';
+import { FaStar } from 'react-icons/fa'
+import { FaTwitter } from 'react-icons/fa'
+import { FaUserAlt } from 'react-icons/fa'
+import { FaInstagram } from 'react-icons/fa'
+import { FaInfoCircle } from 'react-icons/fa'
+import { FaFacebookSquare } from 'react-icons/fa'
+import { BsGearFill } from 'react-icons/bs'
 
 export const ListItems = [
   {
     name: 'My Account',
-    href: '/my-account',
-    icon: <FaUserAlt size={16} />
+    hrefSuccess: '/my-account',
+    href: '/login?amp=1',
+    icon: <FaUserAlt size={16} />,
   },
   {
     name: 'Settings',
     href: '/settings',
-    icon: <BsGearFill size={16} />
+    icon: <BsGearFill size={16} />,
   },
   {
     name: 'Rate Us',
     href: '/rating',
-    icon: <FaStar size={16} />
+    icon: <FaStar size={16} />,
   },
   {
     name: 'About Us',
     href: '/about-us',
-    icon: <FaInfoCircle size={16} />
-  }
-];
+    icon: <FaInfoCircle size={16} />,
+  },
+]
 
 export const Footer = [
   {
     name: 'facebook',
     href: 'https://www.facebook.com/',
-    icon: <FaFacebookSquare size={28} color='white' />
+    icon: <FaFacebookSquare size={28} color='white' />,
   },
   {
     name: 'twitter',
     href: 'https://twitter.com/',
-    icon: <FaTwitter size={28} color='white' />
+    icon: <FaTwitter size={28} color='white' />,
   },
   {
     name: 'instagram',
     href: 'https://www.instagram.com/',
-    icon: <FaInstagram size={28} color='white' />
-  }
-];
+    icon: <FaInstagram size={28} color='white' />,
+  },
+]
