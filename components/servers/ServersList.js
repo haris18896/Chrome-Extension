@@ -17,6 +17,7 @@ function ServersList({ children, flag, name, ping, access, data }) {
         }}
       >
         <ReactCountryFlag
+          as='div'
           countryCode={flag}
           style={{
             width: '2em',

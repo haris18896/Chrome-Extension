@@ -115,7 +115,7 @@ function Header() {
                 </Link>
               </div>
             ) : (
-              <div className='Header__Body--List__logout'>
+              <div className='Header__Body--List__logout' onClick={() => handleClose()}>
                 <Link href='/login?amp=1'>
                   <a>
                     <TbLogin size={24} />

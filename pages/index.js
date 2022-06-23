@@ -5,7 +5,6 @@ import React, { useState, useEffect, useLayoutEffect } from 'react'
 import axios from 'axios'
 import Layout from '../Layout'
 import NProgress from 'nprogress'
-
 import { useAmp } from 'next/amp'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,7 +20,7 @@ function Connect() {
   const dispatch = useDispatch()
   const { inProcess } = useSelector(state => state.anonymous)
 
-  const [selectedServer] = useLocalStorage('selectedServer', {})
+  const [selectedServer, setSelectedServer] = useLocalStorage('selectedServer', {})
 
   const [connection, setConnection] = useState(false)
   const [ip, setIP] = useState('')
@@ -43,6 +42,12 @@ function Connect() {
       NProgress.done()
     }
   }, [inProcess])
+
+  useEffect(() => {
+    if (localStorage.getItem('selectedServer')) {
+      setSelectedServer(JSON.parse(localStorage.getItem('selectedServer')))
+    }
+  }, [])
 
   return (
     <Layout navbar title='FriendsVPN Extension'>
@@ -71,14 +76,10 @@ function Connect() {
 
         <div className='Connect__Button'>
           <div className='Connect__Button--container' onClick={() => router.push('/servers?amp=1')}>
-            {/* {isAmp ? (
-              <amp-img width='30' height='30' src='/assets/flag.svg' alt='flag' layout='responsive' />
-            ) : (
-              <img width='30' height='30' src='/assets/flag.svg' alt='flag' />
-            )} */}
             {selectedServer && (
-              <>
+              <div>
                 <ReactCountryFlag
+                  as='div'
                   countryCode={selectedServer?._id}
                   style={{
                     width: '2em',
@@ -91,7 +92,7 @@ function Connect() {
                   title='United States'
                 />
                 <p>{selectedServer?.name || 'Choose Country Server'}</p>
-              </>
+              </div>
             )}
 
             {isAmp ? (
