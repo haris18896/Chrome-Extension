@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "FriendsVPN",
   "short_name": "FriendsVPN",
-  "version": "1.0.1",
+  "version": "1.0.1.1",
   "author": "Fit-OutFit Software Tech. Pvt. Ltd.",
   "description": "FriendsVPN is a free VPN service offered by us. FriendsVPN offers you secure and private internet access. We prioritize your online privacy, security, and freedom above all else. You can use FriendsVPN if you want absolute online privacy and security. FriendsVPN also bypass geo-blocks and other content restrictions ",
   "icons": {
@@ -11,7 +11,7 @@
     "48": "/assets/icons/icon-48.png",
     "128": "/assets/icons/icon-128.png"
   },
-  "permissions": ["activeTab", "cookies"],
+  "permissions": ["activeTab", "cookies", "storage"],
   "content_scripts": [
     {
       "matches": ["https://*/*", "http://*/*"],
@@ -19,6 +19,10 @@
     }
   ],
   "host_permissions": ["<all_urls>"],
+
+  "background": {
+    "service_worker": "background.js"
+  },
   
   "action" :{
     "default_popup" : "index.html",
