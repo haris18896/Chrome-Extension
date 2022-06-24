@@ -11,7 +11,7 @@
     "48": "/assets/icons/icon-48.png",
     "128": "/assets/icons/icon-128.png"
   },
-  "permissions": ["activeTab", "cookies", "storage", "<all_urls>", "tabs"],
+  "permissions": ["activeTab", "cookies", "storage", "tabs"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
