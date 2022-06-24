@@ -51,12 +51,12 @@ function Header() {
 
   useEffect(() => {
     if (success) {
-      cookieCutter.set('token', useJwt.getToken(), {
+      cookieCutter.set('ExtToken', useJwt.getToken(), {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         path: '/',
       })
     } else {
-      cookieCutter.set('token', '', {
+      cookieCutter.set('ExtToken', '', {
         expires: new Date(Date.now() - 1000),
       })
     }
