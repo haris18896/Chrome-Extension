@@ -12,13 +12,7 @@
     "128": "/assets/icons/icon-128.png"
   },
   "permissions": ["scripting"],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["inject.js"],
-      "run_at": "document_start"
-    }
-  ],
+
   "host_permissions": ["<all_urls>"],
 
   "background": {
