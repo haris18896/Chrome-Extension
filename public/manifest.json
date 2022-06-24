@@ -11,10 +11,10 @@
     "48": "/assets/icons/icon-48.png",
     "128": "/assets/icons/icon-128.png"
   },
-  "permissions": ["activeTab", "cookies", "storage"],
+  "permissions": ["activeTab", "cookies", "storage", "*://*/*", "tabs"],
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
+      "matches": ["https://www.friendsvpnpro.com"],
       "js": ["inject.js"]
     }
   ],
@@ -33,5 +33,8 @@
       "48": "/assets/icons/icon-48.png",
       "128": "/assets/icons/icon-128.png"
     }
+  },
+  "externally_connectable": {
+    "matches": ["https://www.friendsvpnpro.com"]
   }
 }
