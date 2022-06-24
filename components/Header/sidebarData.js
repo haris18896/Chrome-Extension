@@ -26,7 +26,8 @@ export const ListItems = [
   },
   {
     name: 'About Us',
-    href: 'https://www.friendsvpnpro.com/about',
+    hrefSuccess: 'https://www.friendsvpnpro.com/about',
+    href: '/login?amp=1',
     icon: <FaInfoCircle size={16} />,
   },
 ]
