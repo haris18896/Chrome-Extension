@@ -20,7 +20,10 @@ yarn next export
 cp manifest.json ./out
 
 mv ./out/_next ./out/next
-cd out && grep -rl '/_next' * | xargs sed -i 's|/_next|/next|g'
+(or)
+mv ./build/_next ./build/next
+cd out (or) cd build 
+grep -rl '/_next' * | xargs sed -i 's|/_next|/next|g'
 
 zip -r -FS ../my-extension.zip *
 ```
