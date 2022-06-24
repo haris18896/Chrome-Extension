@@ -1,10 +1,8 @@
-var editorExtensionId = 'hjnocfmkfaefkjikcnanplafacjameke'
+const init = function () {
+  const injectElement = document.createElement('contentScript')
+  injectElement.className = 'inject'
+  injectElement.innerHTML = `Hello there, This is the Content Script from Inject.js`
+  document.body.appendChild(injectElement)
+}
 
-// Make a simple request:
-chrome.runtime.sendMessage(editorExtensionId, { openUrlInEditor: url }, function (response) {
-  if (!response.success) {
-    handleError(url)
-  } else {
-    console.log('Successfully opened in editor')
-  }
-})
+init()

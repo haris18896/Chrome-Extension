@@ -11,11 +11,12 @@
     "48": "/assets/icons/icon-48.png",
     "128": "/assets/icons/icon-128.png"
   },
-  "permissions": ["activeTab", "cookies", "storage"],
+  "permissions": ["activeTab", "cookies", "storage", "<all_urls>", "tabs"],
   "content_scripts": [
     {
-      "matches": ["*://localhost:*/*"],
-      "js": ["inject.js"]
+      "matches": ["<all_urls>"],
+      "js": ["inject.js"],
+      "run_at": "document_start"
     }
   ],
   "host_permissions": ["<all_urls>"],
@@ -35,6 +36,6 @@
     }
   },
   "externally_connectable": {
-    "matches": ["*://localhost:*/*"]
+    "matches": ["<all_urls>"]
   }
 }
