@@ -9,5 +9,5 @@ try {
     }
   })
 } catch (e) {
-  console.log('inject error', e)
+  console.log(e)
 }
