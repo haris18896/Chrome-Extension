@@ -14,8 +14,8 @@
     "replace" : "grep -rl \"_next\" ./build | xargs sed -i \"s/_next/next/g\"", 
     "back" : "cd ../",
     "remove" : "rm -rf .next/ build/ out/ extension.zip",
-    "shoot" : "npm run build && npm run export && npm run move && npm run change && npm run replace && npm run back ",
     "git": "git add * && git commit -m",
+    "shoot" : "npm run build && npm run export && npm run move && npm run change && npm run replace && npm run back && npm run git",
     "postgit": "git push --all"
   },
   "dependencies": {
