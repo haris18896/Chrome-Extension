@@ -9,10 +9,7 @@ import { useAmp } from 'next/amp'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleAnonymousLogin } from '../redux/action/Auth/anonymousAuthAction'
-// import ReactCountryFlag from 'react-country-flag'
-import { useLocalStorage } from '../hooks/useLocalStorage'
 import dynamic from 'next/dynamic'
-import { handleCountriesList } from '../redux/action/servers'
 
 NProgress.configure({ showSpinner: false })
 
@@ -46,8 +43,6 @@ function Connect() {
       NProgress.done()
     }
   }, [inProcess])
-
-
 
   return (
     <Layout navbar title='FriendsVPN Extension'>

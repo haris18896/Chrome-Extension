@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import NProgress from 'nprogress'
 import classNames from 'classnames'
-// import jwt_decode from 'jwt-decode'
-// import cookieCutter from 'cookie-cutter'
+import jwt_decode from 'jwt-decode'
+import cookieCutter from 'cookie-cutter'
 import useJwt from '../../jwt/jwtService'
 
 import { useAmp } from 'next/amp'
@@ -49,18 +49,18 @@ function Header() {
     }
   }, [])
 
-  // useEffect(() => {
-  //   if (success) {
-  //     cookieCutter.set('ExtToken', useJwt.getToken(), {
-  //       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
-  //       path: '/',
-  //     })
-  //   } else {
-  //     cookieCutter.set('ExtToken', '', {
-  //       expires: new Date(Date.now() - 1000),
-  //     })
-  //   }
-  // }, [success])
+  useEffect(() => {
+    if (success) {
+      cookieCutter.set('ExtToken', useJwt.getToken(), {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        path: '/',
+      })
+    } else {
+      cookieCutter.set('ExtToken', '', {
+        expires: new Date(Date.now() - 1000),
+      })
+    }
+  }, [success])
 
   return (
     <div
