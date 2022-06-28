@@ -1,11 +1,8 @@
-// *********** Takes an array of scripts that would be run in the background page. ***********
-// Provides persistence and handles background events
-
 // listen for incoming message from the content-script
-window.perfWatch = {}
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  window.perfWatch[sender.tab.id] = message.essential || null
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  // if the incoming message is "Hello"
+  alert('message : ', request)
+  console.log('message in console.', request)
 })
 
 // try {

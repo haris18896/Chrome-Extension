@@ -5,9 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "dev-watch": "npm-watch",
-    "build": "next build && next export -o build",
+    "build": "next build",
+    "export" : " next export -o build",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "move" : "mv ./build/_next ./build/next",
+    "change" : "cd build",
+    "replace" : "grep -rl \"_next\" ./build | xargs sed -i \"s/_next/next/g\"", 
+    "back" : "cd ../",
+    "remove" : "rm -rf .next/ build/ out/ extension.zip",
+    "shoot" : "npm run build && npm run export && npm run move && npm run change && npm run replace && npm run back "
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^3.3.3",
