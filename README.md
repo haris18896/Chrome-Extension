@@ -121,6 +121,4 @@ module.exports = nextConfig
   }
 }
 
-
-checking git commit
 ```
