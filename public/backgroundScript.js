@@ -1,9 +1,4 @@
 // listen for incoming message from the content-script
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  // if the incoming message is "Hello"
-  alert('message : ', request)
-  console.log('message in console.', request)
-})
 
 // try {
 //   //ON page change
@@ -18,3 +13,12 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 // } catch (e) {
 //   console.log(e)
 // }
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  console.log(sender?.tab ? 'from a content script: ' + sender?.tab?.url : 'from the extension')
+
+  if (request.greetings) {
+    console.log('response of content script: ', request.greetings)
+    sendResponse({ farewell: 'Bye there' })
+  }
+})
