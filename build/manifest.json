@@ -11,7 +11,7 @@
     "48": "/assets/icons/icon-48.png",
     "128": "/assets/icons/icon-128.png"
   },
-  "permissions": ["storage", "contextMenus", "scripting", "tabs", "webRequest", "webRequestBlocking", "notifications", "identity"],
+  "permissions": ["storage", "contextMenus", "scripting", "tabs"],
 
   "host_permissions": ["*://*.friendsvpnpro.com/*"],
 

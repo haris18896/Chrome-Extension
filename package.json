@@ -15,7 +15,7 @@
     "back" : "cd ../",
     "remove" : "rm -rf .next/ build/ out/ extension.zip",
     "git": "git add * && git commit -m",
-    "shoot" : "npm run build && npm run export && npm run move && npm run change && npm run replace && npm run back && npm run git",
+    "shoot" : "npm run build && npm run export && npm run move && npm run change && npm run replace && npm run back ",
     "postgit": "git push --all"
   },
   "dependencies": {

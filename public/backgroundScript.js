@@ -27,16 +27,21 @@
 
 // Long-lived connections
 
-chrome.runtime.onConnect.addListener(function (port) {
-  console.assert(port.name === 'knock')
+// chrome.runtime.onConnect.addListener(function (port) {
+//   console.log('background connected with content', port.name)
+//   console.assert(port.name == 'knockknock')
 
-  port.onMessage.addListener(function (msg) {
-    if (msg.joke === 'KnockKnock') {
-      port.postMessage({ question: "who's there?" })
-    } else if (msg.answer === 'Haris') {
-      port.postMessage({ question: 'Haris who?' })
-    } else if (msg.answer === 'Haris Ahmad Khan') {
-      post.postMessage({ question: "I don't know who you are" })
-    }
-  })
-})
+//   port.onMessage.addListener(function (msg) {
+//     if (msg.joke === 'Knock_knock') {
+//       console.log('background script message: ', msg.joke)
+//       port.postMessage({ question: "who's there?" })
+//     } else if (msg.answer === 'Haris') {
+//       console.log('background script message: ', msg.answer)
+//       port.postMessage({ question: 'Haris who?' })
+//     } else if (msg.answer === 'Haris Ahmad Khan') {
+//       console.log('background script message: ', msg.answer)
+//       post.postMessage({ question: "I don't know who you are" })
+//     }
+//   })
+// })
+
