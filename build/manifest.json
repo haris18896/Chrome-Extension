@@ -21,7 +21,7 @@
       "128": "/assets/icons/icon-128.png"
     }
   },
-  "permissions": ["scripting", "cookies", "tabs", "storage"],
+  "permissions": ["scripting", "cookies", "tabs", "storage", "contentSettings"],
   "host_permissions": ["https://*.friendsvpnpro.com/*"],
   "background": {
     "service_worker": "backgroundScript.js"

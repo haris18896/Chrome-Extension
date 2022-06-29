@@ -6,7 +6,6 @@ import axios from 'axios'
 import Layout from '../Layout'
 import NProgress from 'nprogress'
 import { useAmp } from 'next/amp'
-import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleAnonymousLogin } from '../redux/action/Auth/anonymousAuthAction'
 import dynamic from 'next/dynamic'
@@ -15,7 +14,6 @@ NProgress.configure({ showSpinner: false })
 
 function Connect() {
   const isAmp = useAmp()
-  const router = useRouter()
   const dispatch = useDispatch()
   const { inProcess } = useSelector(state => state.anonymous)
 

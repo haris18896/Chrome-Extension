@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import NProgress from 'nprogress'
 import classNames from 'classnames'
-import jwt_decode from 'jwt-decode'
-import cookieCutter from 'cookie-cutter'
+import { useCookies } from 'react-cookie'
 import useJwt from '../../jwt/jwtService'
 
 import { useAmp } from 'next/amp'
@@ -22,10 +21,12 @@ NProgress.configure({ showSpinner: false })
 function Header() {
   const isAmp = useAmp()
   const dispatch = useDispatch()
+  const [show, setShow] = useState(false)
+  const [cookie, setCookie] = useCookies(['ExtensionToken'])
+
   const { success } = useSelector(state => state.auth)
   const { inProcess, profile } = useSelector(state => state.profile)
 
-  const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
@@ -51,12 +52,12 @@ function Header() {
 
   useEffect(() => {
     if (success) {
-      cookieCutter.set('ExtToken', useJwt.getToken(), {
+      setCookie('ExtensionToken', useJwt.getToken(), {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
         path: '/',
       })
     } else {
-      cookieCutter.set('ExtToken', '', {
+      setCookie('ExtensionToken', '', {
         expires: new Date(Date.now() - 1000),
       })
     }

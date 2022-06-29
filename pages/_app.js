@@ -14,6 +14,7 @@ import { Suspense, useEffect } from 'react'
 
 import { wrapper, store } from '../redux/store'
 import { SET_ANONYMOUS_LOGGED_IN_USER, SET_LOGGED_IN_USER, USER_LOGGED_IN_SUCCESS } from '../redux/action/actionTypes/Auth'
+import { CookiesProvider } from 'react-cookie'
 
 NProgress.configure({ showSpinner: false })
 
@@ -55,7 +56,9 @@ function MyApp({ Component, pageProps }) {
     <ErrorBoundary fallback={'ErrorFallback'}>
       <Suspense fallback={<h1>Loading...</h1>}>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <CookiesProvider>
+            <Component {...pageProps} />
+          </CookiesProvider>
         </Provider>
       </Suspense>
     </ErrorBoundary>
