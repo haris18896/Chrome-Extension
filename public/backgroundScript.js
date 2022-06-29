@@ -19,18 +19,19 @@
 // }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  // console.log(sender.tab ? 'from a content script:' + sender.tab.url : 'from the extension')
   if (request.greeting === 'hello') {
-    checkUserLogin(sender, sendResponse)
+    checkUserLogin(request, sender, sendResponse)
   }
 })
 
-function checkUserLogin(sender, sendResponse) {
+function checkUserLogin(request, sender, sendResponse) {
   console.log(sender.tab ? 'from a content script:' + sender.tab.url : 'from the extension')
-  var resp = sendResponse()
+  console.log('request', request, 'sender', sender, 'sendResponse', sendResponse)
   chrome.cookies.get({ URL: 'https://*.friendsvpnpro.com/*', name: 'FriendsVPNProCookiesSent' }, function (cookie) {
     console.log('checkUserLogin cookie in the function', cookie)
     var userId = cookie?.value || 0
     console.log('checkUserLogin userId', userId)
-    resp({ farewell: userId ? 'Logged' : 'NotLogged' })
+    sendResponse({ farewell: userId ? 'Logged' : 'NotLogged' })
   })
 }
