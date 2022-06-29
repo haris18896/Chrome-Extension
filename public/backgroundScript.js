@@ -1,47 +1,36 @@
 // listen for incoming message from the content-script
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//   if (request.greeting == 'hello') {
+//     console.log('greetings from content script')
+//     checkUserLogin(request, sender, sendResponse)
+//   }
 
-// try {
-//   //ON page change
-//   chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-//     if (changeInfo.status == 'complete') {
-//       chrome.scripting.executeScript({
-//         files: ['inject.js'],
-//         target: { tabId: tab.id },
-//       })
-//     }
+//   return true
+// })
+
+// function checkUserLogin(request, sender, sendResponse) {
+//   console.log('checkUserLogin', request, sender, sendResponse)
+//   chrome.cookies.get({ URL: 'https://*.friendsvpnpro.com/*', name: 'FriendsVPNProCookiesSent' }, function (cookie) {
+//     console.log('checkUserLogin cookie in the function', cookie)
+//     var userId = cookie?.value || 0
+
+//     sendResponse({ farewell: userId ? 'Logged' : 'NotLogged' })
 //   })
-// } catch (e) {
-//   console.log(e)
 // }
 
-// Simple One-Time requests background script
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.greeting === 'hello') {
+    checkUserLogin(sender, sendResponse)
+  }
+})
 
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-//   console.log(sender?.tab ? 'from a content script: ' + sender?.tab?.url : 'from the extension')
-
-//   if (request.greetings) {
-//     console.log('response of content script: ', request.greetings)
-//     sendResponse({ farewell: 'Bye there' })
-//   }
-// })
-
-// Long-lived connections
-
-// chrome.runtime.onConnect.addListener(function (port) {
-//   console.log('background connected with content', port.name)
-//   console.assert(port.name == 'knockknock')
-
-//   port.onMessage.addListener(function (msg) {
-//     if (msg.joke === 'Knock_knock') {
-//       console.log('background script message: ', msg.joke)
-//       port.postMessage({ question: "who's there?" })
-//     } else if (msg.answer === 'Haris') {
-//       console.log('background script message: ', msg.answer)
-//       port.postMessage({ question: 'Haris who?' })
-//     } else if (msg.answer === 'Haris Ahmad Khan') {
-//       console.log('background script message: ', msg.answer)
-//       post.postMessage({ question: "I don't know who you are" })
-//     }
-//   })
-// })
-
+function checkUserLogin(sender, sendResponse) {
+  console.log(sender.tab ? 'from a content script:' + sender.tab.url : 'from the extension')
+  var resp = sendResponse()
+  chrome.cookies.get({ URL: 'https://*.friendsvpnpro.com/*', name: 'FriendsVPNProCookiesSent' }, function (cookie) {
+    console.log('checkUserLogin cookie in the function', cookie)
+    var userId = cookie?.value || 0
+    console.log('checkUserLogin userId', userId)
+    resp({ farewell: userId ? 'Logged' : 'NotLogged' })
+  })
+}

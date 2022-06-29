@@ -121,4 +121,6 @@ module.exports = nextConfig
   }
 }
 
+
+there are basically 2 ways to inject script into a webpage, one is via a content script which say that if you are on this page then inject this JS file, the other method is via background js file, it will lessons when url changes, then can inject the script directly from the background page.
 ```

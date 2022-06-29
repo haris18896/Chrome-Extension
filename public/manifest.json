@@ -11,23 +11,6 @@
     "48": "/assets/icons/icon-48.png",
     "128": "/assets/icons/icon-128.png"
   },
-  "permissions": ["storage", "contextMenus", "scripting", "tabs"],
-
-  "host_permissions": ["*://*.friendsvpnpro.com/*"],
-
-  "background": {
-    "service_worker": "backgroundScript.js"
-  },
-  
-
-  "content_scripts" : [
-    {
-      "matches" : ["*://*.friendsvpnpro.com/*"],
-      "js" : ["contentScript.js"],
-      "run_at" : "document_idle"
-    }
-  ],
-
   "action" :{
     "default_popup" : "index.html",
     "default_title" : "FriendsVPN",
@@ -37,5 +20,16 @@
       "48": "/assets/icons/icon-48.png",
       "128": "/assets/icons/icon-128.png"
     }
-  }
+  },
+  "permissions": ["scripting", "cookies", "tabs", "storage"],
+  "host_permissions": ["https://*.friendsvpnpro.com/*"],
+  "background": {
+    "service_worker": "backgroundScript.js"
+  },
+  "content_scripts" : [
+    {
+      "matches" : ["https://*.friendsvpnpro.com/*"],
+      "js" : ["contentScript.js"]
+    }
+  ]
 }
