@@ -1,6 +1,7 @@
 // to not run it multiple times add if(typeof init === 'undefined'){}
+var editorExtensionId = 'hjnocfmkfaefkjikcnanplafacjameke'
 
-chrome.runtime.sendMessage({ greeting: 'hello' }, function (response) {
+chrome.runtime.sendMessage(editorExtensionId, { status: 'online' }, function (response) {
   if (response?.farewell) {
     // logged in
     console.log('you have been logged in')
