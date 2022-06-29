@@ -22,6 +22,6 @@ function checkUserLogin(request, sender, sendResponse) {
 }
 
 function cookieInjection(name) {
-  alert(`here is the ${name}`)
   console.log(`here is the ${name}`)
+  alert(`here is the ${name}`)
 }
