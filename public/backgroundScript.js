@@ -26,12 +26,26 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 })
 
 function checkUserLogin(request, sender, sendResponse) {
-  console.log(sender.tab ? 'from a content script:' + sender.tab.url : 'from the extension')
   console.log('request', request, 'sender', sender, 'sendResponse', sendResponse)
-  chrome.cookies.get({ URL: 'https://*.friendsvpnpro.com/*', name: 'FriendsVPNProCookiesSent' }, function (cookie) {
-    console.log('checkUserLogin cookie in the function', cookie)
-    var userId = cookie?.value || 0
-    console.log('checkUserLogin userId', userId)
-    sendResponse({ farewell: userId ? 'Logged' : 'NotLogged' })
-  })
+  if (sender?.tab === 'https://*.friendsvpnpro.com/*') {
+    let cookieName = 'Haris'
+
+    chrome.scripting.executeScript({
+      target: { tabId: sender?.tab?.id },
+      func: cookieInjection,
+      args: [cookieName],
+    })
+
+    chrome.cookies.get({ URL: 'https://*.friendsvpnpro.com/*', name: 'FriendsVPNProCookiesSent' }, function (cookie) {
+      console.log('checkUserLogin cookie in the function', cookie)
+      var userId = cookie?.value || 0
+
+      sendResponse({ farewell: userId ? 'Logged' : 'NotLogged' })
+    })
+  }
+}
+
+function cookieInjection(name) {
+  alert(`here is the ${name}`)
+  console.log(`here is the ${name}`)
 }
