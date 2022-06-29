@@ -8,6 +8,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 })
 
 function checkUserLogin(request, sender, sendResponse) {
+  console.log('request', request)
   if (sender.tab?.url) {
     let cookieName = sender?.tab?.url
 
