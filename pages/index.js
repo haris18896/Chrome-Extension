@@ -9,10 +9,11 @@ import { useAmp } from 'next/amp'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleAnonymousLogin } from '../redux/action/Auth/anonymousAuthAction'
 import dynamic from 'next/dynamic'
+import parseCookies from './api/helpers'
 
 NProgress.configure({ showSpinner: false })
 
-function Connect() {
+export default function Connect() {
   const isAmp = useAmp()
   const dispatch = useDispatch()
   const { inProcess } = useSelector(state => state.anonymous)
@@ -81,5 +82,3 @@ function Connect() {
     </Layout>
   )
 }
-
-export default Connect

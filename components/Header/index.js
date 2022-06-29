@@ -18,7 +18,7 @@ import { clearProfile, handleGetProfile } from '../../redux/action/Auth/profileA
 
 NProgress.configure({ showSpinner: false })
 
-function Header() {
+export default function Header() {
   const isAmp = useAmp()
   const dispatch = useDispatch()
   const [show, setShow] = useState(false)
@@ -158,5 +158,3 @@ function Header() {
     </div>
   )
 }
-
-export default Header
