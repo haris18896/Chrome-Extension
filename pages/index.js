@@ -2,14 +2,14 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 
-import axios from 'axios'
 import Layout from '../Layout'
 import NProgress from 'nprogress'
 import { useAmp } from 'next/amp'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleAnonymousLogin } from '../redux/action/Auth/anonymousAuthAction'
 import dynamic from 'next/dynamic'
-import parseCookies from './api/helpers'
+import useJwt from '../jwt/jwtService'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 NProgress.configure({ showSpinner: false })
 
@@ -22,15 +22,21 @@ export default function Connect() {
     ssr: false,
   })
 
-  const [connection, setConnection] = useState(false)
-  const [ip, setIP] = useState('')
-  const getData = async () => {
-    const res = await axios.get('https://geolocation-db.com/json/')
-    setIP(res.data.IPv4)
-  }
+  const [ip, setIP] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [connection, setConnection] = useLocalStorage('connection', false)
 
   useEffect(() => {
-    getData()
+    setLoading(true)
+    fetch('https://geolocation-db.com/json/86f5f280-f4eb-11ec-8676-4f4388bc6daa')
+      .then(res => res.json())
+      .then(data => {
+        setIP(data.IPv4)
+        setLoading(false)
+      })
+  }, [connection])
+
+  useEffect(() => {
     const visitor = localStorage.getItem('visitor')
     dispatch(handleAnonymousLogin({ deviceId: `${visitor}` }))
   }, [])
@@ -72,7 +78,7 @@ export default function Connect() {
           <CountryServer />
           {connection ? (
             <div className='Connect__Button--ipAddress'>
-              <p>IP Address: {ip || '00.00.00.00'}</p>
+              <p>IP Address: {loading ? 'Loading...' : !ip ? '00.00.00.00' : ip}</p>
             </div>
           ) : (
             ''
