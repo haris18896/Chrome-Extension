@@ -1,11 +1,10 @@
 // listen for incoming message from the content-script
 
 self.addEventListener('connected', function (event) {
-  console.log('event in background script', event)
+  console.log('event at background : ', event)
   self.clients.matchAll().then(all =>
     all.forEach(client => {
-      client.postMessage('responding to : ', event.client)
-      console.log('console.log responding to : ', event.client)
+      client.postMessage('Responding to ' + event.data)
     })
   )
 })

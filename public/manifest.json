@@ -26,10 +26,8 @@
   "background": {
     "service_worker": "backgroundScript.js"
   },
-  "content_scripts" : [
-    {
-      "matches" : ["https://*.friendsvpnpro.com/*"],
-      "js" : ["contentScript.js"]
-    }
-  ]
+  "externally_connectable": {
+    "matches": ["https://*.friendsvpnpro.com/*"]
+  }
+ 
 }

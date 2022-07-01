@@ -24,61 +24,6 @@ function index() {
   const [loading, setLoading] = useState(false)
   const CountryServer = dynamic(() => import('../countryServer/index'), { ssr: false })
 
-  useEffect(() => {
-    'use strict'
-    if (!navigator.serviceWorker || !navigator.serviceWorker.register) {
-      return
-    }
-    // Listen to messages from service workers.
-    navigator.serviceWorker.addEventListener('connected', function (event) {
-      console.log('Got replay from service worker : ', event.data)
-    })
-
-    // Are we being controlled?
-    if (navigator.serviceWorker.controller) {
-      // Yes, send our controller a message
-      // const data = () => {
-      //   if (ref.current.alt === 'connected') {
-      //     ref.current.onclick(() => {
-      //       var config = {
-      //         mode: 'pac_script',
-      //         pacScript: {
-      //           data:
-      //             'function FindProxyForURL(url, host) {\n' +
-      //             "  if (host == 'www.google.com')\n" +
-      //             "    return 'PROXY 119.152.152.163:80';\n" +
-      //             "  return 'DIRECT';\n" +
-      //             '}',
-      //         },
-      //       }
-
-      //       chrome.proxy.settings.set({ value: config, scope: 'regular' }, function () {
-      //         console.log('Proxy settings applied.')
-      //       })
-      //     })
-      //   } else if (ref.current.alt === 'disconnected') {
-      //     ref.current.onclick(() => {
-      //       chrome.proxy.settings.set({ value: { mode: 'direct' }, scope: 'regular' }, function () {
-      //         console.log('Proxy settings Reset.')
-      //       })
-      //     })
-      //   }
-      // }
-      console.log('sending Hi to controller')
-      navigator.serviceWorker.controller.postMessage(data)
-    } else {
-      navigator.serviceWorker
-        .register('/backgroundScript.js')
-        .then(registration => {
-          console.log('Service worker registered, scope: ', registration.scope)
-          console.log('Refresh the page to talk to it.')
-        })
-        .catch(err => {
-          console.log('service worker registration failed : ', err.message)
-        })
-    }
-  })
-
   const [connection, setConnection] = useLocalStorage('connection', {
     status: 'disconnected',
     img: '/assets/logos/disconnected.svg',
@@ -89,20 +34,6 @@ function index() {
       setConnection(JSON.parse(localStorage.getItem('connection')))
     }
   }, [])
-
-  const handleChange = () => {
-    if (connection.status === 'disconnected') {
-      setConnection({
-        status: 'connected',
-        img: '/assets/logos/connected.svg',
-      })
-    } else if (connection.status === 'connected') {
-      setConnection({
-        status: 'disconnected',
-        img: '/assets/logos/disconnected.svg',
-      })
-    }
-  }
 
   useEffect(() => {
     setLoading(true)
@@ -126,6 +57,50 @@ function index() {
       NProgress.done()
     }
   }, [inProcess])
+
+  useEffect(() => {
+    'use strict'
+    if (!navigator.serviceWorker || !navigator.serviceWorker.register) {
+      console.log("This browser doesn't support service workers")
+      return
+    }
+
+    // Listen to messages from service workers.
+    navigator.serviceWorker.addEventListener('connected', function (event) {
+      console.log('Got reply from service worker: ' + event.data)
+    })
+
+    // Are we being controlled?
+    if (navigator.serviceWorker.controller) {
+      // Yes, send our controller a message.
+      console.log("Sending 'hi' to controller")
+      navigator.serviceWorker.controller.postMessage('hi')
+    } else {
+      navigator.serviceWorker
+        .register('/backgroundScript.js')
+        .then(function (registration) {
+          console.log('Service worker registered, scope: ' + registration.scope)
+          console.log('Refresh the page to talk to it.')
+        })
+        .catch(function (error) {
+          console.log('Service worker registration failed: ' + error.message)
+        })
+    }
+  }, [ref?.current?.alt])
+
+  const handleChange = () => {
+    if (connection.status === 'disconnected') {
+      setConnection({
+        status: 'connected',
+        img: '/assets/logos/connected.svg',
+      })
+    } else if (connection.status === 'connected') {
+      setConnection({
+        status: 'disconnected',
+        img: '/assets/logos/disconnected.svg',
+      })
+    }
+  }
 
   return (
     <>
