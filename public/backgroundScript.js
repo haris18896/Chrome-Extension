@@ -1,5 +1,7 @@
 // listen for incoming message from the content-script
 
+const ip = '119.152.152.163'
+
 var config = {
   mode: 'pac_script',
   pacScript: {
