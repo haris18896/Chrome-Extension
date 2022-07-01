@@ -67,11 +67,10 @@ function index() {
     }
 
     // Listen to messages from service workers.
-    navigator.serviceWorker.addEventListener('connected', function (event) {
+    navigator.serviceWorker.addEventListener('message', function (event) {
       console.log('Got reply from service worker: ' + event.data)
     })
 
-    // Are we being controlled?
     if (navigator.serviceWorker.controller) {
       // Yes, send our controller a message.
       if (ref?.current?.id === 'setProxy') {
@@ -95,6 +94,18 @@ function index() {
   }, [ref?.current?.id])
 
   const handleChange = () => {
+    var config = {
+      mode: 'pac_script',
+      pacScript: {
+        data:
+          'function FindProxyForURL(url, host) {\n' +
+          "  if (host == 'www.google.com')\n" +
+          "    return 'PROXY 119.152.152.163:80';\n" +
+          "  return 'DIRECT';\n" +
+          '}',
+      },
+    }
+
     if (connection.status === 'disconnected') {
       setConnection({
         status: 'connected',
@@ -112,22 +123,24 @@ function index() {
     <>
       {connection && (
         <div className='Connect'>
-          <div className='Connect__connection' onClick={() => handleChange()}>
+          <div
+            ref={ref}
+            id={connection?.status === 'connected' ? 'setProxy' : 'unsetProxy'}
+            className='Connect__connection'
+            onClick={() => handleChange()}
+          >
             <div>
               {isAmp ? (
                 <amp-img
-                  ref={ref}
-                  id={connection?.status === 'connected' ? 'setProxy' : 'unsetProxy'}
                   width='184'
                   height='268'
                   src={connection?.img}
                   alt={connection?.status === 'connected' ? 'connected' : 'disconnected'}
                   layout='responsive'
+                  onClick={() => setProxy()}
                 />
               ) : (
                 <img
-                  ref={ref}
-                  id={connection?.status === 'connected' ? 'setProxy' : 'unsetProxy'}
                   width='184'
                   height='268'
                   src={connection?.img}
