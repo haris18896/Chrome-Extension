@@ -7,15 +7,16 @@ import dynamic from 'next/dynamic'
 import classNames from 'classnames'
 
 import { useAmp } from 'next/amp'
+import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
-
 import { handleAnonymousLogin } from '../../redux/action/Auth/anonymousAuthAction'
 
 NProgress.configure({ showSpinner: false })
 
 function index() {
   const isAmp = useAmp()
+  const router = useRouter()
   const dispatch = useDispatch()
   const ref = useRef(document.getElementById('setProxy'))
   const { inProcess } = useSelector(state => state.anonymous)
@@ -73,20 +74,25 @@ function index() {
     // Are we being controlled?
     if (navigator.serviceWorker.controller) {
       // Yes, send our controller a message.
-      console.log("Sending 'hi' to controller")
-      navigator.serviceWorker.controller.postMessage('hi')
+      if (ref?.current?.id === 'setProxy') {
+        console.log(ref)
+        // navigator.serviceWorker.controller.postMessage('setProxy')
+      } else if (ref?.current?.id === 'unsetProxy') {
+        console.log(ref)
+        // navigator.serviceWorker.controller.postMessage('unsetProxy')
+      }
     } else {
       navigator.serviceWorker
         .register('/backgroundScript.js')
         .then(function (registration) {
           console.log('Service worker registered, scope: ' + registration.scope)
-          console.log('Refresh the page to talk to it.')
+          router.reload()
         })
         .catch(function (error) {
           console.log('Service worker registration failed: ' + error.message)
         })
     }
-  }, [ref?.current?.alt])
+  }, [ref?.current?.id])
 
   const handleChange = () => {
     if (connection.status === 'disconnected') {

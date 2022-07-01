@@ -2,11 +2,12 @@
 
 self.addEventListener('connected', function (event) {
   console.log('event at background : ', event)
-  self.clients.matchAll().then(all =>
-    all.forEach(client => {
-      client.postMessage('Responding to ' + event.data)
-    })
-  )
+  event.source.postMessage('Responding to ' + event.data)
+  // self.clients.matchAll().then(all =>
+  //   all.forEach(client => {
+  //     client.postMessage('Responding to ' + event.data)
+  //   })
+  // )
 })
 
 // var config = {
