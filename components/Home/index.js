@@ -66,19 +66,15 @@ function index() {
       return
     }
 
-    // Listen to messages from service workers.
     navigator.serviceWorker.addEventListener('message', function (event) {
       console.log('Got reply from service worker: ' + event.data)
     })
 
     if (navigator.serviceWorker.controller) {
-      // Yes, send our controller a message.
-      if (ref?.current?.id === 'setProxy') {
-        console.log(ref)
-        // navigator.serviceWorker.controller.postMessage('setProxy')
-      } else if (ref?.current?.id === 'unsetProxy') {
-        console.log(ref)
-        // navigator.serviceWorker.controller.postMessage('unsetProxy')
+      if (ref.current.id === 'setProxy') {
+        navigator.serviceWorker.controller.postMessage('setProxy')
+      } else if (ref.current.id === 'unsetProxy') {
+        navigator.serviceWorker.controller.postMessage('unsetProxy')
       }
     } else {
       navigator.serviceWorker
@@ -94,18 +90,6 @@ function index() {
   }, [ref?.current?.id])
 
   const handleChange = () => {
-    var config = {
-      mode: 'pac_script',
-      pacScript: {
-        data:
-          'function FindProxyForURL(url, host) {\n' +
-          "  if (host == 'www.google.com')\n" +
-          "    return 'PROXY 119.152.152.163:80';\n" +
-          "  return 'DIRECT';\n" +
-          '}',
-      },
-    }
-
     if (connection.status === 'disconnected') {
       setConnection({
         status: 'connected',
@@ -137,7 +121,6 @@ function index() {
                   src={connection?.img}
                   alt={connection?.status === 'connected' ? 'connected' : 'disconnected'}
                   layout='responsive'
-                  onClick={() => setProxy()}
                 />
               ) : (
                 <img
