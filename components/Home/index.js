@@ -1,20 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState, useEffect } from 'react'
-import classNames from 'classnames'
+import React, { useState, useEffect, useRef } from 'react'
+import NProgress from 'nprogress'
 import dynamic from 'next/dynamic'
+import classNames from 'classnames'
 
 import { useAmp } from 'next/amp'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 
-import NProgress from 'nprogress'
 import { handleAnonymousLogin } from '../../redux/action/Auth/anonymousAuthAction'
+
 NProgress.configure({ showSpinner: false })
 
 function index() {
   const isAmp = useAmp()
+  const ref = useRef(document.getElementById('setProxy'))
   const dispatch = useDispatch()
   const { inProcess } = useSelector(state => state.anonymous)
 
@@ -79,9 +81,24 @@ function index() {
           <div className='Connect__connection' onClick={() => handleChange()}>
             <div>
               {isAmp ? (
-                <amp-img width='184' height='268' src={connection?.img} alt='connected' layout='responsive' />
+                <amp-img
+                  ref={ref}
+                  id={connection?.status === 'connected' ? 'setProxy' : 'unsetProxy'}
+                  width='184'
+                  height='268'
+                  src={connection?.img}
+                  alt='connected'
+                  layout='responsive'
+                />
               ) : (
-                <img width='184' height='268' src={connection?.img} alt='connected' />
+                <img
+                  ref={ref}
+                  id={connection?.status === 'connected' ? 'setProxy' : 'unsetProxy'}
+                  width='184'
+                  height='268'
+                  src={connection?.img}
+                  alt='connected'
+                />
               )}
               <p
                 className={classNames({
