@@ -16,16 +16,69 @@ NProgress.configure({ showSpinner: false })
 
 function index() {
   const isAmp = useAmp()
-  const ref = useRef(document.getElementById('setProxy'))
   const dispatch = useDispatch()
+  const ref = useRef(document.getElementById('setProxy'))
   const { inProcess } = useSelector(state => state.anonymous)
-
-  const CountryServer = dynamic(() => import('../countryServer/index'), {
-    ssr: false,
-  })
 
   const [ip, setIP] = useState(null)
   const [loading, setLoading] = useState(false)
+  const CountryServer = dynamic(() => import('../countryServer/index'), { ssr: false })
+
+  useEffect(() => {
+    'use strict'
+    if (!navigator.serviceWorker || !navigator.serviceWorker.register) {
+      return
+    }
+    // Listen to messages from service workers.
+    navigator.serviceWorker.addEventListener('connected', function (event) {
+      console.log('Got replay from service worker : ', event.data)
+    })
+
+    // Are we being controlled?
+    if (navigator.serviceWorker.controller) {
+      // Yes, send our controller a message
+      // const data = () => {
+      //   if (ref.current.alt === 'connected') {
+      //     ref.current.onclick(() => {
+      //       var config = {
+      //         mode: 'pac_script',
+      //         pacScript: {
+      //           data:
+      //             'function FindProxyForURL(url, host) {\n' +
+      //             "  if (host == 'www.google.com')\n" +
+      //             "    return 'PROXY 119.152.152.163:80';\n" +
+      //             "  return 'DIRECT';\n" +
+      //             '}',
+      //         },
+      //       }
+
+      //       chrome.proxy.settings.set({ value: config, scope: 'regular' }, function () {
+      //         console.log('Proxy settings applied.')
+      //       })
+      //     })
+      //   } else if (ref.current.alt === 'disconnected') {
+      //     ref.current.onclick(() => {
+      //       chrome.proxy.settings.set({ value: { mode: 'direct' }, scope: 'regular' }, function () {
+      //         console.log('Proxy settings Reset.')
+      //       })
+      //     })
+      //   }
+      // }
+      console.log('sending Hi to controller')
+      navigator.serviceWorker.controller.postMessage(data)
+    } else {
+      navigator.serviceWorker
+        .register('/backgroundScript.js')
+        .then(registration => {
+          console.log('Service worker registered, scope: ', registration.scope)
+          console.log('Refresh the page to talk to it.')
+        })
+        .catch(err => {
+          console.log('service worker registration failed : ', err.message)
+        })
+    }
+  })
+
   const [connection, setConnection] = useLocalStorage('connection', {
     status: 'disconnected',
     img: '/assets/logos/disconnected.svg',
@@ -87,7 +140,7 @@ function index() {
                   width='184'
                   height='268'
                   src={connection?.img}
-                  alt='connected'
+                  alt={connection?.status === 'connected' ? 'connected' : 'disconnected'}
                   layout='responsive'
                 />
               ) : (
@@ -97,7 +150,7 @@ function index() {
                   width='184'
                   height='268'
                   src={connection?.img}
-                  alt='connected'
+                  alt={connection?.status === 'connected' ? 'connected' : 'disconnected'}
                 />
               )}
               <p
