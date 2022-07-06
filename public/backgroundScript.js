@@ -31,3 +31,11 @@ self.addEventListener('message', function (event) {
     })
   )
 })
+
+chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResponse) {
+  if (sender.url !== 'https://*.freindsvpnpro.com/*') return // don't allow other web page access
+  if (request.openUrlInEditor) {
+    console.log('openUrlInEditor', request.openUrlInEditor)
+    openUrl(request.openUrlInEditor)
+  }
+})
