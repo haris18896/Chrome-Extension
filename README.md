@@ -160,9 +160,9 @@ zip -r -FS ../my-extension.zip *
 ---
 
 # Proxy
-Proxy Auto-Configuration Script: https://www.oreilly.com/library/view/web-caching/156592536X/ch04s03.html
+[Proxy Auto-Configuration Script](https://www.oreilly.com/library/view/web-caching/156592536X/ch04s03.html)
 
-Proxy Auto-Configuration (PAC) file: https://developer.mozilla.org/en-US/docs/Web/HTTP/Proxy_servers_and_tunneling/Proxy_Auto-Configuration_PAC_file
+[Proxy Auto-Configuration (PAC) file](https://developer.mozilla.org/en-US/docs/Web/HTTP/Proxy_servers_and_tunneling/Proxy_Auto-Configuration_PAC_file)
 
 DIRECT => connection should me made directly, without any proxies
 
