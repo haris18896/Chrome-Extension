@@ -171,5 +171,3 @@ PROXY host:port => The specified proxy should be used
 SOCKS host:port => The specified SOCKS proxy should be used
 
 Recent versions of Firefox support as well => HTTP host:port, HTTPS host:port, SOCKS4 host:port, SOCKS5 host:port
-
-checking gitmoji
