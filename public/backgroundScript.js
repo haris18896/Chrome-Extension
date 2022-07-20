@@ -26,10 +26,6 @@ var config = {
       port +
       '";\n' +
       '}',
-    // data:
-    //   'function FindProxyForURL(url, host) {\n' +
-    //   "    return 'PROXY 217.23.6.40:1080'; SOCKS5 46.4.96.137:1080; SOCKS5 45.77.56.114:30205\n" +
-    //   '}',
   },
 }
 
