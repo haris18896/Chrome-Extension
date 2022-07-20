@@ -41,7 +41,7 @@ function index() {
     fetch('https://geolocation-db.com/json/86f5f280-f4eb-11ec-8676-4f4388bc6daa')
       .then(res => res.json())
       .then(data => {
-        setIP(data.IPv4)
+        setIP(data)
         setLoading(false)
       })
   }, [connection])
@@ -52,12 +52,12 @@ function index() {
   }, [])
 
   useEffect(() => {
-    if (inProcess) {
+    if (inProcess || loading) {
       NProgress.start()
     } else {
       NProgress.done()
     }
-  }, [inProcess])
+  }, [inProcess, loading])
 
   useEffect(() => {
     'use strict'
@@ -145,7 +145,18 @@ function index() {
             <CountryServer />
             {connection?.status === 'connected' ? (
               <div className='Connect__Button--ipAddress'>
-                <p>IP Address: {loading ? 'Loading...' : !ip ? '00.00.00.00' : ip}</p>
+                <p>
+                  IP Address:{' '}
+                  {loading ? (
+                    'Loading...'
+                  ) : !ip ? (
+                    '00.00.00.00'
+                  ) : (
+                    <span>
+                      {ip?.IPv4}, {ip?.city}, {ip?.country_name}
+                    </span>
+                  )}
+                </p>
               </div>
             ) : (
               ''

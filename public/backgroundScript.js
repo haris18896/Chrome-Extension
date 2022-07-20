@@ -1,24 +1,27 @@
-// const ip = '222.139.221.185'
-// const port = '9091'
-
-var config = {
-  mode: 'fixed_servers',
-  rules: {
-    proxyForHttp: {
-      scheme: 'socks5',
-      host: '188.226.141.127',
-      port: '1080',
-    },
-    bypassList: ['foobar.com'],
-  },
-}
+const ip = '217.23.6.40'
+const port = 1080
 
 // var config = {
-//   mode: 'pac_script',
-//   pacScript: {
-//     data: 'function FindProxyForURL(url, host) { return PROXY 145.239.85.58:9300 }',
+//   mode: 'fixed_servers',
+//   rules: {
+//     singleProxy: {
+//       scheme: 'socks5',
+//       host: ip,
+//       port: port,
+//     },
 //   },
 // }
+
+var config = {
+  mode: 'pac_script',
+  pacScript: {
+    // data: 'function FindProxyForURL(url, host) {\n' + '  return "PROXY ' + ip + ':' + port + '"\n' + '}',
+    data:
+      'function FindProxyForURL(url, host) {\n' +
+      "    return 'PROXY 217.23.6.40:1080'; SOCKS5 46.4.96.137:1080; SOCKS5 45.77.56.114:30205; DIRECT;\n" +
+      '}',
+  },
+}
 
 self.addEventListener('message', function (event) {
   self.clients.matchAll().then(all =>
