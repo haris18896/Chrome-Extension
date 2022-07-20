@@ -1,5 +1,3 @@
-// listen for incoming message from the content-script
-
 // const ip = '222.139.221.185'
 // const port = '9091'
 
