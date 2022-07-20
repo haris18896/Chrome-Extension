@@ -44,6 +44,9 @@ function index() {
         setIP(data)
         setLoading(false)
       })
+      .catch(rejected => {
+        console.log('rejected', rejected)
+      })
   }, [connection])
 
   useEffect(() => {
@@ -52,12 +55,12 @@ function index() {
   }, [])
 
   useEffect(() => {
-    if (inProcess || loading) {
+    if (inProcess) {
       NProgress.start()
     } else {
       NProgress.done()
     }
-  }, [inProcess, loading])
+  }, [inProcess])
 
   useEffect(() => {
     'use strict'

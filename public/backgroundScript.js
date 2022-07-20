@@ -15,11 +15,21 @@ const port = 1080
 var config = {
   mode: 'pac_script',
   pacScript: {
-    // data: 'function FindProxyForURL(url, host) {\n' + '  return "PROXY ' + ip + ':' + port + '"\n' + '}',
     data:
       'function FindProxyForURL(url, host) {\n' +
-      "    return 'PROXY 217.23.6.40:1080'; SOCKS5 46.4.96.137:1080; SOCKS5 45.77.56.114:30205; DIRECT;\n" +
+      '  if (host == "localhost") {\n' +
+      '    return "DIRECT";\n' +
+      '  }\n' +
+      '  return "PROXY ' +
+      ip +
+      ':' +
+      port +
+      '";\n' +
       '}',
+    // data:
+    //   'function FindProxyForURL(url, host) {\n' +
+    //   "    return 'PROXY 217.23.6.40:1080'; SOCKS5 46.4.96.137:1080; SOCKS5 45.77.56.114:30205\n" +
+    //   '}',
   },
 }
 
@@ -39,12 +49,4 @@ self.addEventListener('message', function (event) {
       }
     })
   )
-})
-
-chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResponse) {
-  if (sender.url !== 'https://*.freindsvpnpro.com/*') return // don't allow other web page access
-  if (request.openUrlInEditor) {
-    console.log('openUrlInEditor', request.openUrlInEditor)
-    openUrl(request.openUrlInEditor)
-  }
 })
