@@ -15,19 +15,7 @@ const port = 1080
 var config = {
   mode: 'pac_script',
   pacScript: {
-    data:
-      'function FindProxyForURL(url, host) {\n' +
-      '  if (host == "localhost") {\n' +
-      "console.log('this is localhost')\n" +
-      '    return "DIRECT";\n' +
-      '  }\n' +
-      "console.log('is it working')\n" +
-      '  return "PROXY ' +
-      ip +
-      ':' +
-      port +
-      '";\n' +
-      '}',
+    data: 'function FindProxyForURL(url, host) { return "SOCKS5 ' + ip + ':' + port + '"; }',
   },
 }
 
