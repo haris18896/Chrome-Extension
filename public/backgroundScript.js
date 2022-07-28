@@ -20,7 +20,7 @@ var config = {
       ')\n' +
       'return "PROXY 51.75.6.2:32648; PROXY 47.94.161.219:22; DIRECT";\n' +
       'if (isInNet(myIpAddress(), "39.37.167.13", "255.255.255.0")) return "PROXY 186.248.89.6:5005; PROXY 125.99.58.110:3128"\n' +
-      'return "PROXY 125.21.3.41:8080; PROXY 176.192.70.58:8009"\n' +
+      'return "PROXY 140.227.69.124:3180; PROXY 176.192.70.58:8009"\n' +
       '}',
   },
 }
