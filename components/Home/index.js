@@ -46,9 +46,7 @@ function index() {
         setLoading(false)
       })
       .catch(rejected => {
-        setError(
-          "Failed to Fetch IP Address. Please try again later. If the problem persists, please contact https://geolocation-db.com '"
-        )
+        setError("Failed to Fetch IP Address. Please try again later.'")
         console.log('rejected', rejected)
       })
   }, [connection])
@@ -164,7 +162,7 @@ function index() {
                     </span>
                   )}
                 </p>
-                {error && <p>{error}</p>}
+                {error && <span>{error}</span>}
               </div>
             ) : (
               ''
