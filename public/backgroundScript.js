@@ -6,9 +6,9 @@ var config = {
   pacScript: {
     data:
       'function FindProxyForURL(url, host) {\n' +
-      'if (dnsDomainIs(host, "intranet.domain.com") || shExpMatch(host, "(*.abcdomain.com|abcdomain.com)")) \n' +
+      'if (dnsDomainIs(host, "google.com") || shExpMatch(host, "(*.google.com|google.com)")) \n' +
       'return "PROXY 47.242.52.247:3128; PROXY 117.54.114.101:80; DIRECT";\n' +
-      'if (url.substring(0, 4) == "ftp:" || shExpMatch(url, "http://abcdomain.com/folder/*"))\n' +
+      'if (url.substring(0, 4) == "ftp:" || shExpMatch(url, "http://*.friendsvpnpro.com/"))\n' +
       'return "PROXY 223.160.16.50:3128; PROXY 183.215.172.2:9091; DIRECT";\n' +
       'if (\n' +
       'isPlainHostName(host) ||\n' +
