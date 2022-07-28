@@ -1,17 +1,6 @@
 const ip = '217.23.6.40'
 const port = 1080
 
-// var config = {
-//   mode: 'fixed_servers',
-//   rules: {
-//     singleProxy: {
-//       scheme: 'socks5',
-//       host: ip,
-//       port: parseInt(port),
-//     },
-//   },
-// }
-
 var config = {
   mode: 'pac_script',
   pacScript: {
