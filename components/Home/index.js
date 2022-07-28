@@ -46,7 +46,7 @@ function index() {
         setLoading(false)
       })
       .catch(rejected => {
-        setError("Failed to Fetch IP Address. Please try again later.'")
+        setError('Failed to Fetch IP Address.')
         console.log('rejected', rejected)
       })
   }, [connection])
@@ -155,14 +155,13 @@ function index() {
                   {!error && loading ? (
                     'Loading...'
                   ) : !ip ? (
-                    '00.00.00.00'
+                    <span style={{ color: '#ff2233' }}>{error}</span>
                   ) : (
                     <span>
                       {ip?.IPv4}, {ip?.city}, {ip?.country_name}
                     </span>
                   )}
                 </p>
-                {error && <span>{error}</span>}
               </div>
             ) : (
               ''
