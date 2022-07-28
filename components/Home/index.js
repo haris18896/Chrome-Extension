@@ -155,13 +155,14 @@ function index() {
                   {!error && loading ? (
                     'Loading...'
                   ) : !ip ? (
-                    <span style={{ color: '#ff2233' }}>{error}</span>
+                    '00.00.00.00'
                   ) : (
                     <span>
                       {ip?.IPv4}, {ip?.city}, {ip?.country_name}
                     </span>
                   )}
                 </p>
+                {error && <span style={{ color: '#ff2233' }}>{error}</span>}
               </div>
             ) : (
               ''
