@@ -23,6 +23,7 @@ function index() {
 
   const [ip, setIP] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const CountryServer = dynamic(() => import('../countryServer/index'), { ssr: false })
 
   const [connection, setConnection] = useLocalStorage('connection', {
@@ -45,6 +46,9 @@ function index() {
         setLoading(false)
       })
       .catch(rejected => {
+        setError(
+          "Failed to Fetch IP Address. Please try again later. If the problem persists, please contact https://geolocation-db.com '"
+        )
         console.log('rejected', rejected)
       })
   }, [connection])
@@ -150,7 +154,7 @@ function index() {
               <div className='Connect__Button--ipAddress'>
                 <p>
                   IP Address:{' '}
-                  {loading ? (
+                  {!error && loading ? (
                     'Loading...'
                   ) : !ip ? (
                     '00.00.00.00'
@@ -160,6 +164,7 @@ function index() {
                     </span>
                   )}
                 </p>
+                {error && <p>{error}</p>}
               </div>
             ) : (
               ''
